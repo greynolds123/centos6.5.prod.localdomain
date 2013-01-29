@@ -1,5 +1,5 @@
 class puppet::install {
-     Package { 'puppet':
+     package { 'puppet':
       ensure  => present,
      }
    }

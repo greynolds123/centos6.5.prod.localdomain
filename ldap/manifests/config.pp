@@ -4,7 +4,7 @@ class ldap::config {
      owner   => 'root',
      group   => 'root',
      mode    => '0644'
-     source  => templates('ldap/templates/ldap.erb'),
+     source  => templates( "ldap/templates/ldap.erb" ),
      require => Class['ldap::install'],
      require => Class['ldap::server],
      notify  => Class['ldap::service]

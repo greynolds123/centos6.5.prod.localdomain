@@ -23,3 +23,4 @@ class sudo::config {
          line => 'root  ALL=(ALL) ALL',
          line => '%sudo ALL=(ALL) ALL',
   }
+}

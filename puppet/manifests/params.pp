@@ -6,7 +6,7 @@ class puppet::params {
     /(Ubuntu|Debian)/: {
       $puppet_package_name = 'pe-puppet'
     }
-    /(RedHat|Centos|Fedora):/ {
+    /(RedHat|Centos|Fedora)/: {
       $puppet_package_name = 'pe-puppet'
     }
   }

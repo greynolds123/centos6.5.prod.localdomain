@@ -1,14 +1,13 @@
 class ssh::params {
     case operatingsystem {
       Solaris: {
-       $ssh_package_name = 'ssh'
+       $ssh_package_name = 'sshd'
       }
       /(Ubuntu|Debian)/: {
-       $ssh_package_name = 'ssh'
+       $ssh_package_name = 'sshd'
       }
-      /(RedHat|Centos|Fedora)/:
-       $ssh_package_name = 'ssh'
+      /(RedHat|Fedora|Centos)/: {
+       $ssh_package_name = 'sshd'
       }
    }
- }
-       
+ }      

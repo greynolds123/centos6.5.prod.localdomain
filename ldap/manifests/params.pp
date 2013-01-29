@@ -1,13 +1,10 @@
 class ldap::params {
    case $operatingsystem {
-     Solaris: {
-      $openldap_package_name = 'openldap'
+    Solaris: {
+      $ntp_package_name = 'ntp'
      }
-     /(Ubuntu}Debian)/: = 'openldap'
-      $openldap_package_name = 'openldap'
-     }
-     /(RedHat|Centos|Fedora)/: {
-      $openldap_package_name = 'opefnldap'
+    /(RedHat|Fedora)/: {
+      $ntp_package_name = 'ntp'
      }
    }
- }        
+ }
