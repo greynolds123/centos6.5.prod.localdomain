@@ -4,7 +4,7 @@ class sudo::config {
    owner   => root,
    group   => root,
    mode    => "0600",
-   soure   => templates( 'sudo/templates/sudo.erb' ),
+   soure   => 'puppet://$puppetserver/modules/sudo/templates/sudo.erb' ),
    require => Class['ssh::params'],
    }
  file_line { 'sudo_rule':

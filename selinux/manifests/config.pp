@@ -4,6 +4,8 @@ class selinux::config {
       group   => "root",
       mode    => 0644,
       ensure  => present,
-      content => template('selinux/templates/config.erb'),
+      content => puppet://$puppetserver/modules/selinux/templates/config.erb',
+      require => Class['selinux::install'],
+      notify  => Class['selinux::service']
     }
   }

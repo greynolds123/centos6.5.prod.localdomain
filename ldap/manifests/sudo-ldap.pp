@@ -4,7 +4,7 @@ class ldap::sudo-ldap {
         owner   => "root",
         group   => "root",
         mode    => "0600",
-        source  => templates('ldap/templates/sudo-ldap.erb'),
+        source  => 'puppet://$puppetserver/modules/ldap/templates/sudo-ldap.erb',
         require => Class['ldap::params']
       }
    }

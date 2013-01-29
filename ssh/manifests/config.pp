@@ -4,7 +4,7 @@ class ssh::config {
     owner   => 'root',
     group   => 'root',
     mode    => '0600',
-    source  => File['ssh/templates/ssh.erb'],
+    source  => 'puppet://$puppetserver/modules/ssh/templates/ssh.erb',
     require => Class['ssh::install'],
     notify  => Class['ssh::service']
     }
