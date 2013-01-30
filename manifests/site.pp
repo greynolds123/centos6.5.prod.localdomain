@@ -40,8 +40,12 @@ node default {
 $domain = 'puppet.localdomain'}
 
 node /^www\.puppet\.localdomian/ {
-     class { 'ssh':  }
-     class { 'sudo': }
-     class { 'ldap': }
-     class { 'ntp':  }
+     class { 'puppet':       }
+     class { 'puppet':       }
+     class { 'selinux':      }
+     class { 'loadbalancer': }
+     class { 'ssh':          }
+     class { 'sudo':         }
+     class { 'ldap':         }
+     class { 'ntp':          }
 }
