@@ -131,7 +131,7 @@ ServerName puppet.localdomain
 
 UseCanonicalName Off
 
-DocumentRoot "/opt/puppet/var/www/html"
+DocumentRoot "/opt/puppet/var/www/"
 
 <Directory "/">
     Options none
@@ -150,9 +150,8 @@ DocumentRoot "/opt/puppet/var/www/html"
     AddDefaultCharset UTF-8
     AddHandler cgi-script .cgi
     AddHandler type-map var
-    Order deny,allow
-    Deny from 192.168.128.0
-    Allow from .puppet.localdomain               
+    Order allow,deny
+    Allow from all               
 </Directory>
 
 <Directory "/opt/puppet/var/www/index.php">
@@ -167,14 +166,13 @@ DocumentRoot "/opt/puppet/var/www/html"
     AddDefaultCharset UTF-8
     AddHandler cgi-script .cgi
     AddHandler type-map var
-    Order deny,allow
-    Deny from 192.168.128.0
-    Allow from .puppet.localdomain
+    Order allow,deny
+    Allow from all
 </Directory>
  
-    Options Indexes FollowSymLinks
 
 <Directory "/opt/puppet/var/www/">
+    Options Indexes FollowSymLinks
     Order allow,deny
     Allow from all
 </Directory>
