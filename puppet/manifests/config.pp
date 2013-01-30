@@ -4,7 +4,7 @@ class puppet::config {
       owner   => 'root',
       group   => 'root',
       mode    => '0600',
-      source  => 'puppet://$puppetserver/modules/puppet/templates/puppet.conf.erb',
+      source  => templates('templates/puppet.conf.erb'),
       require => Class['puppet::install'],
       notify  => Class['puppet::service']
     }
