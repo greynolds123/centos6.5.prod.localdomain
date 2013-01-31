@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #
 # This is the main Apache server configuration file.  It contains the
 # configuration directives that give the server its instructions.
@@ -78,6 +79,20 @@ MaxKeepAliveRequests 100
 # KeepAliveTimeout: Number of seconds to wait for the next request from the
 # same client on the same connection.
 #
+=======
+ServerTokens OS
+
+ServerRoot "/etc/httpd/"
+
+PidFile run/httpd.pid
+
+Timeout 60
+
+KeepAlive Off
+
+MaxKeepAliveRequests 100
+
+>>>>>>> db79956e088a17d5a6f0e74b7937fbf1af84537c
 KeepAliveTimeout 15
 
 ##
@@ -95,8 +110,13 @@ KeepAliveTimeout 15
 StartServers       8
 MinSpareServers    5
 MaxSpareServers   20
+<<<<<<< HEAD
 ServerLimit       16
 MaxClients       400
+=======
+ServerLimit      256
+MaxClients       256
+>>>>>>> db79956e088a17d5a6f0e74b7937fbf1af84537c
 MaxRequestsPerChild  4000
 </IfModule>
 
@@ -108,15 +128,23 @@ MaxRequestsPerChild  4000
 # ThreadsPerChild: constant number of worker threads in each server process
 # MaxRequestsPerChild: maximum number of requests a server process serves
 <IfModule worker.c>
+<<<<<<< HEAD
 StartServers         2
 MaxClients         400
 ServerLimit         16
 MinSpareThreads     25
 MaxSpareThreads     75
+=======
+StartServers         4
+MaxClients         300
+MinSpareThreads     25
+MaxSpareThreads     75 
+>>>>>>> db79956e088a17d5a6f0e74b7937fbf1af84537c
 ThreadsPerChild     25
 MaxRequestsPerChild  0
 </IfModule>
 
+<<<<<<< HEAD
 #
 # Listen: Allows you to bind Apache to specific IP addresses and/or
 # ports, in addition to the default. See also the <VirtualHost>
@@ -140,6 +168,10 @@ MaxRequestsPerChild  0
 # Example:
 # LoadModule foo_module modules/mod_foo.so
 #
+=======
+Listen 8141
+
+>>>>>>> db79956e088a17d5a6f0e74b7937fbf1af84537c
 LoadModule auth_basic_module modules/mod_auth_basic.so
 LoadModule auth_digest_module modules/mod_auth_digest.so
 LoadModule authn_file_module modules/mod_authn_file.so
@@ -167,9 +199,17 @@ LoadModule headers_module modules/mod_headers.so
 LoadModule usertrack_module modules/mod_usertrack.so
 LoadModule setenvif_module modules/mod_setenvif.so
 LoadModule mime_module modules/mod_mime.so
+<<<<<<< HEAD
 LoadModule status_module modules/mod_status.so
 LoadModule autoindex_module modules/mod_autoindex.so
 LoadModule info_module modules/mod_info.so
+=======
+LoadModule dav_module modules/mod_dav.so
+LoadModule status_module modules/mod_status.so
+LoadModule autoindex_module modules/mod_autoindex.so
+LoadModule info_module modules/mod_info.so
+LoadModule dav_fs_module modules/mod_dav_fs.so
+>>>>>>> db79956e088a17d5a6f0e74b7937fbf1af84537c
 LoadModule vhost_alias_module modules/mod_vhost_alias.so
 LoadModule negotiation_module modules/mod_negotiation.so
 LoadModule dir_module modules/mod_dir.so
@@ -177,20 +217,33 @@ LoadModule actions_module modules/mod_actions.so
 LoadModule speling_module modules/mod_speling.so
 LoadModule userdir_module modules/mod_userdir.so
 LoadModule alias_module modules/mod_alias.so
+<<<<<<< HEAD
+=======
+LoadModule substitute_module modules/mod_substitute.so
+>>>>>>> db79956e088a17d5a6f0e74b7937fbf1af84537c
 LoadModule rewrite_module modules/mod_rewrite.so
 LoadModule proxy_module modules/mod_proxy.so
 LoadModule proxy_balancer_module modules/mod_proxy_balancer.so
 LoadModule proxy_ftp_module modules/mod_proxy_ftp.so
 LoadModule proxy_http_module modules/mod_proxy_http.so
+<<<<<<< HEAD
 LoadModule proxy_connect_module modules/mod_proxy_connect.so
 LoadModule cache_module modules/mod_cache.so
 LoadModule suexec_module modules/mod_suexec.so
+=======
+LoadModule proxy_ajp_module modules/mod_proxy_ajp.so
+LoadModule proxy_connect_module modules/mod_proxy_connect.so
+LoadModule cache_module modules/mod_cache.so
+LoadModule suexec_module modules/mod_suexec.so
+LoadModule disk_cache_module modules/mod_disk_cache.so
+>>>>>>> db79956e088a17d5a6f0e74b7937fbf1af84537c
 LoadModule cgi_module modules/mod_cgi.so
 LoadModule version_module modules/mod_version.so
 
 #
 # The following modules are not loaded by default:
 #
+<<<<<<< HEAD
 #LoadModule cern_meta_module modules/mod_cern_meta.so
 #LoadModule asis_module modules/mod_asis.so
 
@@ -323,6 +376,77 @@ DocumentRoot "/opt/puppet/var/www/html"
     Order allow,deny
     Allow from all
 
+=======
+#LoadModule asis_module modules/mod_asis.so
+#LoadModule authn_dbd_module modules/mod_authn_dbd.so
+#LoadModule cern_meta_module modules/mod_cern_meta.so
+#LoadModule cgid_module modules/mod_cgid.so
+#LoadModule dbd_module modules/mod_dbd.so
+#LoadModule dumpio_module modules/mod_dumpio.so
+#LoadModule filter_module modules/mod_filter.so
+#LoadModule ident_module modules/mod_ident.so
+#LoadModule log_forensic_module modules/mod_log_forensic.so
+#LoadModule unique_id_module modules/mod_unique_id.so
+#
+
+Include conf.d/*.conf
+
+ExtendedStatus On
+
+User apache
+Group apache
+
+ServerAdmin root@localhost
+
+ServerName puppet.localdomain
+
+UseCanonicalName Off
+
+DocumentRoot "/opt/puppet/var/www/"
+
+<Directory "/">
+    Options none
+    AllowOverride None
+</Directory>
+
+<Directory "/opt/puppet/var/www/">
+   Options none
+    AddType text/html .shtml
+    AddOutputFilter INCLUDES .shtml .php
+    AddType application/x-x509-ca-cert .crt
+    AddType application/x-pkcs7-crl    .crl
+    AddEncoding x-compress .Z
+    AddEncoding x-gzip .gz .tgz
+    AddType application/x-tar .tgz
+    AddDefaultCharset UTF-8
+    AddHandler cgi-script .cgi
+    AddHandler type-map var
+    Order allow,deny
+    Allow from all               
+</Directory>
+
+<Directory "/opt/puppet/var/www/index.php">
+   Options Indexes Includes FollowSymLinks ExecCGI MultiViews
+    AddType text/html .shtml
+    AddOutputFilter INCLUDES .shtml .php
+    AddType application/x-x509-ca-cert .crt
+    AddType application/x-pkcs7-crl    .crl
+    AddEncoding x-compress .Z
+    AddEncoding x-gzip .gz .tgz
+    AddType application/x-tar .tgz
+    AddDefaultCharset UTF-8
+    AddHandler cgi-script .cgi
+    AddHandler type-map var
+    Order allow,deny
+    Allow from all
+</Directory>
+ 
+
+<Directory "/opt/puppet/var/www/">
+    Options Indexes FollowSymLinks
+    Order allow,deny
+    Allow from all
+>>>>>>> db79956e088a17d5a6f0e74b7937fbf1af84537c
 </Directory>
 
 #
@@ -343,11 +467,19 @@ DocumentRoot "/opt/puppet/var/www/html"
     # of a username on the system (depending on home directory
     # permissions).
     #
+<<<<<<< HEAD
     UserDir disable
 
     #
     # To enable requests to /~user/ to serve the user's public_html
     # directory, remove the "UserDir disable" line above, and uncomment
+=======
+    UserDir disabled
+
+    #
+    # To enable requests to /~user/ to serve the user's public_html
+    # directory, remove the "UserDir disabled" line above, and uncomment
+>>>>>>> db79956e088a17d5a6f0e74b7937fbf1af84537c
     # the following line instead:
     # 
     #UserDir public_html
@@ -371,6 +503,7 @@ DocumentRoot "/opt/puppet/var/www/html"
 #    </LimitExcept>
 #</Directory>
 
+<<<<<<< HEAD
 #
 # DirectoryIndex: sets the file that Apache will serve if a directory
 # is requested.
@@ -419,11 +552,28 @@ DefaultType text/plain
 # contents of the file itself to determine its type.  The MIMEMagicFile
 # directive tells the module where the hint definitions are located.
 #
+=======
+DirectoryIndex index.html index.html.var
+
+AccessFileName .htaccess
+
+<Files ~ "^\.ht">
+    Order allow,deny
+    Deny from all
+    Satisfy All
+</Files>
+
+TypesConfig /etc/mime.types
+
+DefaultType text/plain
+
+>>>>>>> db79956e088a17d5a6f0e74b7937fbf1af84537c
 <IfModule mod_mime_magic.c>
 #   MIMEMagicFile /usr/share/magic.mime
     MIMEMagicFile conf/magic
 </IfModule>
 
+<<<<<<< HEAD
 #
 # HostnameLookups: Log the names of clients or just their IP addresses
 # e.g., www.apache.org (on) or 204.62.129.132 (off).
@@ -473,11 +623,24 @@ LogLevel warn
 # The following directives define some format nicknames for use with
 # a CustomLog directive (see below).
 #
+=======
+HostnameLookups Off
+
+#EnableMMAP off
+
+#EnableSendfile off
+
+ErrorLog logs/error_log
+
+LogLevel warn
+
+>>>>>>> db79956e088a17d5a6f0e74b7937fbf1af84537c
 LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined
 LogFormat "%h %l %u %t \"%r\" %>s %b" common
 LogFormat "%{Referer}i -> %U" referer
 LogFormat "%{User-agent}i" agent
 
+<<<<<<< HEAD
 # "combinedio" includes actual counts of actual bytes received (%I) and sent (%O); this
 # requires the mod_logio module to be loaded.
 #LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" %I %O" combinedio
@@ -531,12 +694,22 @@ Alias /icons/ "/opt/puppet/var/www/icons/"
 
 <Directory "/opt/puppet/var/www/icons">
     Options Indexes MultiViews
+=======
+CustomLog logs/access_log combined
+
+ServerSignature Off
+Alias /icons/ "/opt/puppet/var/www/icons/"
+
+<Directory "/var/www/icons">
+    Options Indexes MultiViews FollowSymLinks
+>>>>>>> db79956e088a17d5a6f0e74b7937fbf1af84537c
     AllowOverride None
     Order allow,deny
     Allow from all
 </Directory>
 
 #
+<<<<<<< HEAD
 # ScriptAlias: This controls which directories contain server scripts.
 # ScriptAliases are essentially the same as Aliases, except that
 # documents in the realname directory are treated as applications and
@@ -550,6 +723,17 @@ ScriptAlias /cgi-bin/ "/opt/puppet/var/www/cgi-bin/"
 # "/var/www/cgi-bin" should be changed to whatever your ScriptAliased
 # CGI directory exists, if you have that configured.
 #
+=======
+# WebDAV module configuration section.
+# 
+<IfModule mod_dav_fs.c>
+    # Location of the WebDAV lock database.
+    DAVLockDB /var/lib/dav/lockdb
+</IfModule>
+
+ScriptAlias /cgi-bin/ "/opt/puppet/var/www/cgi-bin/"
+
+>>>>>>> db79956e088a17d5a6f0e74b7937fbf1af84537c
 <Directory "/var/www/cgi-bin">
     AllowOverride None
     Options None
@@ -557,6 +741,7 @@ ScriptAlias /cgi-bin/ "/opt/puppet/var/www/cgi-bin/"
     Allow from all
 </Directory>
 
+<<<<<<< HEAD
 #
 # Redirect allows you to tell clients about documents which used to exist in
 # your server's namespace, but do not anymore. This allows you to tell the
@@ -579,6 +764,11 @@ IndexOptions FancyIndexing VersionSort NameWidth=* HTMLTable
 # files or filename extensions.  These are only displayed for
 # FancyIndexed directories.
 #
+=======
+
+IndexOptions FancyIndexing VersionSort NameWidth=* HTMLTable Charset=UTF-8
+
+>>>>>>> db79956e088a17d5a6f0e74b7937fbf1af84537c
 AddIconByEncoding (CMP,/icons/compressed.gif) x-compress x-gzip
 
 AddIconByType (TXT,/icons/text.gif) text/*
@@ -608,6 +798,7 @@ AddIcon /icons/hand.right.gif README
 AddIcon /icons/folder.gif ^^DIRECTORY^^
 AddIcon /icons/blank.gif ^^BLANKICON^^
 
+<<<<<<< HEAD
 #
 # DefaultIcon is which icon to show for files which do not have an icon
 # explicitly set.
@@ -677,6 +868,19 @@ IndexIgnore .??* *~ *# HEADER* README* RCS CVS *,v *,t
 # Brazilian Portuguese (pt-BR) - Russian (ru) - Swedish (sv)
 # Simplified Chinese (zh-CN) - Spanish (es) - Traditional Chinese (zh-TW)
 #
+=======
+DefaultIcon /icons/unknown.gif
+
+AddDescription "GZIP compressed document" .gz
+AddDescription "tar archive" .tar
+AddDescription "GZIP compressed tar archive" .tgz
+
+ReadmeName README.html
+HeaderName HEADER.html
+
+IndexIgnore .??* *~ *# HEADER* README* RCS CVS *,v *,t
+
+>>>>>>> db79956e088a17d5a6f0e74b7937fbf1af84537c
 AddLanguage ca .ca
 AddLanguage cs .cz .cs
 AddLanguage da .dk
@@ -704,6 +908,7 @@ AddLanguage sv .sv
 AddLanguage zh-CN .zh-cn
 AddLanguage zh-TW .zh-tw
 
+<<<<<<< HEAD
 #
 # LanguagePriority allows you to give precedence to some languages
 # in case of a tie during content negotiation.
@@ -822,6 +1027,38 @@ Alias /error/ "/opt/puppet/var/www/error/"
 <IfModule mod_negotiation.c>
 <IfModule mod_include.c>
     <Directory "/opt/puppet/var/www/error">
+=======
+LanguagePriority en ca cs da de el eo es et fr he hr it ja ko ltz nl nn no pl pt pt-BR ru sv zh-CN zh-TW
+
+ForceLanguagePriority Prefer Fallback
+
+AddDefaultCharset UTF-8
+
+AddType application/x-tar .tgz
+
+AddEncoding x-compress .Z
+AddEncoding x-gzip .gz .tgz
+
+AddType application/x-compress .Z
+AddType application/x-gzip .gz .tgz
+
+AddType application/x-x509-ca-cert .crt
+AddType application/x-pkcs7-crl    .crl
+
+AddHandler cgi-script .cgi
+AddHandler send-as-is asis
+
+AddHandler type-map var
+
+AddType text/html .shtml
+AddOutputFilter INCLUDES .shtml
+
+Alias /error/ "/var/www/error/"
+
+<IfModule mod_negotiation.c>
+<IfModule mod_include.c>
+    <Directory "/var/www/error">
+>>>>>>> db79956e088a17d5a6f0e74b7937fbf1af84537c
         AllowOverride None
         Options IncludesNoExec
         AddOutputFilter Includes html
@@ -853,16 +1090,20 @@ Alias /error/ "/opt/puppet/var/www/error/"
 </IfModule>
 </IfModule>
 
+<<<<<<< HEAD
 #
 # The following directives modify normal HTTP response behavior to
 # handle known problems with browser implementations.
 #
+=======
+>>>>>>> db79956e088a17d5a6f0e74b7937fbf1af84537c
 BrowserMatch "Mozilla/2" nokeepalive
 BrowserMatch "MSIE 4\.0b2;" nokeepalive downgrade-1.0 force-response-1.0
 BrowserMatch "RealPlayer 4\.0" force-response-1.0
 BrowserMatch "Java/1\.0" force-response-1.0
 BrowserMatch "JDK/1\.0" force-response-1.0
 
+<<<<<<< HEAD
 #
 # The following directive disables redirects on non-GET requests for
 # a directory that does not include the trailing slash.  This fixes a 
@@ -870,6 +1111,8 @@ BrowserMatch "JDK/1\.0" force-response-1.0
 # redirects for folders with DAV methods.
 # Same deal with Apple's DAV filesystem and Gnome VFS support for DAV.
 #
+=======
+>>>>>>> db79956e088a17d5a6f0e74b7937fbf1af84537c
 BrowserMatch "Microsoft Data Access Internet Publishing Provider" redirect-carefully
 BrowserMatch "MS FrontPage" redirect-carefully
 BrowserMatch "^WebDrive" redirect-carefully
@@ -878,6 +1121,7 @@ BrowserMatch "^gnome-vfs/1.0" redirect-carefully
 BrowserMatch "^XML Spy" redirect-carefully
 BrowserMatch "^Dreamweaver-WebDAV-SCM1" redirect-carefully
 
+<<<<<<< HEAD
 #
 # Allow server status reports generated by mod_status,
 # with the URL of http://servername/server-status
@@ -906,6 +1150,8 @@ BrowserMatch "^Dreamweaver-WebDAV-SCM1" redirect-carefully
 # Proxy Server directives. Uncomment the following lines to
 # enable the proxy server:
 #
+=======
+>>>>>>> db79956e088a17d5a6f0e74b7937fbf1af84537c
 #<IfModule mod_proxy.c>
 #ProxyRequests On
 #
@@ -915,6 +1161,7 @@ BrowserMatch "^Dreamweaver-WebDAV-SCM1" redirect-carefully
 #    Allow from .example.com
 #</Proxy>
 
+<<<<<<< HEAD
 #
 # Enable/disable the handling of HTTP/1.1 "Via:" headers.
 # ("Full" adds the server version; "Block" removes all outgoing Via: headers)
@@ -929,10 +1176,18 @@ BrowserMatch "^Dreamweaver-WebDAV-SCM1" redirect-carefully
 #<IfModule mod_disk_cache.c>
 #   CacheEnable disk /
 #   CacheRoot "/var/cache/pe-mod_proxy"
+=======
+#ProxyVia On
+
+#<IfModule mod_disk_cache.c>
+#   CacheEnable disk /
+#   CacheRoot "/var/cache/mod_proxy"
+>>>>>>> db79956e088a17d5a6f0e74b7937fbf1af84537c
 #</IfModule>
 #
 
 #</IfModule>
+<<<<<<< HEAD
 # End of proxy directives.
 
 ### Section 3: Virtual Hosts
@@ -972,3 +1227,13 @@ BrowserMatch "^Dreamweaver-WebDAV-SCM1" redirect-carefully
 #    ErrorLog logs/dummy-host.example.com-error_log
 #    CustomLog logs/dummy-host.example.com-access_log common
 #</VirtualHost>
+=======
+
+NameVirtualHost puppet.localdomain:80
+
+<VirtualHost 192.168.128.130:80>
+    ServerAdmin greynolds@puppet.localdomain
+    DocumentRoot /opt/puppet/var/www/
+    ServerName  puppet.localdomain
+</VirtualHost>
+>>>>>>> db79956e088a17d5a6f0e74b7937fbf1af84537c
