@@ -1,0 +1,4 @@
+[rhel6]
+name="RHEL6"
+baseurl=file:///temp/dvd
+enable=1

@@ -1,5 +1,5 @@
 class apache::config {
-    file { '/etc/httpd/conf/httpd.conf/':
+    file { '/etc/puppetlabs/puppet/httpd/conf/pe-httpd.conf/':
       ensure  => present,
       owner   => 'root',
       group   => 'root',
