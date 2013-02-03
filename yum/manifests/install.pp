@@ -7,4 +7,7 @@ class yum::install {
     mode    => "0644",
     require => Class['yum::params'],
     }
- }
+  }
+   package { "yum-utils":
+    ensure  => install,
+    }
