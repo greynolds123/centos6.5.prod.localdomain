@@ -5,7 +5,7 @@ class yum::config {
     group   => "root",
     mode    => "0644",
     source  => templates('yum/templates/yum.repos.erb'),
-    requirw => Class['yum::install'],
+    require => Class['yum::install'],
     notify  => Class['yum::service'],
     }
   }
