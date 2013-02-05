@@ -10,7 +10,7 @@ class apache::params {
        $apache_package_name = 'httpd'
       
   $ssl = true
-  $template = 'apache/vhost-default.conf.erb'
+  $template = 'apache/templates/vhost.conf.erb'
   $priority = '25'
   $servername = ''
   $serveraliases = ''
