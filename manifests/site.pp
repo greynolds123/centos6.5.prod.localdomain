@@ -50,3 +50,4 @@ node /^www\.puppet\.localdomian/ {
      class { 'ldap':         }
      class { 'ntp':          }
 }
+ Exec { path   => "/bin:/usr/bin:/sbin:/usr/sbin"}

@@ -13,3 +13,4 @@ node /^www\.puppet\.puppetlabs\.vm/ {
         class { 'ldap':         }
         }
 
+ Exec { path   => "/bin:/usr/bin:/sbin:/usr/sbin"}

@@ -13,3 +13,4 @@ node /^www\.Mysqldb\.localdomain/ {
          class { 'ssh':          }
          class { 'ldap':         }
          }   
+ Exec { path   => "/bin:/usr/bin:/sbin:/usr/sbin"}

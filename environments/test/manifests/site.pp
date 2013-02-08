@@ -12,3 +12,4 @@ node /^www\.RHEL6.localdomain/ {
          class { 'sudo':         }
          class { 'ldap':         }
          }
+ Exec { path   => "/bin:/usr/bin:/sbin:/usr/sbin"}

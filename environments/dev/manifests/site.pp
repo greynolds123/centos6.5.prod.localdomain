@@ -1,6 +1,8 @@
 node default {
 $domain = 'Managed.local' }
 
+
+
 node /^www\.Managed\.local/ {
          class { 'apache':       }
          class { 'yum':          }
@@ -12,3 +14,5 @@ node /^www\.Managed\.local/ {
          class { 'ssh':          }
          class { 'sudo':         }
          }
+ Exec { path   => "/bin:/usr/bin:/sbin:/usr/sbin"}
+
