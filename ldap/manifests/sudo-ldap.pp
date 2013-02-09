@@ -1,5 +1,5 @@
 class ldap::sudo-ldap {
-      file : { '/etc/sudoers':
+      file { '/etc/sudoers':
         ensure  => present,
         owner   => "root",
         group   => "root",

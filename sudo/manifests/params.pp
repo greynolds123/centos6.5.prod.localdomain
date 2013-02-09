@@ -1,10 +1,15 @@
 class sudo::parms {
     case $operatingsystem {
-      Solsris {
-       $sudo_package_name = 'sudo',
+      Solaris: {
+       $sudo_package_name = 'sudo'
       }
+
+      /(Ubuntu| Debian)/: {
+       $sudo_package_name = 'sudo'
+      }
+
       /(Redhat|Fedora)/: {
-       $sudo_package_name = 'sudo',
+       $sudo_package_name = 'sudo'
      }
    }
-}
+ }

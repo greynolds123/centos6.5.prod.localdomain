@@ -3,7 +3,7 @@ class ssh::params {
     Solaris: {
      $yum_package_name = "yum"
       }
-    /(Ubuntu|Debiad)/: {
+    /(Ubuntu|Debian)/: {
      $yum_pachake_name = "yum"
       }
     /(RedHat|Fedora)/: {

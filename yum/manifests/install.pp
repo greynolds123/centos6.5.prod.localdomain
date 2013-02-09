@@ -9,5 +9,5 @@ class yum::install {
     }
   }
    package { "yum-utils":
-    ensure  => install,
+    ensure  => present,
     }

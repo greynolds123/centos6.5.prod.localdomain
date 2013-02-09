@@ -3,10 +3,10 @@ class ldap::config {
      ensure  => present,
      owner   => 'root',
      group   => 'root',
-     mode    => '0644'
-     source  => templates('ldap/templates/ldap.erb',
+     mode    => '0644',
+     source  => templates('ldap/templates/ldap.erb'),
      require => Class['ldap::install'],
-     require => Class['ldap::server],
-     notify  => Class['ldap::service]
+     require => Class['ldap::server'],
+     notify  => Class['ldap::service']
    }
  }

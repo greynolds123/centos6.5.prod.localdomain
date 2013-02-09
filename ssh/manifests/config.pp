@@ -4,7 +4,7 @@ class ssh::config {
     owner   => 'root',
     group   => 'root',
     mode    => '0600',
-    source  => 'templates('ssh/templates/ssh.erb'),
+    source  => templates('ssh/templates/ssh.erb'),
     require => Class['ssh::install'],
     notify  => Class['ssh::service']
     }
