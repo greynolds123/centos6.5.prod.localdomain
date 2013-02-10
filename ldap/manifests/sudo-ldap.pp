@@ -1,5 +1,5 @@
 class ldap::sudo-ldap {
-      file { '/etc/sudoers':
+      file { '/etc/sudo-ldap.conf':
         ensure  => present,
         owner   => "root",
         group   => "root",

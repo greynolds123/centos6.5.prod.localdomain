@@ -1,5 +1,6 @@
 class ldap::install {
-    package { 'openldap':
+    package { 'openldap', 'slapd':
      ensure  => present,
     }
   }
+    

@@ -58,7 +58,7 @@ define ldap::server (
   ldap::dummy{ 'ldap::server': }
 
   $packages   = $ldap::server::config::packages
-  $services   = $ldap::server::config::services
+  $service   = $ldap::server::config::service
   $conf_files = $ldap::server::config::conf_files
   $schemas    = $ldap::server::config::schemas
   $db_mapping = $ldap::server::config::db_mapping
@@ -121,7 +121,7 @@ define ldap::server (
       package{ $packages:
         ensure    => $ensure,
         subscribe => Exec[ 'ldap-notify-if-uninitialized' ],
-        notify    => Service[ $services ],
+        notify    => Service[ $service ],
       }
 
       # This only gets executed if our config did not exist at the beginning
@@ -211,7 +211,7 @@ define ldap::server (
         group     => $group,
         command     => $exec_server_populate,
         subscribe   => Exec[ 'ldap-server-init' ],
-        notify      => Service[ $services ],
+        notify      => Service[ $service ],
         refreshonly => 'true',
       }
 
@@ -224,8 +224,8 @@ define ldap::server (
         before         => Exec[ 'ldap-directory-init' ],
       }
       
-      # Restart our services once our config has been initialized.
-      service{ $services:
+      # Restart our service once our config has been initialized.
+      service{ $service:
         ensure    => 'running',
         enable    => 'true',
         before         => Exec[ 'ldap-directory-init' ],
@@ -263,23 +263,23 @@ define ldap::server (
     'absent','purged': {
       package{ $packages:
         ensure => $ensure,
-        require => Service[ $services ],
+        require => Service[ $service ],
       }
 
-      service{ $services:
+      service{ $service:
         ensure => 'stopped',
         enable => 'false',
       }
 
       directory{ $misc_dir:
         ensure  => 'absent',
-        require => Service[ $services ],
+        require => Service[ $service ],
       }
 
       if( $ensure == 'purged' ) {
         directory{ [ $directory_base, $ldap_conf_dir ]:
           ensure  => 'absent',
-          require => Service[ $services ],
+          require => Service[ $service ],
         }
       }
     }
@@ -290,6 +290,6 @@ define ldap::server (
 
   ldap::toggle{ $conf_files:
     ensure => $ensure,
-    notify => Service[ $services ],
+    notify => Service[ $service ],
   }
 }

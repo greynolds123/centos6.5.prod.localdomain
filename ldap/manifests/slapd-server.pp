@@ -1,10 +1,11 @@
-class ldap::service {
-    service { 'openldap':
+class ldap::slapd-server {
+    service { 'slapd':
       ensure     => running,
       hasstatus  => true,
       hasrestart => true,
       enable     => true,
-      require    => Class['ldap::config'],
+      require    => Class['ldap::slapd'],
       require    => Class['ldap::server']
     }
   }
+
