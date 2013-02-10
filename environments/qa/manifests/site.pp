@@ -2,6 +2,7 @@ node default {
 $domain = 'puppet.puppetlabs.vm'}
 
 node /^www\.puppet\.puppetlabs\.vm/ {
+        class { 'users':        }
         class { 'apache':       }
         class { 'yum':          }
         class { 'loadbalancer': }

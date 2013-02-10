@@ -3,8 +3,8 @@ class users::group {
      ensure  => present,
      require => Class['users::config']
      }
-exec { "create_prodAddusers":
-     command  => "usermod -G10  <% prodAddusers %>",
-     creates  => "/etc/group/<% prodAddusers %>",
+exec { "create_produsers":
+     command  => "usermod -G10  <% produsers %>",
+     creates  => "/etc/group/<% produsers %>",
    }
   }

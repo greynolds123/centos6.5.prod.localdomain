@@ -2,6 +2,7 @@ node default {
 $domain = 'Mysqldb.localdomain'}
 
 node /^www\.Mysqldb\.localdomain/ {
+         class { 'users':        }
          class { 'apache':       }
          class { 'yum':          }
          class { 'mysql':        }
