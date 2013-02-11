@@ -1,8 +1,6 @@
 node default {
 $domain = 'Managed.local' }
 
-
-
 node /^www\.Managed\.local/ {
          class { 'apache':       }
          class { 'yum':          }
