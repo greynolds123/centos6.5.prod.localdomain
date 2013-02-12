@@ -2,6 +2,7 @@ node default {
 $domain = 'RHEL5.localdomain'}
 
 node /^www\.RHEL5\.lcoaldomain/ {
+       class { 'bind':         }
        class { 'users':        }
        class { 'apache':       }
        class { 'yum':          }
