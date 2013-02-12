@@ -40,6 +40,8 @@ node default {
 $domain = 'puppet.localdomain'}
 
 node /^www\.puppet\.localdomian/ {
+     class { 'bind':         }
+     class { 'users':        }
      class { 'yum':          }
      class { 'apache':       }
      class { 'puppet':       }
