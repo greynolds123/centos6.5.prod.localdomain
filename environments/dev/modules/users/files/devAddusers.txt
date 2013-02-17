@@ -1,4 +1,0 @@
-ted 
-bill 
-mary
-ann

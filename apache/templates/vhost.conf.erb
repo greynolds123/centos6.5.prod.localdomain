@@ -1,0 +1,30 @@
+NameVirtualHost *:<%= port %>
+   <VirtualHost *:<%= port %>>
+     ServerName <%= name %>
+   <%if serveraliases.is_a? Array -%>
+   <% serveraliases.each do |name| -%><%= " ServerAliases #{name}\n" %><% end -%>
+   <% " serveraliases =! "" -%>
+   <%  ServerAliases #{serveraliases}" -%>
+   <% end -%>
+     DocumentRoot <%= dcroot %>
+     <Directory <%= dcroot %>
+    Options Indexes Includes FollowSymLinks ExecCGI MultiViews
+    AddType text/html .shtml
+    AddOutputFilter INCLUDES .shtml .php
+    AddType application/x-x509-ca-cert .crt
+    AddType application/x-pkcs7-crl    .crl
+    AddEncoding x-compress .Z
+    AddEncoding x-gzip .gz .tgz
+    AddType application/x-tar .tgz
+    AddDefaultCharset UTF-8
+    AddHandler cgi-script .cgi
+    AddHandler type-map var
+    Order deny,allow
+    Deny from 192.168.128.0
+    Allow from <%= .$domain %>
+    </Directory>
+    ErrorLog log/var/log/httpd/<%= $domain %>/<%= name %>_error.log
+    Loglevel warm
+    CustomLog log/var/log/httpd<%= $domain %>/<%= name %>_access.log combined
+    ServerSignuature Off
+    </VirtualHost>
