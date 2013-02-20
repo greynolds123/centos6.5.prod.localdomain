@@ -2,8 +2,8 @@
     vardir = /var/opt/lib/pe-puppet
     logdir = /var/log/pe-puppet
     rundir = /var/run/pe-puppet
-    configdir = /etc/puppetlabs/puppet/modules/environments
-    modulepath = /etc/puppetlabs/puppet/modules:/opt/puppet/share/puppet/modules:/etc/puppetlabs/puppet/environments/<% environment %>/modules
+    configdir = /etc/puppetlabs/puppet/modules/
+    modulepath = /etc/puppetlabs/puppet/modules:/opt/puppet/share/puppet/modules
     user = pe-puppet
     group = pe-puppet
     archive_files = true
@@ -12,13 +12,12 @@
 [master]
     certname = puppet.localdomain
     dns_alt_names = puppet,puppet.localdomain
-    ca_name = 'Puppet CA generated on puppet.localdomain at Wed Jan 30 13:31:30 -0800 2013'
+    ca_name = 'Puppet CA generated on puppet.localdomain at Fri Feb 15 01:51:28 -0800 2013'
     facts_terminus = inventory_active_record
-    storeconfigs = true
     dbadapter = mysql
     dbname = console_inventory_service
     dbuser = console
-    dbpassword = ttha8G9pRGvFyyBWRYLN
+    dbpassword = SDnGhUXeyuKNux9AyPT2
     dbserver = localhost
     reports = https
     reporturl = https://localhost:/reports/upload
@@ -33,28 +32,29 @@
     report = true
     classfile = $vardir/classes.txt
     localconfig = $vardir/localconfig
-    configdir = /etc/puppetlabs/puppet/modules/environments
+    configdir = /etc/puppetlabs/puppet/modules/
     graph = true
     pluginsync = true
     environment = production
 
 [dev]
-    modulepath = $confdir/dev/modules
-    manifest   = $confdir/dev/manifest/site.pp
+    modulepath = $configdir/environments/dev/modules
+    manifest   = $configdir/environments/dev/manifest/site.pp
 
 [mysql]
-    modulepath = $confdir/mysql/modules
-    manifest   = $confdir/mysql/manifest/site.pp
+    modulepath = $configdir/environments/mysql/modules
+    manifest   = $configdir/environments/mysql/manifest/site.pp
 
 [qa]
-    modulepath = $confdir/qa/modules
-    manifest   = $confdir/qa/manifest/site.pp
+    modulepath = $configdir/environments/qa/modules
+    manifest   = $configdir/environments/qa/manifest/site.pp
 
 [stage]
-    modulepath = $confdir/stage/modules
-    manifest   = $confdir/stage/manifest/site.pp
+    modulepath = $configdir/environments/stage/modules
+    manifest   = $configdir/environments/stage/manifest/site.pp
 
 [test]
-    modulepath = $confdir/test/modules
-    manifest   = $confdir/test/manifest/site.pp
+    modulepath = $configdir/environments/test/modules
+    manifest   = $configdir/environments/test/manifest/site.pp
 
+   

@@ -1,4 +1,5 @@
 class bind::install {
-    Package { 'named':
+    package { "named":
       ensure  => install,
     }
+   }

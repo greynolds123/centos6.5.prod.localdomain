@@ -1,5 +1,5 @@
 class ldap::service {
-    service { 'openldap':
+    service { 'slapd':
       ensure     => running,
       hasstatus  => true,
       hasrestart => true,

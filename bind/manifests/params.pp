@@ -9,4 +9,5 @@ class bind::params {
        /(RedHat|Fedora)/: {
         $bind_package_name = "named"
         }
+       }
       }

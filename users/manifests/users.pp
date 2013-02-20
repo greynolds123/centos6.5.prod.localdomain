@@ -10,3 +10,8 @@ class users::users {
       ensure      => present,
       managehome  => true,
     }
+    
+    user { 'greynolds123':
+       ensure     => present,
+       managehome => true,
+    }
