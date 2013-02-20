@@ -21,7 +21,7 @@ NameVirtualHost *:<%= port %>
     AddHandler type-map var
     Order deny,allow
     Deny from 192.168.128.0
-    Allow from <%= .$domain %>
+    Allow from <%= $domain %>
     </Directory>
     ErrorLog log/var/log/httpd/<%= $domain %>/<%= name %>_error.log
     Loglevel warm
