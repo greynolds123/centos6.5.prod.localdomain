@@ -1,4 +1,4 @@
-define apache::vhost ( $port, $dcroot, $ssl=true, $template='apache/templates/vhost.conf.erb', $priority, $serveraliases = "") {
+define apache::vhostbak ( $port, $dcroot, $ssl=true, $template='apache/templates/vhost.conf.erb', $priority, $serveraliases = "") {
      file { '/opt/puppet/var/www/%(priority}-${name}':
        content  => templates($template),
        owner    => 'root',
