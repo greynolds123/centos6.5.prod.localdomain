@@ -16,7 +16,7 @@ class apache::params {
   $serveraliases = ''
   $auth = false
   $redirect_ssl = false
-  $ssl_path = '/etc/ssl'
+  $ssl_path = '/etc/pki/tls/certs/'
   $options = 'Indexes FollowSymLinks MultiViews'
   $override = 'None'
   $vhost_name = '*'
