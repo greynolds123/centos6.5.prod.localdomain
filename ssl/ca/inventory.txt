@@ -1,4 +1,0 @@
-# Inventory of signed certificates
-# SERIAL NOT_BEFORE NOT_AFTER SUBJECT
-0x0001 2013-02-17T01:07:31GMT 2018-02-17T01:07:31GMT /CN=Puppet CA generated on puppet.localdomain at Fri Feb 15 01:51:28 -0800 2013
-0x0002 2013-02-17T01:07:31GMT 2018-02-17T01:07:31GMT /CN=puppet.localdomain
