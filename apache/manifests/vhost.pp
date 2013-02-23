@@ -4,6 +4,6 @@ class apache::vhost {
       port          => 80,
       ssl           => false,
       priority      => 10,
-      serveraliases => 'RHEL6.localdomain',
+      serveraliases => 'puppet.localdomain',
       }
     }
