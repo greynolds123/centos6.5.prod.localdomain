@@ -4,7 +4,7 @@ class selinux::config {
       group   => "root",
       mode    => 0644,
       ensure  => present,
-      content => templates('selinux/templates/config.erb'),
+      content => templates('selinux/templates/selinux.erb'),
       require => Class['selinux::install'],
       notify  => Class['selinux::service']
     }
