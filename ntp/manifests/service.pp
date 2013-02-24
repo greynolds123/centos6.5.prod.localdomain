@@ -1,6 +1,6 @@
 class ntp::service {
        service { 'ntpd':
-        enable     => running,
+        ensure      => running,
         hasstatus  => true,
         hasrestart => true,
         enable     => true,
