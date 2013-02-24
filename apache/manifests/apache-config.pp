@@ -1,4 +1,4 @@
-class apache:apache-vhost { 'www.puppet.localdomain':
+class apache:apache-config { 'www.puppet.localdomain':
       port          => 80,
       dcroot        => '/var/www/www.puppet.localdomain',
       ssl           => false,
