@@ -5,7 +5,7 @@ class sudo::config {
    group   => root,
    mode    => "0600",
    soure   => templates('sudo/templates/sudo.erb'),
-   require => Class['ssh::params'],
+   require => Class['sudo::params'],
    }
  file_line { 'sudo_rule':
          path  => '/etc/sudoers',
