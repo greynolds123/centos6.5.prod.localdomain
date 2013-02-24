@@ -1,4 +1,4 @@
-class apache::apache-vhost { 
+class apache::vhostbak { 
       files { '/var/www/www.puppet-1.localdomain':
       dcroot        => '/var/www/www.puppet-1.localdomain',
       port          => 80,
