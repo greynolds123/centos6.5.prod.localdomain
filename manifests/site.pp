@@ -40,16 +40,17 @@ node default {
 $domain = 'puppet.localdomain'}
 
 node /^www\.puppet\.localdomian/ {
-     class { 'bind':         }
-     class { 'users':        }
-     class { 'yum':          }
-     class { 'apache':       }
-     class { 'puppet':       }
-     class { 'selinux':      }
-     class { 'loadbalancer': }
-     class { 'ssh':          }
-     class { 'sudo':         }
-     class { 'ldap':         }
-     class { 'ntp':          }
+     class { 'define-cobbler':}
+     class { 'bind':          }
+     class { 'users':         }
+     class { 'yum':           }
+     class { 'apache':        }
+     class { 'puppet':        }
+     class { 'selinux':       }
+     class { 'loadbalancer':  }
+     class { 'ssh':           }
+     class { 'sudo':          }
+     class { 'ldap':          }
+     class { 'ntp':           }
 }
  Exec { path   => "/bin:/usr/bin:/sbin:/usr/sbin"}
