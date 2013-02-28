@@ -3,18 +3,24 @@ class users::users {
       ensure      => present,
       owner       => greynolds,
       group       => greynolds,
-      mode        => '0775',
+      mode        => '0770',
       managehome  => true,
       require     => Class['users::config']
       }
-    }
     
     user { 'fds':
       ensure      => present,
-      managehome  => true,
+      owner       => fds,
+      group       => fds,
+      mode        => '0770',
+      managehome  => true
     }
     
     user { 'greynolds123':
        ensure     => present,
-       managehome => true,
+       owner      => greynolds123,
+       group      => greynolds123,
+       mode       => '0770',
+       managehome => true
     }
+  }
