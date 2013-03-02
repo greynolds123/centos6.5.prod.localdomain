@@ -23,4 +23,4 @@ class users::users {
        mode       => '0770',
        managehome => true
     }
-  }
+ }
