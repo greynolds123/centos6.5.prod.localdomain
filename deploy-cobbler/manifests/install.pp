@@ -29,7 +29,7 @@ class deploy-cobbler::install {
       path     => "/bin:/usr/bin:/sbin:/usr/sbin"
      }
     exec { "correct_ip":
-       command  => "perl -pi -w -e 's/127.0.0.1/192.168.128.128/g' /etc/cobbler/settings",
+       command  => "perl -pi -w -e 's/127.0.0.1/192.168.128.130/g' /etc/cobbler/settings",
        path     => "/bin:/usr/bin:/sbin:/usr/sbin"
      }
     exec { "correct_pxeboot":
