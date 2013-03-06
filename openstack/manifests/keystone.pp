@@ -34,7 +34,7 @@
 #   keystone_admin_token  => '12345',
 #   admin_email           => 'root@localhost',
 #   admin_password        => 'changeme',
-#   public_address        => '192.168.1.1',
+#   public_address        => '192.168.128.3',
 #  }
 
 class openstack::keystone (

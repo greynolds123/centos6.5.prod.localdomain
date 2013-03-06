@@ -31,7 +31,7 @@ $glance_user_password    = 'glance_pass'
 $rabbit_password         = 'openstack_rabbit_password'
 $rabbit_user             = 'openstack_rabbit_user'
 $fixed_network_range     = '10.0.0.0/24'
-$floating_network_range  = '192.168.101.64/28'
+$floating_network_range  = '192.168.128.0/24'
 # switch this to true to have all service log at verbose
 $verbose                 = false
 # by default it does not enable atomatically adding floating IPs
@@ -42,6 +42,9 @@ $auto_assign_floating_ip = false
 
 # all nodes whose certname matches openstack_all should be
 # deployed as all-in-one openstack installations.
+node default {
+$domain = "puppet.localdomain"}
+
 node /openstack_all/ {
 
   include 'apache'
