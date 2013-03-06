@@ -1,13 +1,14 @@
 class deploy-cobbler::params {
-      case $operatingsystems {
+      case $operatingsystem {
       Solaris: {
       $deploy-cobbler_package_name = "cobbler"
       }
       /(Ubuntu|Debian)/: {
       $deploy-cobbler_package_name = "cobbler"
       }
-      /(Ubuntu|Debian)/: {
+      /(RedHat|Fedora)/: {
       $deploy-cobbler_package_name = "cobbler"
       }
      }
     }
+

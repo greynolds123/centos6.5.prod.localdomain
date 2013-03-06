@@ -11,7 +11,7 @@
 # === Examples
 #
 # class { 'openstack::nova::controller':
-#   public_address     => '192.168.1.1',
+#   public_address     => '192.168.128.3',
 #   db_host            => '127.0.0.1',
 #   rabbit_password    => 'changeme',
 #   nova_user_password => 'changeme',
