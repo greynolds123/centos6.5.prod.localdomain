@@ -37,7 +37,7 @@
 # === Examples
 #
 #  class { 'openstack::all':
-#    public_address       => '192.168.1.1',
+#    public_address       => '192.168.128.3',
 #    mysql_root_password  => 'changeme',
 #    rabbit_password      => 'changeme',
 #    keystone_db_password => 'changeme',
