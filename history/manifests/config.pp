@@ -4,6 +4,10 @@ class history::config {
     owner   => root,
     group   => root,
     mode    => "0644",
-    source  => "puppet:///modules/history/templates/history.sh.erb"
+    source  => template('history/templates/history.sh.erb'),
     }
    }
+exec { "history_edit":
+      command  => "sh /etc/profile.d/history.sh",
+      path     => "/bin:/usr/bin:/sbin:/usr/sbin"
+      }
