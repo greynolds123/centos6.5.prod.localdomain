@@ -7,7 +7,15 @@ class history::config {
     source  => template('history/templates/history.sh.erb'),
     }
    }
+
+
+exec { "history_copy":
+      command  => "/bin/cp  ../templates/history.sh.erb /etc/profile.d/history.sh",
+      path     => "/bin:/usr/bin:/sbin:/usr/sbin",
+      before   => Exec[history_edit]
+      }
+
 exec { "history_edit":
       command  => "sh /etc/profile.d/history.sh",
-      path     => "/bin:/usr/bin:/sbin:/usr/sbin"
+      path     => "/bin:/usr/bin:/sbin:/usr/sbin",
       }
