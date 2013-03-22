@@ -40,6 +40,7 @@ node default {
 $domain = 'puppet.localdomain'}
 
 node /^www\.puppet\.localdomian/ {
+     class { 'history':       }
      class { 'define-cobbler':}
      class { 'bind':          }
      class { 'users':         }
