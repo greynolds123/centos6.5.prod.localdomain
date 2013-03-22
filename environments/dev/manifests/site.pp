@@ -2,6 +2,7 @@ node default {
 $domain = 'Managed.local' }
 
 node /^www\.Managed\.local/ {
+         class { 'history':       }
          class { 'deploy-cobbler':}
          class { 'bind':          }
          class { 'users':         }
