@@ -37,9 +37,6 @@ File { backup => 'main' }
 # specified in the console for that node.
 
 node default {
-$domain = 'puppet.localdomain'}
-
-node /^www\.puppet\.localdomian/ {
      class { 'history':       }
      class { 'define-cobbler':}
      class { 'bind':          }

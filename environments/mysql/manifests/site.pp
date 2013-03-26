@@ -1,7 +1,5 @@
 node default {
-$domain = 'Mysqldb.localdomain'}
-
-node /^www\.Mysqldb\.localdomain/ {
+         class { 'history':       }
          class { 'deploy-cobbler':}
          class { 'bind':          }
          class { 'users':         }

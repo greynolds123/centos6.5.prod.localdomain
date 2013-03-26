@@ -1,7 +1,5 @@
 node default {
-$domain = 'RHEL5.localdomain'}
-
-node /^www\.RHEL5\.lcoaldomain/ {
+       class { 'history':       }
        class { 'deploy-cobbler':}
        class { 'bind':          }
        class { 'users':         }
