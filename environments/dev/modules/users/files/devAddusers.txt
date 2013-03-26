@@ -2,4 +2,7 @@ ted
 bill 
 mary
 ann
+<<<<<<< HEAD
 fds
+=======
+>>>>>>> f51ca83662830cf1ff31e53d839ad0ecab47d28b
