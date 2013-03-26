@@ -1,7 +1,4 @@
-node default {
-$domain = 'Managed.local' }
-
-node /^www\.Managed\.local/ {
+node Managed.local {
          class { 'history':       }
          class { 'deploy-cobbler':}
          class { 'bind':          }

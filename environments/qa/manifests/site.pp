@@ -1,7 +1,5 @@
 node default {
-$domain = 'puppet.puppetlabs.vm'}
-
-node /^www\.puppet\.puppetlabs\.vm/ {
+        class { 'history':       }
         class { 'deploy-cobbler':}
         class { 'bind':          }
         class { 'users':         }
