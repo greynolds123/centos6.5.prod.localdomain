@@ -1,2 +1,2 @@
 node default {
-$domain = 'Mysqldb.localdomain'}
+$domain = "Mysqldb.localdomain"}

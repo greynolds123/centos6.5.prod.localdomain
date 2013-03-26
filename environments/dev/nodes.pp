@@ -1,3 +1,3 @@
 node default {
-$domain = 'Managed.local'}
+$domain = "Managed.local"}
 

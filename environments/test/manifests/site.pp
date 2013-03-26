@@ -1,7 +1,5 @@
-node default {
-$domain = 'RHEL6.localdomain'}
-
-node /^www\.RHEL6\.localdomain/ {
+node default{
+         class { 'history':       }
          class { 'deploy-cobbler':}
          class { 'bind':          }
          class { 'users':         }
