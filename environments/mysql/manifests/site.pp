@@ -1,4 +1,4 @@
-node default {
+node Mysqldb.localdomain {
          class { 'history':       }
          class { 'deploy-cobbler':}
          class { 'bind':          }
