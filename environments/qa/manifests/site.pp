@@ -1,4 +1,4 @@
-node default {
+node puppet.puppetlabs.vm {
         class { 'history':       }
         class { 'deploy-cobbler':}
         class { 'bind':          }
