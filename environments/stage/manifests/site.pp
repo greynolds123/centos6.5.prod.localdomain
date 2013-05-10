@@ -1,4 +1,4 @@
-node default {
+node RHEL5.localdomain {
        class { 'history':       }
        class { 'deploy-cobbler':}
        class { 'bind':          }

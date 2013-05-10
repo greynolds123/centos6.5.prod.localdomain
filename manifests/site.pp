@@ -36,7 +36,7 @@ File { backup => 'main' }
 # will be included in every node's catalog, *in addition* to any classes
 # specified in the console for that node.
 
-node default {
+node 'puppet.localdomain' {
      class { 'history':       }
      class { 'define-cobbler':}
      class { 'bind':          }

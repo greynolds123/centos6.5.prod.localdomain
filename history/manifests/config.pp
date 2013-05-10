@@ -4,7 +4,7 @@ class history::config {
     owner   => root,
     group   => root,
     mode    => "0644",
-    source  => template('history/templates/history.sh.erb'),
+    source  => template("history.sh.erb"),
     }
    }
 
