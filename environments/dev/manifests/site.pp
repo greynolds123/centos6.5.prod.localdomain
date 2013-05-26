@@ -13,5 +13,6 @@ node Managed.local {
          class { 'ssh':           }
          class { 'sudo':          }
          }
+import "../nodes.pp"
  Exec { path   => "/bin:/usr/bin:/sbin:/usr/sbin"}
 
