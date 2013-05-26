@@ -13,4 +13,6 @@ node RHEL6.localdomain{
          class { 'sudo':          }
          class { 'ldap':          }
          }
+ import "../nodes.pp"
  Exec { path   => "/bin:/usr/bin:/sbin:/usr/sbin"}
+
