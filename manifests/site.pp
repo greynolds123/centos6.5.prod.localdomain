@@ -52,6 +52,6 @@ node 'puppet.localdomain' {
      class { 'ntp':           }
 }
  
-import "node.pp"
+import "../node.pp"
 
 Exec { path   => "/bin:/usr/bin:/sbin:/usr/sbin"}
