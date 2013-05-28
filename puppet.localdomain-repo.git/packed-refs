@@ -1,8 +1,3 @@
 # pack-refs with: peeled 
-<<<<<<< HEAD
-87be4d9d81dc752a136156e30d835f963e59ab2e refs/heads/modules.git
-ab4137f53315a376ab6c483a0c867f7486ba22d9 refs/heads/master
-=======
-f5ecb8438acb1a031bb0763c56aee189d4f28596 refs/heads/modules.git
-25e76a2187eda256e6a465e4ae09076ebca1e794 refs/heads/master
->>>>>>> ab4137f53315a376ab6c483a0c867f7486ba22d9
+1747d1c9506ac81f82cfda064e5c87926f2a1230 refs/heads/modules.git
+37d112c6403eafe2649d89a2e152e24d8c8dcbea refs/heads/master
