@@ -1,2 +1,2 @@
 node default {
-$domain = 'puppet.localdomain'}
+$domain = 'centos6.5.localdomain'}
