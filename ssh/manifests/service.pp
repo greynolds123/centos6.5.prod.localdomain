@@ -4,7 +4,7 @@ class ssh::service {
        hasstatus    => true,
        hasrestart   => true,
        enable       => true,
-       source       => template("ssh/templates/sshd.erb"),
+       source       => template("ssh/sshd.erb"),
        require => Class['ssh::config']
    }
 }

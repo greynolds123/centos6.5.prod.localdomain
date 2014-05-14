@@ -4,7 +4,7 @@ class apache::config {
       owner   => 'root',
       group   => 'root',
       mode    => '0644',
-      source  => templates('apache/templates/apache.erb'),
+      source  => templates('apache/apache.erb'),
       require => Class['apache::install'],
       notify  => Class['apache:service'],
     }
