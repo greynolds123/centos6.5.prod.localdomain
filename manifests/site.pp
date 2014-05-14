@@ -36,7 +36,8 @@ File { backup => 'main' }
 # will be included in every node's catalog, *in addition* to any classes
 # specified in the console for that node.
 
-node 'puppet.localdomain' {
+
+node 'centos6.5.localdomain' {
      class { 'history':       }
      class { 'define-cobbler':}
      class { 'bind':          }
@@ -52,6 +53,6 @@ node 'puppet.localdomain' {
      class { 'ntp':           }
 }
  
-import "../node.pp"
+import "../modules/node.pp"
 
 Exec { path   => "/bin:/usr/bin:/sbin:/usr/sbin"}
