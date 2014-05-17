@@ -1,2 +1,10 @@
 # pack-refs with: peeled 
+<<<<<<< HEAD
 b2432685b779ba8b4112381dc9537bc83a0e6108 refs/heads/master
+=======
+<<<<<<< HEAD
+923412eb70446a8afd0fa98fb6eaa7ae27ba43f7 refs/heads/master
+=======
+c6d7ac929501a86e74dff80a4598f51c39102186 refs/heads/master
+>>>>>>> 923412eb70446a8afd0fa98fb6eaa7ae27ba43f7
+>>>>>>> b2432685b779ba8b4112381dc9537bc83a0e6108
