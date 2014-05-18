@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> production/master
 node prod {
     $domain ='*.prod.localdomain = [ prod ]' }
     class { 'history':       }
@@ -18,6 +21,7 @@ node prod {
     }
    
 Exec { Path ='/bin:/usr/bin:/sbin:/usr/sbin' }
+<<<<<<< HEAD
 =======
 
 ## site.pp ##
@@ -78,3 +82,5 @@ import "../modules/node.pp"
 
 Exec { path   => "/bin:/usr/bin:/sbin:/usr/sbin"}
 >>>>>>> production/production
+=======
+>>>>>>> production/master
