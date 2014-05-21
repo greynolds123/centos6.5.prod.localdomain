@@ -4,7 +4,7 @@ class history::config {
     owner   => root,
     group   => root,
     mode    => "0644",
-    source  => "centos6.5.prod.localdomain:///history/history.sh.erb",
+    source  => "puppet:///history/history.sh.erb",
     #source  => template("history/history.sh.erb"),
     }
    }

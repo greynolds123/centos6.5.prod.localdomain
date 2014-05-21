@@ -4,8 +4,8 @@ class nginx::service {
         hasstatus  => true,
         hasrestart => true,
         enable     => true,
-        source     => 'centos6.5.localdomain:///nginx/key.erb',
-        #source    => template('nginx/key.erb'),
+        source     => 'puppet:///nginx/keys.erb',
+        #source    => template('nginx/keys.erb'),
         require    => Class['nginx::config']
          }
         }

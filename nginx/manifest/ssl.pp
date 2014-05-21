@@ -4,7 +4,7 @@ class nginx::ssl {
      user    => 'root',
      owner   => 'root',        
      mode    => 0755,
-     source  => 'centos6.5.prod.localdomain:///nginx/ssl.erb',
+     source  => 'puppet:///nginx/ssl.erb',
      #source  => template('nginx/ssl:erb'),
      require => Class['nginx::service'],
       }
