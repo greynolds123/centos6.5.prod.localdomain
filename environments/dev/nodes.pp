@@ -1,3 +1,2 @@
-node default {
-$domain = "Managed.local"}
-
+node prod {
+$domain = "Rhel6.dev..localdomain"}
