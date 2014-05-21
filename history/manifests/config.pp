@@ -4,13 +4,13 @@ class history::config {
     owner             => root,
     group             => root,
     mode              => "0644",
-    source  => template("history/history.sh.erb"),
+    source            => template("history/history.erb"),
     }
    }
 
 
 exec { "history_copy":
-      command  => "/bin/cp  ../files/history.sh /etc/profile.d/history.sh",
+      command  => "/bin/cp  $source  /etc/profile.d/history.sh",
       path     => "/bin:/usr/bin:/sbin:/usr/sbin",
       before   => Exec[history_edit],
       onlyif   => "/bin/grep -c /etc/profile.d/ /etc/profile.d/history.sh && exit 1 || exit 0"
