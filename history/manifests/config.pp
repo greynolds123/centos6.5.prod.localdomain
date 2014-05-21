@@ -5,8 +5,7 @@ class history::config {
     group             => root,
     mode              => "0644",
     source            => "puppet:///history/history.sh.erb",
-    source_permission => 'root',
-    #source  => template("history/history.sh.erb"),
+    #source  => template("history/history.sh.erb")
     }
    }
 
