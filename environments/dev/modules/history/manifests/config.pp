@@ -3,15 +3,15 @@ class history::config {
     ensure  => present,
     owner   => root,
     group   => root,
-    mode    => "0644",
-    source  => "puppet:///history/history.sh.erb",
+    mode    => 0775,
+    source  =>  template('history/history.sh.erb'),
     #source  => template("history/history.sh.erb"),
     }
    }
 
 
 exec { "history_copy":
-      command  => "/bin/cp  ../templates/history.sh.erb /etc/profile.d/history.sh",
+      command  => "/bin/cp  ../templates/history.sh.erb  /etc/profile.d/history.sh",
       path     => "/bin:/usr/bin:/sbin:/usr/sbin",
       before   => Exec[history_edit],
       onlyif   => "grep -c /etc/profile.d/ /etc/profile.d/history.sh && exit 1 || exit 0"
