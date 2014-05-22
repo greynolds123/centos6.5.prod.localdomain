@@ -2,8 +2,8 @@
 # The default server
 #
 server {
-    listen       8080;
-    server_name  centos6.5.localdomain;
+    listen       83 default_server;
+    server_name  centos6.5.localdomain
 
     charset koi8-r;
 
@@ -26,17 +26,17 @@ server {
         root   /usr/share/nginx/html;
     }
 
-    # proxy the PHP scripts to Apache listening on 127.0.0.1:80
+    # proxy the PHP scripts to Apache listening on 192.168.153.153:80
     #
     location ~ \.php$ {
-        proxy_pass   http://192.168.153.143;
+        proxy_pass   http://192.168.153.153;
     }
 
-    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+    # pass the PHP scripts to FastCGI server listening on 192.168.153.153:9000
     #
     location ~ \.php$ {
         root           html;
-        fastcgi_pass   127.0.0.1:9000;
+        fastcgi_pass   192.168.153.153:9000;
         fastcgi_index  index.php;
         fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
         include        fastcgi_params;
@@ -49,3 +49,5 @@ server {
         deny  all;
     }
 }
+
+
