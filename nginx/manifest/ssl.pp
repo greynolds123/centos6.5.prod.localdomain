@@ -1,11 +1,11 @@
 class nginx::ssl {
-    file {'/etc/pki/tls/certs':
+    file {'/etc/nginx/conf.d/ssl.conf':
      ensure  => present,
      user    => 'root',
      owner   => 'root',        
      mode    => 0755,
-     source  => 'puppet:///nginx/ssl.erb',
-     #source  => template('nginx/ssl:erb'),
+     source  => 'puppet:///modules/nginx/ssl.conf',
      require => Class['nginx::service'],
       }
      }
+

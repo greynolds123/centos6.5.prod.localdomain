@@ -4,8 +4,7 @@ class nginx::service {
         hasstatus  => true,
         hasrestart => true,
         enable     => true,
-        source     => 'puppet:///nginx/keys.erb',
-        #source    => template('nginx/keys.erb'),
+        source     => 'puppet:///modules/nginx/keys.erb',
         require    => Class['nginx::config']
          }
         }

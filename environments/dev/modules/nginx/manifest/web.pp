@@ -1,11 +1,10 @@
 class nginx::web {
-     file {'/usr/share/nginx/':
+     file {'/usr/share/nginx/html/index.html':
      ensure  => present,
      user    => 'root',
      owner   => 'root',
      mode    => 'root',
-     source  => 'puppet:///nginx/web.erb',    
-     #source  => template('nginx/web.erb'),
+     source  => 'puppet:///modules/nginx/web.erb',    
      require => Class['nginx::config'],
       }
      }
