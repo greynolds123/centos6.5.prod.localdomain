@@ -1,19 +1,11 @@
 class nginx::config {
-      file { '/etc/nginx/conf.d/default.conf':
+      files { '/etc/nginx':
       ensure  => present,
       user    => 'root',
       group   => 'root',
       mode    => 0644,
-      source  => 'puppet:///modules/nginx/default.conf',
+      source  => template('nginx/default.erb'),
       require => Class['nginx::install'],
       notify  => Class['nginx::service'],
         }
       }
-
-     file { '/usr/share/nginx/logs':
-         ensure  => "directory",
-         owner   => "root",
-         group   => "root",
-         mode    => 750,
-     }
-
