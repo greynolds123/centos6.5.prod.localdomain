@@ -25,7 +25,7 @@ class deploy-cobbler::install {
   }
 
     exec { "correct_authn":
-      command  => "perl -pi -w -e 's/authn_denyall/authn_configfile/g' /etc/cobbler/modules.conf",
+      command  => "perl -pi -w -e 's/authn_denyall/authn_configfile/g' /etc/cobbler/moduless.conf",
       path     => "/bin:/usr/bin:/sbin:/usr/sbin"
      }
     exec { "correct_ip":

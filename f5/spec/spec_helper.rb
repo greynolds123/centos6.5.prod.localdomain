@@ -10,7 +10,7 @@ gem 'rspec', '>=2.0.0'
 require 'rspec/expectations'
 
 # So everyone else doesn't have to include this base constant.
-module PuppetSpec
+modules PuppetSpec
   FIXTURE_DIR = File.join(dir = File.expand_path(File.dirname(__FILE__)), "fixtures") unless defined?(FIXTURE_DIR)
 end
 

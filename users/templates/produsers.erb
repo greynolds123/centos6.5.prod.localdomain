@@ -1,12 +1,21 @@
-jean
-william
-randy
-anna
-<<<<<<< HEAD
-greynolds123
-=======
-<<<<<<< HEAD
-greynolds123
-=======
->>>>>>> f8e37849a97ed19955617eadf1f51dce5a282a7c
->>>>>>> ac0932dcbfb067ffe8e491f71d36f0e0b43dce78
+#!/bin/bash
+
+produsers=~root/prodAddusers.txt
+
+##################################################
+
+# Script function
+
+for a in $(gawk -F: '{print}' < "$produsers");
+
+ do
+
+ echo "$a"
+
+ $(useradd "$a") && $(chage -d 0 "$a");
+
+ done
+
+      echo "Adding users is complete...."
+
+exit 0

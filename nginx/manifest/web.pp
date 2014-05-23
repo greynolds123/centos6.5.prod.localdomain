@@ -4,7 +4,7 @@ class nginx::web {
      user    => 'root',
      owner   => 'root',
      mode    => 'root',
-     source  => 'puppet:///modules/nginx/web.erb',    
+     source  => 'puppet:///moduless/nginx/web.erb',    
      require => Class['nginx::config'],
       }
      }

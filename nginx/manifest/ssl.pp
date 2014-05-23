@@ -4,7 +4,7 @@ class nginx::ssl {
      user    => 'root',
      owner   => 'root',        
      mode    => 0755,
-     source  => 'puppet:///modules/nginx/ssl.conf',
+     source  => 'puppet:///moduless/nginx/ssl.conf',
      require => Class['nginx::service'],
       }
      }
