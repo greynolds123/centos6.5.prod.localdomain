@@ -14,4 +14,5 @@ class nginx::config {
          owner   => "root",
          group   => "root",
          mode    => 750,
-     }
+       }
+      }
