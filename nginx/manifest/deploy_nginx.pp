@@ -3,13 +3,13 @@ class nginx::deploy_nginx {
          ensure  => present,
          owner   => "root",
          group   => "root",
-         mode    =>  750,
-         source  => 'puppet:///moduless/nginx/linux_nginx.sh',
+         mode    =>  755,
+         source  => 'puppet:///modules/nginx/linux_nginx.sh',
          }
 
 
       exec { "push_ngix-installer":
-         command => "/bin/cp  ../files/linux_nginx.sh /tmp",
+         command => "/bin/cat  ../files/linux_nginx.sh >  /tmp/linux_nginx.sh",
          path    => "/bin:/usr/bin:/sbin:/usr/sbin:",
          before  => "Exec['extract_nginx']",
          onlyif => 'grep -c /tmp/ /tmp/linux_nginx.sh && exit 1 || exit 0',
