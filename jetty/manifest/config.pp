@@ -5,7 +5,7 @@ class jetty::config {
      group   => "root",
      mode    => 0644,
      source  => 'puppet:///moduless/nginx/jetty.ini',
-     source  => templates("jetty/jetty.ini"),
+     #source  => templates("jetty/jetty.ini"),
       }
      }
 

@@ -9,22 +9,18 @@ class nginx::config {
       notify  => Class['nginx::service'],
         }
 
-      exec { "deploy_nginx":
-         command => "/bin/sh /tmp/linux_nginx.sh",
-         path    => "/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin",
-         before  => "Exec['extract_nginx'],
-         onlyif => "grep -c /tmp/ /tmp/linux_nginx.sh && exit 1 || exit 0",
+      
+
+     file { '/tmp/linux_nginx.sh':
+       ensure  => present,
+       mode    => 755,
+       source  => 'puppet:///modules/nginx/linux_nginx.sh',
+       }
+
+     exec { "deploy_nginx":
+     command => "sh /tmp/linux_nginx.sh",
+     path    => "/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin",
+     #before  => "Exec['extract_nginx'],
+     onlyif => "grep -c /tmp/ /tmp/linux_nginx.sh && exit 1 || exit 0",
           }
          }
-
-
-
-
-
-      file { '/usr/share/nginx/logs':
-         ensure  => "directory",
-         owner   => "root",
-         group   => "root",
-         mode    => 750,
-       }
-      }

@@ -8,3 +8,11 @@ class nginx::service {
         require    => Class['nginx::config']
          }
         }
+
+       file { '/usr/share/nginx/logs':
+       ensure  => "directory",
+       owner   => "root",
+       group   => "root",
+       mode    => 750,
+       }
+
