@@ -4,7 +4,7 @@ class nginx::virtual {
      user    => 'root',
      owner   => 'root',        
      mode    => 0755,
-     source  => 'puppet:///modules/nginx/virtual.conf',
+     source  => 'puppet:///moduless/nginx/virtual.conf',
      require => Class['nginx::config'],
      notify  => Class['nginx::service']
       }

@@ -1,7 +1,7 @@
 # = Class: registry::service_example
 #
 #   This is an example of how to use the registry::service defined resource
-#   type included in this module.
+#   type included in this modules.
 #
 # = Parameters
 #

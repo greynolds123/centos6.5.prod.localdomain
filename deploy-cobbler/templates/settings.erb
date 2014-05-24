@@ -34,7 +34,7 @@ allow_dynamic_settings: 0
 # # # ok with this limitation.
 anamon_enabled: 0
 
-# If using authn_pam in the modules.conf, this can be configured
+# If using authn_pam in the moduless.conf, this can be configured
 # to change the PAM service authentication will be tested against.
 # The default value is "login".
 authn_pam_service: "login"
@@ -51,11 +51,11 @@ build_reporting_email: [ 'root@puppet.localdomain' ]
 build_reporting_smtp_server: "localdomain"
 build_reporting_subject: ""
 
-# Cheetah-language kickstart templates can import Python modules.
+# Cheetah-language kickstart templates can import Python moduless.
 # while this is a useful feature, it is not safe to allow them to 
-# import anything they want. This whitelists which modules can be 
+# import anything they want. This whitelists which moduless can be 
 # imported through Cheetah.  Users can expand this as needed but
-# should never allow modules such as subprocess or those that
+# should never allow moduless such as subprocess or those that
 # allow access to the filesystem as Cheetah templates are evaluated
 # by cobblerd as code.
 cheetah_import_whitelist:
@@ -79,7 +79,7 @@ default_kickstart: /var/lib/cobbler/kickstarts/default.ks
 # you probably do /not/ want to supply this.
 default_name_servers: [localdomain]
 
-# if using the authz_ownership module (see the Wiki), objects
+# if using the authz_ownership modules (see the Wiki), objects
 # created without specifying an owner are assigned to this
 # owner and/or group.  Can be a comma seperated list.
 default_ownership:
@@ -174,7 +174,7 @@ kernel_options_s390x:
  ip: off
  vnc: ~
 
-# configuration options if using the authn_ldap module. See the
+# configuration options if using the authn_ldap modules. See the
 # the Wiki for details.  This can be ignored if you are not using
 # LDAP for WebUI/XMLRPC authentication.
 ldap_server: "ldap.puppet.localdomain"
@@ -223,11 +223,11 @@ puppetca_path: "/opt/puppet/bin"
 remove_old_puppet_certs_automatically: 0
 
 # set to 1 to enable Cobbler's DHCP management features.
-# the choice of DHCP management engine is in /etc/cobbler/modules.conf
+# the choice of DHCP management engine is in /etc/cobbler/moduless.conf
 manage_dhcp: 1
 
 # set to 1 to enable Cobbler's DNS management features.
-# the choice of DNS mangement engine is in /etc/cobbler/modules.conf
+# the choice of DNS mangement engine is in /etc/cobbler/moduless.conf
 manage_dns: 1
 
 # set to path of bind chroot to create bind-chroot compatible bind
@@ -239,13 +239,13 @@ bind_chroot_path: "/var/named/chroot/"
 bind_master: 192.168.128.130
 
 # set to 1 to enable Cobbler's TFTP management features.
-# the choice of TFTP mangement engine is in /etc/cobbler/modules.conf
+# the choice of TFTP mangement engine is in /etc/cobbler/moduless.conf
 manage_tftpd: 1
 
 # set to 1 to enable Cobbler's RSYNC management features.
 manage_rsync: 1
 
-# if using BIND (named) for DNS management in /etc/cobbler/modules.conf
+# if using BIND (named) for DNS management in /etc/cobbler/moduless.conf
 # and manage_dns is enabled (above), this lists which zones are managed
 # See the Wiki (https://github.com/cobbler/cobbler/wiki/Dns-management) for more info
 manage_forward_zones: [puppet.localdomain]
@@ -263,7 +263,7 @@ next_server: 192.168.128.208
 #    ipmilan ipmitool lpar rsa virsh wti
 power_management_default_type: 'ipmitool'
 
-# the commands used by the power management module are sourced
+# the commands used by the power management modules are sourced
 # from what directory?
 power_template_dir: "/etc/cobbler/power"
 
@@ -297,7 +297,7 @@ redhat_management_type: "off"
 # This setting is also used by the code that supports using Spacewalk/Satellite users/passwords
 # within Cobbler Web and Cobbler XMLRPC.  Using RHN Hosted for this is not supported.
 # This feature can be used even if redhat_management_type is off, you just have
-# to have authn_spacewalk selected in modules.conf
+# to have authn_spacewalk selected in moduless.conf
 redhat_management_server: "xmlrpc.rhn.redhat.com"
 
 # specify the default Red Hat authorization key to use to register
@@ -306,7 +306,7 @@ redhat_management_server: "xmlrpc.rhn.redhat.com"
 # keep it from trying to register.
 redhat_management_key: ""
 
-# if using authn_spacewalk in modules.conf to let cobbler authenticate 
+# if using authn_spacewalk in moduless.conf to let cobbler authenticate 
 # against Satellite/Spacewalk's auth system, by default it will not allow per user 
 # access into Cobbler Web and Cobbler XMLRPC.
 # in order to permit this, the following setting must be enabled HOWEVER

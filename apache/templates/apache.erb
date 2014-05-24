@@ -41,7 +41,7 @@
 #
 # Don't give away too much information about all the subcomponents
 # we are running.  Comment out this line if you don't mind remote sites
-# finding out what major optional modules you are running
+# finding out what major optional moduless you are running
 ServerTokens OS
 
 #
@@ -159,93 +159,93 @@ MaxRequestsPerChild  0
 #
 # Dynamic Shared Object (DSO) Support
 #
-# To be able to use the functionality of a module which was built as a DSO you
+# To be able to use the functionality of a modules which was built as a DSO you
 # have to place corresponding `LoadModule' lines at this location so the
 # directives contained in it are actually available _before_ they are used.
-# Statically compiled modules (those listed by `httpd -l') do not need
+# Statically compiled moduless (those listed by `httpd -l') do not need
 # to be loaded here.
 #
 # Example:
-# LoadModule foo_module modules/mod_foo.so
+# LoadModule foo_modules moduless/mod_foo.so
 #
 =======
 Listen 8141
 
 >>>>>>> db79956e088a17d5a6f0e74b7937fbf1af84537c
-LoadModule auth_basic_module modules/mod_auth_basic.so
-LoadModule auth_digest_module modules/mod_auth_digest.so
-LoadModule authn_file_module modules/mod_authn_file.so
-LoadModule authn_alias_module modules/mod_authn_alias.so
-LoadModule authn_anon_module modules/mod_authn_anon.so
-LoadModule authn_dbm_module modules/mod_authn_dbm.so
-LoadModule authn_default_module modules/mod_authn_default.so
-LoadModule authz_host_module modules/mod_authz_host.so
-LoadModule authz_user_module modules/mod_authz_user.so
-LoadModule authz_owner_module modules/mod_authz_owner.so
-LoadModule authz_groupfile_module modules/mod_authz_groupfile.so
-LoadModule authz_dbm_module modules/mod_authz_dbm.so
-LoadModule authz_default_module modules/mod_authz_default.so
-LoadModule ldap_module modules/mod_ldap.so
-LoadModule authnz_ldap_module modules/mod_authnz_ldap.so
-LoadModule include_module modules/mod_include.so
-LoadModule log_config_module modules/mod_log_config.so
-LoadModule logio_module modules/mod_logio.so
-LoadModule env_module modules/mod_env.so
-LoadModule ext_filter_module modules/mod_ext_filter.so
-LoadModule mime_magic_module modules/mod_mime_magic.so
-LoadModule expires_module modules/mod_expires.so
-LoadModule deflate_module modules/mod_deflate.so
-LoadModule headers_module modules/mod_headers.so
-LoadModule usertrack_module modules/mod_usertrack.so
-LoadModule setenvif_module modules/mod_setenvif.so
-LoadModule mime_module modules/mod_mime.so
+LoadModule auth_basic_modules moduless/mod_auth_basic.so
+LoadModule auth_digest_modules moduless/mod_auth_digest.so
+LoadModule authn_file_modules moduless/mod_authn_file.so
+LoadModule authn_alias_modules moduless/mod_authn_alias.so
+LoadModule authn_anon_modules moduless/mod_authn_anon.so
+LoadModule authn_dbm_modules moduless/mod_authn_dbm.so
+LoadModule authn_default_modules moduless/mod_authn_default.so
+LoadModule authz_host_modules moduless/mod_authz_host.so
+LoadModule authz_user_modules moduless/mod_authz_user.so
+LoadModule authz_owner_modules moduless/mod_authz_owner.so
+LoadModule authz_groupfile_modules moduless/mod_authz_groupfile.so
+LoadModule authz_dbm_modules moduless/mod_authz_dbm.so
+LoadModule authz_default_modules moduless/mod_authz_default.so
+LoadModule ldap_modules moduless/mod_ldap.so
+LoadModule authnz_ldap_modules moduless/mod_authnz_ldap.so
+LoadModule include_modules moduless/mod_include.so
+LoadModule log_config_modules moduless/mod_log_config.so
+LoadModule logio_modules moduless/mod_logio.so
+LoadModule env_modules moduless/mod_env.so
+LoadModule ext_filter_modules moduless/mod_ext_filter.so
+LoadModule mime_magic_modules moduless/mod_mime_magic.so
+LoadModule expires_modules moduless/mod_expires.so
+LoadModule deflate_modules moduless/mod_deflate.so
+LoadModule headers_modules moduless/mod_headers.so
+LoadModule usertrack_modules moduless/mod_usertrack.so
+LoadModule setenvif_modules moduless/mod_setenvif.so
+LoadModule mime_modules moduless/mod_mime.so
 <<<<<<< HEAD
-LoadModule status_module modules/mod_status.so
-LoadModule autoindex_module modules/mod_autoindex.so
-LoadModule info_module modules/mod_info.so
+LoadModule status_modules moduless/mod_status.so
+LoadModule autoindex_modules moduless/mod_autoindex.so
+LoadModule info_modules moduless/mod_info.so
 =======
-LoadModule dav_module modules/mod_dav.so
-LoadModule status_module modules/mod_status.so
-LoadModule autoindex_module modules/mod_autoindex.so
-LoadModule info_module modules/mod_info.so
-LoadModule dav_fs_module modules/mod_dav_fs.so
+LoadModule dav_modules moduless/mod_dav.so
+LoadModule status_modules moduless/mod_status.so
+LoadModule autoindex_modules moduless/mod_autoindex.so
+LoadModule info_modules moduless/mod_info.so
+LoadModule dav_fs_modules moduless/mod_dav_fs.so
 >>>>>>> db79956e088a17d5a6f0e74b7937fbf1af84537c
-LoadModule vhost_alias_module modules/mod_vhost_alias.so
-LoadModule negotiation_module modules/mod_negotiation.so
-LoadModule dir_module modules/mod_dir.so
-LoadModule actions_module modules/mod_actions.so
-LoadModule speling_module modules/mod_speling.so
-LoadModule userdir_module modules/mod_userdir.so
-LoadModule alias_module modules/mod_alias.so
+LoadModule vhost_alias_modules moduless/mod_vhost_alias.so
+LoadModule negotiation_modules moduless/mod_negotiation.so
+LoadModule dir_modules moduless/mod_dir.so
+LoadModule actions_modules moduless/mod_actions.so
+LoadModule speling_modules moduless/mod_speling.so
+LoadModule userdir_modules moduless/mod_userdir.so
+LoadModule alias_modules moduless/mod_alias.so
 <<<<<<< HEAD
 =======
-LoadModule substitute_module modules/mod_substitute.so
+LoadModule substitute_modules moduless/mod_substitute.so
 >>>>>>> db79956e088a17d5a6f0e74b7937fbf1af84537c
-LoadModule rewrite_module modules/mod_rewrite.so
-LoadModule proxy_module modules/mod_proxy.so
-LoadModule proxy_balancer_module modules/mod_proxy_balancer.so
-LoadModule proxy_ftp_module modules/mod_proxy_ftp.so
-LoadModule proxy_http_module modules/mod_proxy_http.so
+LoadModule rewrite_modules moduless/mod_rewrite.so
+LoadModule proxy_modules moduless/mod_proxy.so
+LoadModule proxy_balancer_modules moduless/mod_proxy_balancer.so
+LoadModule proxy_ftp_modules moduless/mod_proxy_ftp.so
+LoadModule proxy_http_modules moduless/mod_proxy_http.so
 <<<<<<< HEAD
-LoadModule proxy_connect_module modules/mod_proxy_connect.so
-LoadModule cache_module modules/mod_cache.so
-LoadModule suexec_module modules/mod_suexec.so
+LoadModule proxy_connect_modules moduless/mod_proxy_connect.so
+LoadModule cache_modules moduless/mod_cache.so
+LoadModule suexec_modules moduless/mod_suexec.so
 =======
-LoadModule proxy_ajp_module modules/mod_proxy_ajp.so
-LoadModule proxy_connect_module modules/mod_proxy_connect.so
-LoadModule cache_module modules/mod_cache.so
-LoadModule suexec_module modules/mod_suexec.so
-LoadModule disk_cache_module modules/mod_disk_cache.so
+LoadModule proxy_ajp_modules moduless/mod_proxy_ajp.so
+LoadModule proxy_connect_modules moduless/mod_proxy_connect.so
+LoadModule cache_modules moduless/mod_cache.so
+LoadModule suexec_modules moduless/mod_suexec.so
+LoadModule disk_cache_modules moduless/mod_disk_cache.so
 >>>>>>> db79956e088a17d5a6f0e74b7937fbf1af84537c
-LoadModule cgi_module modules/mod_cgi.so
-LoadModule version_module modules/mod_version.so
+LoadModule cgi_modules moduless/mod_cgi.so
+LoadModule version_modules moduless/mod_version.so
 
 #
-# The following modules are not loaded by default:
+# The following moduless are not loaded by default:
 #
 <<<<<<< HEAD
-#LoadModule cern_meta_module modules/mod_cern_meta.so
-#LoadModule asis_module modules/mod_asis.so
+#LoadModule cern_meta_modules moduless/mod_cern_meta.so
+#LoadModule asis_modules moduless/mod_asis.so
 
 #
 # Load config files from the config directory "/etc/httpd/conf.d".
@@ -377,16 +377,16 @@ DocumentRoot "/opt/puppet/var/www/html"
     Allow from all
 
 =======
-#LoadModule asis_module modules/mod_asis.so
-#LoadModule authn_dbd_module modules/mod_authn_dbd.so
-#LoadModule cern_meta_module modules/mod_cern_meta.so
-#LoadModule cgid_module modules/mod_cgid.so
-#LoadModule dbd_module modules/mod_dbd.so
-#LoadModule dumpio_module modules/mod_dumpio.so
-#LoadModule filter_module modules/mod_filter.so
-#LoadModule ident_module modules/mod_ident.so
-#LoadModule log_forensic_module modules/mod_log_forensic.so
-#LoadModule unique_id_module modules/mod_unique_id.so
+#LoadModule asis_modules moduless/mod_asis.so
+#LoadModule authn_dbd_modules moduless/mod_authn_dbd.so
+#LoadModule cern_meta_modules moduless/mod_cern_meta.so
+#LoadModule cgid_modules moduless/mod_cgid.so
+#LoadModule dbd_modules moduless/mod_dbd.so
+#LoadModule dumpio_modules moduless/mod_dumpio.so
+#LoadModule filter_modules moduless/mod_filter.so
+#LoadModule ident_modules moduless/mod_ident.so
+#LoadModule log_forensic_modules moduless/mod_log_forensic.so
+#LoadModule unique_id_modules moduless/mod_unique_id.so
 #
 
 Include conf.d/*.conf
@@ -548,9 +548,9 @@ TypesConfig /etc/mime.types
 DefaultType text/plain
 
 #
-# The mod_mime_magic module allows the server to use various hints from the
+# The mod_mime_magic modules allows the server to use various hints from the
 # contents of the file itself to determine its type.  The MIMEMagicFile
-# directive tells the module where the hint definitions are located.
+# directive tells the modules where the hint definitions are located.
 #
 =======
 DirectoryIndex index.html index.html.var
@@ -642,7 +642,7 @@ LogFormat "%{User-agent}i" agent
 
 <<<<<<< HEAD
 # "combinedio" includes actual counts of actual bytes received (%I) and sent (%O); this
-# requires the mod_logio module to be loaded.
+# requires the mod_logio modules to be loaded.
 #LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" %I %O" combinedio
 
 #
@@ -724,7 +724,7 @@ ScriptAlias /cgi-bin/ "/opt/puppet/var/www/cgi-bin/"
 # CGI directory exists, if you have that configured.
 #
 =======
-# WebDAV module configuration section.
+# WebDAV modules configuration section.
 # 
 <IfModule mod_dav_fs.c>
     # Location of the WebDAV lock database.

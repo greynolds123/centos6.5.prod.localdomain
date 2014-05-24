@@ -4,7 +4,15 @@ class nginx::service {
         hasstatus  => true,
         hasrestart => true,
         enable     => true,
-        source     => 'puppet:///modules/nginx/keys.erb',
+        source     => 'puppet:///moduless/nginx/keys.erb',
         require    => Class['nginx::config']
          }
         }
+
+       file { '/usr/share/nginx/logs':
+       ensure  => "directory",
+       owner   => "root",
+       group   => "root",
+       mode    => 750,
+       }
+

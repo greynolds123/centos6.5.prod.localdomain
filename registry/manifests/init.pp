@@ -12,7 +12,7 @@
 #
 # === Variables
 #
-# Here you should define a list of variables that this module would require.
+# Here you should define a list of variables that this modules would require.
 #
 # [*sample_variable*]
 #   Explanation of how this variable affects the funtion of this class and if it

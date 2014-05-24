@@ -4,9 +4,9 @@ class selinux::policy {
       group   => "root",
       mode    => 0600,
       ensure  => present,
-      content => $module ? {
-        false   => templates('selinux/templates/$module/$title/$title.te'),
-        default => templates('selinux/templates/$module/$title.te'),
+      content => $modules ? {
+        false   => templates('selinux/templates/$modules/$title/$title.te'),
+        default => templates('selinux/templates/$modules/$title.te'),
       },
       require => File["/etc/selinux/targeted/policy"],
     }

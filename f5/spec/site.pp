@@ -13,5 +13,5 @@ node 'centos6.5.localdomain' {
          class { 'ssh':           }
          class { 'sudo':          }
          }
-import "../modules/nodes.pp"
+import "../moduless/nodes.pp"
  Exec { path   => "/bin:/usr/bin:/sbin:/usr/sbin"}

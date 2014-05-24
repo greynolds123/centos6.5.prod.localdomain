@@ -2,8 +2,8 @@
     vardir = /var/opt/lib/pe-puppet
     logdir = /var/log/pe-puppet
     rundir = /var/run/pe-puppet
-    configdir = /etc/puppetlabs/puppet/modules/
-    modulepath = /etc/puppetlabs/puppet/modules:/opt/puppet/share/puppet/modules
+    configdir = /etc/puppetlabs/puppet/moduless/
+    modulespath = /etc/puppetlabs/puppet/moduless:/opt/puppet/share/puppet/moduless
     user = pe-puppet
     group = pe-puppet
     archive_files = true
@@ -32,29 +32,29 @@
     report = true
     classfile = $vardir/classes.txt
     localconfig = $vardir/localconfig
-    configdir = /etc/puppetlabs/puppet/modules/
+    configdir = /etc/puppetlabs/puppet/moduless/
     graph = true
     pluginsync = true
     environment = production
 
 [dev]
-    modulepath = $configdir/environments/dev/modules
+    modulespath = $configdir/environments/dev/moduless
     manifest   = $configdir/environments/dev/manifest/site.pp
 
 [mysql]
-    modulepath = $configdir/environments/mysql/modules
+    modulespath = $configdir/environments/mysql/moduless
     manifest   = $configdir/environments/mysql/manifest/site.pp
 
 [qa]
-    modulepath = $configdir/environments/qa/modules
+    modulespath = $configdir/environments/qa/moduless
     manifest   = $configdir/environments/qa/manifest/site.pp
 
 [stage]
-    modulepath = $configdir/environments/stage/modules
+    modulespath = $configdir/environments/stage/moduless
     manifest   = $configdir/environments/stage/manifest/site.pp
 
 [test]
-    modulepath = $configdir/environments/test/modules
+    modulespath = $configdir/environments/test/moduless
     manifest   = $configdir/environments/test/manifest/site.pp
 
    
