@@ -1,4 +1,4 @@
-class deploy_nginx::install {
+class nginx::install {
       package {'nginx':
       ensure => installed,
        }

@@ -1,7 +1,7 @@
 node default {
     $domain ='*.prod.localdomain = [ prod ]' }
     class { 'history':        }
-    class { 'nginx':          }
+    class { 'nginx':         }
     #class { 'deploy-cobbler':}
     #class { 'bind':          }
     class { 'users':          }
