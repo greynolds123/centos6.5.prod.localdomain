@@ -3,23 +3,19 @@ class deploy-cobbler::install {
          ensure  => install,
         }
 
-     packages { "tftp":,
+     package { "tftp":,
         ensure  => install,
      }
 
-     packages { "tftp":,
-        ensure  => install,
-     }
-
-     packages { "rsync":,
+     package { "rsync":,
         ensure  => install,
      }
      
-     packages { "bind":,
+     package { "bind":,
         ensure  => install,
      }
      
-     packages { "dhcp":,
+     package { "dhcp":,
         ensure  => install,
      }
   }
@@ -29,7 +25,7 @@ class deploy-cobbler::install {
       path     => "/bin:/usr/bin:/sbin:/usr/sbin"
      }
     exec { "correct_ip":
-       command  => "perl -pi -w -e 's/127.0.0.1/192.168.128.130/g' /etc/cobbler/settings",
+       command  => "perl -pi -w -e 's/127.0.0.1/192.168.153.155/g' /etc/cobbler/settings",
        path     => "/bin:/usr/bin:/sbin:/usr/sbin"
      }
     exec { "correct_pxeboot":
