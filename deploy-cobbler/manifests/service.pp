@@ -4,7 +4,7 @@ class deploy-cobbler::service {
        hasstatus  => true,
        hasrestart => true,
        enable     => true,
-       reauire    => Class[deploy-cobbler::config],
+       require    => Class[deploy-cobbler::config],
        }
      }
 exec { "chk_cobblerd":
