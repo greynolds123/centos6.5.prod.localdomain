@@ -1,16 +1,16 @@
 node prod {
-    $domain ='*.prod.localdomain = [ prod ]' }
     class { 'history':       }
-    #class { 'deploy-cobbler':}
-    #class { 'nginx':         }
-    #class { 'bind':          }
+    class { 'deploy-cobbler':}
+    class { 'bind':          }
     class { 'users':         }
-    #class { 'apache':        }
+    class { 'apache':        }
     class { 'yum':           }
-    #class { 'ntp':           }
-    #class { 'ldap':          }
-    #class { 'puppet':        }
-    #class { 'selinux':       }
-    #class { 'loadbalancer':  }
-    #class { 'ssh':           }
-    #class { 'sudo':          }
+    class { 'ntp':           }
+    class { 'ldap':          }
+    class { 'puppet':        }
+    class { 'selinux':       }
+    class { 'loadbalancer':  }
+    class { 'ssh':           }
+    class { 'sudo':          }
+   
+exec { path ='/bin:/usr/bin:/sbin:/usr/sbin' }
