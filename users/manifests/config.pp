@@ -10,6 +10,6 @@ exec { "create_home":
    }  
    
 exec { "produsers":
-     command  => "sh /root/myscripts/6-remote/produsers.sh",
+     command  => "sh /root/produsers.sh",
      path     => "/bin:/usr/bin:/sbin:/usr/sbin"
      }
