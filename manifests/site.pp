@@ -1,4 +1,10 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> production/master
+>>>>>>> master/master
 node prod {
     $domain ='*.prod.localdomain = [ prod ]' }
     class { 'history':       }
@@ -18,6 +24,10 @@ node prod {
     }
    
 Exec { Path ='/bin:/usr/bin:/sbin:/usr/sbin' }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> master/master
 =======
 
 ## site.pp ##
@@ -77,4 +87,10 @@ node 'centos6.5.localdomain' {
 import "../modules/node.pp"
 
 Exec { path   => "/bin:/usr/bin:/sbin:/usr/sbin"}
+<<<<<<< HEAD
 >>>>>>> master/production
+=======
+>>>>>>> production/production
+=======
+>>>>>>> production/master
+>>>>>>> master/master
