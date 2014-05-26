@@ -2,5 +2,8 @@
 	repositoryformatversion = 0
 	filemode = true
 	bare = true
+<<<<<<< HEAD
 [remote "origin"]
 	url = git@github.com:greynolds123/centos6.5.localdomain.git
+=======
+>>>>>>> 10fdbf75ea96738ece7b1e0e4ba4ec73a462cbdc
