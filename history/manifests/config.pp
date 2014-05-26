@@ -4,7 +4,7 @@ class history::config {
     owner   => root,
     group   => root,
     mode    => "0644",
-    source  => 'puppet:///modules/history/history.conf"),
+    source  => 'puppet:///modules/history/history.conf',
     }
    }
 
