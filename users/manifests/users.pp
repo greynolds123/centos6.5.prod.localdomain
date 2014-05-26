@@ -1,11 +1,11 @@
 class users::users {
     user { 'greynolds':
       ensure      => present,
-      owner       => greynolds,
       group       => greynolds,
+      owner       => greynolds,
       mode        => '0770',
       managehome  => true,
-      require     => Class['users::config']
+      require     => Class['users::config'],
       }
     
     user { 'fds':

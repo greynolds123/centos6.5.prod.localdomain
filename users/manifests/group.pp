@@ -4,6 +4,7 @@ class users::group {
      require => Class['users::config']
      }
 exec { "create_produsers":
-     command  => "usermod -G10  < /root/prodAddusers.txt",",
-     }
-  
+     command  => "usermod -G10  <% produsers %>",
+     creates  => "/etc/group/<% produsers %>",
+   }
+  }
