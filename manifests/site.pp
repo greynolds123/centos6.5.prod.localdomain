@@ -3,7 +3,7 @@ node default {
     class { 'history':       }
     #class { 'deploy-cobbler':}
     #class { 'bind':          }
-    #class { 'nginx':         }
+    class { 'webserve':      }
     class { 'users':         }
     #class { 'apache':        }
     #class { 'yum':           }
