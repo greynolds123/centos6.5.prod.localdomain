@@ -1,11 +1,11 @@
 class nginx::config {
-      files { '/etc/nginx':
+      files { '/etc/nginx/conf.d/default.conf':
       ensure  => present,
-      user    => 'root';
-      group   => 'root';
+      user    => 'root',
+      group   => 'root',
       mode    => 0644,
-      source  => template('nginx/default.erb');
+      source  => 'puppet:///modules/nginx/default.conf',
       require => Class['nginx::install'],
-      notify  => Class['nginx::service],
+      notify  => Class['nginx::service'],
         }
       }

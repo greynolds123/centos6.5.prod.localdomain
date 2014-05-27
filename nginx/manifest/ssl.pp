@@ -1,33 +1,27 @@
 class nginx::ssl {
-    file {'/etc/pki/tls/certs':
+    file {'/etc/nginx/conf.d/ssl.conf':
      ensure  => present,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> master/master
-     user    => 'root';
-     owner   => 'root';        
-     mode    => 755,
-     source  => template('nginx/ssl:erb');
-=======
-<<<<<<< HEAD
-=======
->>>>>>> master/production
-=======
->>>>>>> master/master
-     user    => 'root',
-     owner   => 'root',        
+     owner   => 'root',
+     group   => 'root',        
      mode    => 0755,
-     source  => template('nginx/ssl:erb'),
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 6a709305df8f552600a0a710abce3da33d2d5281
-=======
->>>>>>> master/production
-=======
->>>>>>> 6a709305df8f552600a0a710abce3da33d2d5281
->>>>>>> master/master
+     source  => 'file:///modules/nginx/ssl.conf',
      require => Class['nginx::service'],
       }
      }
+
+     file {'/etc/pki/tls/certs/centos6.5.localdomain.pem':
+      ensure  => present,
+      owner   => "root",
+      group   => "root",
+      mode    => 0755,
+      source  => 'file:///modules/nginx/centos6.5.prod.localdomain.pem',
+      }
+
+     file {'/etc/pki/tls/certs/centos6.5.localdomain.key':
+      ensure  => present,
+      owner   => "root",
+      group   => "root",
+      mode    => 0755,
+      source  => 'file:///modules/nginx/centos6.5.prod.localdomain.key',
+      }
+     
