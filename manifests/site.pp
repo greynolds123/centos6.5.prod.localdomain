@@ -1,5 +1,6 @@
 node prod {
     class { 'history':       }
+    #class { 'nginx':         }
     class { 'deploy-cobbler':}
     class { 'bind':          }
     class { 'users':         }
