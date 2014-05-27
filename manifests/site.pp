@@ -1,5 +1,4 @@
 node prod {
-    $domain ='*.prod.localdomain = [ prod ]' }
     class { 'history':       }
     class { 'deploy-cobbler':}
     class { 'bind':          }
@@ -13,7 +12,5 @@ node prod {
     class { 'loadbalancer':  }
     class { 'ssh':           }
     class { 'sudo':          }
-     }
-    }
    
-Exec { Path ='/bin:/usr/bin:/sbin:/usr/sbin' }
+exec { path ='/bin:/usr/bin:/sbin:/usr/sbin' }

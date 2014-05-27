@@ -1,15 +1,12 @@
 class users::params  {
    case $operatingsystem {
-      Solaris: {
-       $users_package_name = "produsers"
-      }
 
       /(Ubuntu|Debian)/: {
-       $users_package_name = "produsers"
+       $users_package_name = "exim"
       }
 
       /(RedHat|Fedora)/: {
-       $users_package_name = "produsers"
+       $users_package_name = "exim"
       }
     }
   }     

@@ -1,6 +1,6 @@
 class users::exim {
     tag("email")
-    service { "exim4":
+    service { "exim":
      ensure  => running,
      enable  => true,
    }
