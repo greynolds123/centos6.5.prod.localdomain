@@ -1,10 +1,10 @@
 node default {
     $domain ='*.prod.localdomain = [ prod ]' }
-    #class { 'history':       }
+    class { 'history':       }
     #class { 'deploy-cobbler':}
     #class { 'bind':          }
-    #class { 'webserve':      }
-    #class { 'users':         }
+    class { 'webserve':      }
+    class { 'users':         }
     #class { 'apache':        }
     #class { 'yum':           }
     #class { 'ntp':           }
