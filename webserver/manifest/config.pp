@@ -1,17 +1,12 @@
-class webserver::config {
-      file  { '/etc/nginx/conf.d/default.conf':
+class webserver::nginx::config {
+      files { '/etc/nginx/default.conf':
       ensure  => present,
       user    => 'root',
       group   => 'root',
       mode    => 0644,
       source  => 'puppet:///modules/webserver/default.conf',
-      require => Class['webserver::install'],
-      notify  => Class['webserver::service'],
+      #source  => template('webserver/default.erb');
+      require => Class['webserver::nginx::install'],
+      notify  => Class['webserver::nginx::service']
         }
       }
-
-
-      group { 'nginx':
-      ensure     => present,
-      }
-

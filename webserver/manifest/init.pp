@@ -1,5 +1,3 @@
-class webserver {
-    include webserver::config, webserver::install, webserver::params, webserver::service, webserver::ssl, webserver::index, webserver::virtual
+class webserver::nginx {
+    include webserver::nginx::config, webserver::nginx::install, webserver::nginx::params, webserver::nginx::service, webserver::nginx::ssl, webserver::nginx::virtual, webserver::nginx::web
     }
-
-   

@@ -1,5 +1,5 @@
-class webserver::install {
-      package {'nginx':
-      ensure => install,
-       }
-      }
+class webserver::nginx::install {
+    package {'nginx':
+    ensure => present,
+     }
+    }

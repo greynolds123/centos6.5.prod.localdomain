@@ -1,10 +1,10 @@
-class webserver::service {
+class webserver::nginx::service {
         service { 'nginx':
         ensure     => present,
         hasstatus  => true,
         hasrestart => true,
         enable     => true,
-        source     => 'puppet:///modules/nginx/ssl.conf',
-        require    => Class['webserver::config'],
+        require    => Class['webserver::nginx::config'],
+        require    => Class['webserver::nginx::ssl']
          }
         }
