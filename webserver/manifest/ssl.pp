@@ -3,7 +3,7 @@ class webserver::nginx::ssl {
      ensure  => present,
      owner   => 'root',
      group   => 'root',
-     mode    => 0755,
+     mode    => 0644,
      source  => 'puppet:///modules/webserver/ssl.conf',
      #source  => template('webserver/ssl.conf.erb'),
       }
@@ -13,7 +13,7 @@ class webserver::nginx::ssl {
      ensure  => present,
      owner   => 'root',
      group   => 'root',        
-     mode    => 0755,
+     mode    => 0644,
      source  => 'puppet:///modules/webserver/ssl.pem',
      #source  => template('webserver/ssl.pem.erb'),
       }
@@ -23,7 +23,7 @@ class webserver::nginx::ssl {
      ensure  => present,
      owner   => 'root',
      group   => 'root',
-     mode    => 0755,
+     mode    => 0644,
      source  => 'puppet:///modules/webserver/ssl.key',
      #source  => template('webserver/ssl.key.erb'),
       }

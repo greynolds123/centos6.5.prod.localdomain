@@ -1,11 +1,11 @@
-class webserver::web {
+class webserver::nginx::web {
      file {'/usr/share/nginx/html/index.html':
      ensure  => present,
      user    => 'root',
      owner   => 'root',
      mode    => 0755,
      source  => 'file:///modules/webserver/index.html',    
-     require => Class['webserver::config']
+     require => Class['webserver::nginx::config']
       }
      }
 
