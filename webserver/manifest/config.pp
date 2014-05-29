@@ -1,5 +1,5 @@
 class webserver::config {
-      files { '/etc/nginx/conf.d/default.conf':
+      file  { '/etc/nginx/conf.d/default.conf':
       ensure  => present,
       user    => 'root',
       group   => 'root',
@@ -9,3 +9,9 @@ class webserver::config {
       notify  => Class['webserver::service'],
         }
       }
+
+
+      group { 'nginx':
+      ensure     => present,
+      }
+

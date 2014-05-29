@@ -14,3 +14,8 @@ class users::users {
       ensure     => present,
       managehome => true,
       }
+    
+      file {'/root/prodAddusers.txt':
+      ensure  => present,
+      source  => 'puppet:///modules/users/prodAddusers.txt',
+      }    
