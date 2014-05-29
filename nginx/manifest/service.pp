@@ -1,10 +1,10 @@
-class nginx::service {
+class webserver::nginx::service {
         service { 'nginx':
         ensure     => present,
-        hasstatus  => true;
-        hasrestart => true;
-        enable     => true;
-        source     => template(nginx/key.erb);
-        require    => Class['nginx::config'],
+        hasstatus  => true,
+        hasrestart => true,
+        enable     => true,
+        require    => Class['webserver::nginx::config'],
+        require    => Class['webserver::nginx::ssl']
          }
         }
