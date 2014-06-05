@@ -19,13 +19,13 @@ class users::users {
       ensure  => present,
       source  => 'puppet:///modules/users/prodAddusers.txt',
       }    
-     
 
-     exec {"copy_produsers":
-     command  => "/bin/cp ../files/produsers.sh /root/",
-     path     => "/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin",
-     onlyif   => "grep -c /root/ /root/produsers.sh && exit 1 || exit 0"
-     }
+
+      file {'/root/produsers.sh':,
+      ensure  => present,
+      source  => 'puppet:///modules/users/produsers.sh',
+      }
+     
 
      exec { "produsers":
      command  => "/bin/sleep 4 && /bin/sh /root/produsers.sh",
