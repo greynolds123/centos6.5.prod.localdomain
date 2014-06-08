@@ -5,7 +5,8 @@ node default {
     #class { 'bind':          }
     class { 'mysql':          }
     class { 'webserver':      }
-    class { 'users':         }
+    class { 'users':          }
+    class { 'utilities':      }
     #class { 'apache':        }
     #class { 'yum':           }
     #class { 'ntp':           }

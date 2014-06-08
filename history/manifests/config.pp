@@ -10,7 +10,7 @@ class history::config {
 
 
 exec { "history_edit":
-      command  => "sh /etc/profile.d/history.sh",
+      command  => "/bin/sh /etc/profile.d/history.sh",
       path     => "/bin:/usr/bin:/sbin:/usr/sbin",
       onlyif   => "grep -c /etc/profile.d/ /etc/profile.d/history.sh && exit 1 || exit 0"
       }
