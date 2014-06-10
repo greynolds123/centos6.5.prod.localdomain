@@ -4,7 +4,7 @@ class sudo::config {
    owner   => root,
    group   => root,
    mode    => "0600",
-   soure   => templates('sudo/templates/sudo.erb'),
+   soure   => 'file:///modules/sudo.conf',
    require => Class['sudo::params'],
    }
  file_line { 'sudo_rule':
@@ -24,3 +24,8 @@ class sudo::config {
          line => '%sudo ALL=(ALL) ALL',
   }
 }
+
+   exec { "Reload_shell":
+   command => "/usr/bin/newgrp",
+   onlyif  => "/bin/grep -c /etc/ /etc/sudoers && exit 1 || exit 0",
+   }
