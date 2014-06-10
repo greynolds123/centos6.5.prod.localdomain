@@ -3,8 +3,8 @@ node default {
     class { 'history':       }
     #class { 'deploy-cobbler':}
     #class { 'bind':          }
-    class { 'mysql':          }
-    class { 'webserver':      }
+    #class { 'mysql':          }
+    #class { 'webserver':      }
     class { 'users':          }
     class { 'utilities':      }
     #class { 'apache':        }
@@ -15,6 +15,6 @@ node default {
     #class { 'selinux':       }
     #class { 'loadbalancer':  }
     #class { 'ssh':           }
-    #class { 'sudo':          }
+    class { 'sudo':          }
    
 Exec { path => '/bin:/usr/bin:/sbin:/usr/sbin' }

@@ -17,7 +17,7 @@
 ## These aren't often necessary, as you can use regular groups
 ## (ie, from files, LDAP, NIS, etc) in this file - just use %groupname 
 ## rather than USERALIAS
-User_Alias ADMINS = greynolds, fds
+User_Alias ADMINS = greynolds,fds
 
 
 ## Command Aliases
@@ -109,7 +109,7 @@ root	ALL=(ALL) 	ALL
 
 ## Allows members of the users group to mount and unmount the 
 ## cdrom as root
- %users  ALL=/sbin/mount /mnt/cdrom, /sbin/umount /mnt/cdrom
+# %users  ALL=/sbin/mount /mnt/cdrom, /sbin/umount /mnt/cdrom
 
 ## Allows members of the users group to shutdown this system
 # %users  localhost=/sbin/shutdown -h now
