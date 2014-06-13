@@ -1,60 +1,51 @@
 [main]
+    certname = centos6.5.prod.localdomain
+    dns_alt_names = centos6.5.prod,centos6.5.prod.localdomain
     vardir = /var/opt/lib/pe-puppet
     logdir = /var/log/pe-puppet
     rundir = /var/run/pe-puppet
-    configdir = /etc/puppetlabs/puppet/modules/
+    environmentpath = $confdir/environments
     modulepath = /etc/puppetlabs/puppet/modules:/opt/puppet/share/puppet/modules
-    user = pe-puppet
+    server = centos6.5.prod.localdomain
+    user  = pe-puppet
     group = pe-puppet
     archive_files = true
-    archive_file_server = puppet.localdomain
+    archive_file_server = centos6.5.prod.localdomain
 
 [master]
-    certname = puppet.localdomain
-    dns_alt_names = puppet,puppet.localdomain
-    ca_name = 'Puppet CA generated on puppet.localdomain at Fri Feb 15 01:51:28 -0800 2013'
-    facts_terminus = inventory_active_record
-    dbadapter = mysql
-    dbname = console_inventory_service
-    dbuser = console
-    dbpassword = SDnGhUXeyuKNux9AyPT2
-    dbserver = localhost
-    reports = https
-    reporturl = https://localhost:/reports/upload
-    node_terminus = exec
-    external_nodes = /etc/puppetlabs/puppet-dashboard/external_node
+    certname = centos6.5.prod.localdomain
+    ca_name = 'Puppet CA generated on centos6.5.prod.localdomain at 2014-05-18 10:31:03 -0700'
+    reports = console,store,puppetdb
+    node_terminus = console
     ssl_client_header = SSL_CLIENT_S_DN
     ssl_client_verify_header = SSL_CLIENT_VERIFY
+    storeconfigs_backend = puppetdb
+    storeconfigs = true
 
 [agent]
-    certname = puppet.localdomain
-    server = puppet.localdomain
     report = true
     classfile = $vardir/classes.txt
     localconfig = $vardir/localconfig
-    configdir = /etc/puppetlabs/puppet/modules/
     graph = true
     pluginsync = true
     environment = production
 
 [dev]
-    modulepath = $configdir/environments/dev/modules
-    manifest   = $configdir/environments/dev/manifest/site.pp
+    modulepath = $confdir/environments/dev/modules
+    manifest   = $confdir/environments/dev/manifest/site.pp
 
 [mysql]
-    modulepath = $configdir/environments/mysql/modules
-    manifest   = $configdir/environments/mysql/manifest/site.pp
+    modulepath = $confdir/environments/mysql/modules
+    manifest   = $confdir/environments/mysql/manifest/site.pp
 
 [qa]
-    modulepath = $configdir/environments/qa/modules
-    manifest   = $configdir/environments/qa/manifest/site.pp
+    modulepath = $confdir/environments/qa/modules
+    manifest   = $confdir/environments/qa/manifest/site.pp
 
 [stage]
-    modulepath = $configdir/environments/stage/modules
-    manifest   = $configdir/environments/stage/manifest/site.pp
+    modulepath = $confdir/environments/stg/modules
+    manifest   = $confdir/environments/stg/manifest/site.pp
 
 [test]
-    modulepath = $configdir/environments/test/modules
-    manifest   = $configdir/environments/test/manifest/site.pp
-
-   
+    modulepath = $confdir/environments/test/modules
+    manifest   = $configdirenvironments/test/manifest/site.pp
