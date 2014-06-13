@@ -1,3 +1,3 @@
 class sudo { 
-     include sudo::config, sudo::params
+     include sudo::install, sudo::config, sudo::params
 }   
