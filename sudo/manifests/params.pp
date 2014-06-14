@@ -1,4 +1,4 @@
-class sudo::parms {
+class sudo::params {
     case $operatingsystem {
       Solaris: {
        $sudo_package_name = 'sudo'
