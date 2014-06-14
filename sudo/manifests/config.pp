@@ -4,7 +4,7 @@ class sudo::config {
    owner   => root,
    group   => root,
    mode    => "0600",
-   soure   => 'file:///modules/sudoers',
+   soure   => 'file:///modules/sudo/sudoers',
    require => Class['sudo::params'],
    }
   }
