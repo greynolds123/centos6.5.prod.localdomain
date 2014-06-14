@@ -10,7 +10,7 @@ class ssh::service {
         }
        }
  
-       elsif $operatingsystems == '/[Redhat|Centoe|Fedora]/' {
+       elsif $operatingsystems == '/[Redhat|Centos|Fedora]/' {
        service { "/etc/init.d/sshd":
        ensure       => running,
        hasstatus    => true,
