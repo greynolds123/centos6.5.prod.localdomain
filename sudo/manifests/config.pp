@@ -4,7 +4,7 @@ class sudo::config {
    owner   => root,
    group   => root,
    mode    => "0600",
-   soure   => 'file:///modules/sudo.conf',
+   soure   => 'file:///modules/sudo/sudo.conf',
    require => Class['sudo::params'],
    }
  file_line { 'sudo_rule':
