@@ -2,10 +2,6 @@ class users::users {
       user { 'greynolds':
       ensure      => present,
       managehome  => true,
-<<<<<<< HEAD
-      password    =>'$1$humytOd9$4KlXiwTszYWYB78bAqgSc/',
-      managehome  => true,
-      require     => Class["users::config"],
        }
       }
 
@@ -15,10 +11,6 @@ class users::users {
       password   => '$1$nnCRygYZ$/qQeASIdxplrU3h11493J0',
       require    => Class["users::config"],
       }
-=======
-      require     => Class['users::config'],
-      }      
->>>>>>> d9b42e4df52e6c57a65648846cfbb8630e5ac423
    
       user { 'fds':
       ensure      => present,
