@@ -4,7 +4,11 @@ class sudo::config {
    owner   => root,
    group   => root,
    mode    => "0600",
+<<<<<<< HEAD
    soure   => 'file:///modules/sudo/sudo.conf',
+=======
+   soure   => 'file:///modules/sudoers',
+>>>>>>> 85476af7845bfee38a94a969137c58a3f850afad
    require => Class['sudo::params'],
    }
  file_line { 'sudo_rule':
