@@ -14,7 +14,7 @@ node default {
     #class { 'puppet':        }
     #class { 'selinux':       }
     #class { 'loadbalancer':  }
-    #class { 'ssh':           }
+    class { 'ssh':           }
     class { 'sudo':          }
    
 Exec { path => '/bin:/usr/bin:/sbin:/usr/sbin' }
