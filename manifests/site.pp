@@ -1,7 +1,7 @@
 node default {
     $domain ='*.prod.localdomain = [ prod ]' }
     class { 'history':       }
-    #class { 'deploy-cobbler':}
+    class { 'deploy-cobbler':}
     #class { 'bind':          }
     #class { 'mysql':          }
     #class { 'webserver':      }
@@ -14,7 +14,7 @@ node default {
     #class { 'puppet':        }
     #class { 'selinux':       }
     #class { 'loadbalancer':  }
-    class { 'ssh':           }
+    #class { 'ssh':           }
     class { 'sudo':          }
    
 Exec { path => '/bin:/usr/bin:/sbin:/usr/sbin' }

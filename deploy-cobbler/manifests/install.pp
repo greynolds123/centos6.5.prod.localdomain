@@ -7,10 +7,6 @@ class deploy-cobbler::install {
         ensure  => install,
      }
 
-     packages { "tftp":,
-        ensure  => install,
-     }
-
      packages { "rsync":,
         ensure  => install,
      }
