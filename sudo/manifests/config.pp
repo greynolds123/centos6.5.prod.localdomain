@@ -1,11 +1,10 @@
 class sudo::config {
-   file { '/etc/suoers':
+   file { '/etc/sudoers':
    ensure  => present,
    owner   => root,
    group   => root,
    mode    => "0600",
-   soure   => 'file:///modules/sudo/sudoers',
-   require => Class['sudo::params'],
+   source  => 'file:///modules/sudo/sudoers',
    }
   }
 

@@ -6,7 +6,7 @@ node default {
     #class { 'mysql':          }
     #class { 'webserver':      }
     class { 'users':          }
-    class { 'utilities':      }
+    #class { 'utilities':      }
     #class { 'apache':        }
     #class { 'yum':           }
     #class { 'ntp':           }
