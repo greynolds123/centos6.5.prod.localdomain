@@ -22,4 +22,17 @@ Puppet::Type.newtype(:dism) do
   newparam(:answer) do
     desc "The answer file for installing the feature."
   end
+
+  newparam(:all) do
+    desc "A flag indicating if we should install all dependencies or not."
+    defaultto(false)
+  end
+
+  newparam(:exitcode, :array_matching => :all) do
+    desc "DISM installation process exit code"
+    # Ruby truncates exit codes to one bytes (https://bugs.ruby-lang.org/issues/8083)
+    # so use truncated codes as workaround.
+    #defaultto([0, 3010])
+    defaultto([0, 3010, 3010 & 0xFF])
+  end
 end

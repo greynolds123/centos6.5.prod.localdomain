@@ -5,6 +5,7 @@ class users::config {
      }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
      file { "/root/produsers.sh":
      ensure   => "file",
      source  => 'file:///modules/users/produsers.sh',
@@ -12,6 +13,8 @@ class users::config {
 =======
 >>>>>>> 5f545de760de109de51569a8ad80c5747f91d1bc
 
+=======
+>>>>>>> 6f3e1cafb3745b00a29bcd5d6a0bc316eb7e9d5f
      exec { "create_home":
      command  => "/bin/mkdir  /home",
      creates  => "/home",

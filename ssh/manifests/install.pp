@@ -1,13 +1,13 @@
 class ssh::install {
     if $operatingsystems == '/[Fedora|Redhat|Centos]/' {
     package { 'openssh':
-      ensure  => present,
+      ensure  => lastest,
     }
    }
 
     elsif $operatingsystems == '/[Ubuntu|Debian]/' {
      package { 'ssh':
-      ensure  => present,
+      ensure  => latest,
     }
    }
 }

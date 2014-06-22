@@ -1,326 +1,1086 @@
-# Puppet Labs F5 module
-Warning: this project is currently work in progress, *pending* sections are planned features.
+#f5
 
-## Overview
-The F5 module was written against F5 VE version 10.1.0.3341. F5 have released version 11 with several API changes but currently they have not released any hardware or software running version 11. This provider uses several version 10.1 API, so it is not expected to work with older F5 devices.
+####Table of Contents
 
-Thanks to the following contributor/testers for this module (outside of PuppetLabs employees):
-Brenton Leanhardt (brenton)
-Bretm (bretm-rh)
-Scott Henson (shenson)
+1. [Overview](#overview)
+2. [Module Description - What the module does and why it is useful](#module-description)
+3. [Setup - The basics of getting started with f5(#setup)
+    * [What f5 affects](#what-f5-affects)
+    * [Setup requirements](#setup-requirements)
+    * [Beginning with f5](#beginning-with-f5)
+4. [Usage - Configuration options and additional functionality](#usage)
+5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
+5. [Limitations - OS compatibility, etc.](#limitations)
+6. [Development - Guide for contributing to the module](#development)
 
-## Installation and Usage
-Since we can not directly install a puppet agent on F5, it is managed through an intermediate proxy system running puppet agent similar to cisco devices. The requirement for the proxy system:
+##Overview
 
-* Puppet 2.7.+
-* F5 iControl gem
+The F5 module allows you to centralize the management of your F5 devices
+(running 11.0+) via many different types and providers.  This module, and the
+current design of it, is to be deprecated shortly with the introduction of a
+new REST based module written from scratch.  We have recently overhauled this
+module to work with Puppet 3+ and modern versions of Ruby, but the new module
+will be substantially different.
 
-The following puppet manifest will deploy f5 gem on the f5_proxy system and deploy the appropriate config:
+As a result of the new planned development this module has been only lightly
+tested and we welcome bug reports on any issues you find with it.
 
-    node f5_proxy_system {
+##Module Description
+
+This module uses SOAP to manage F5 devices running 11.0+.  It consists of
+nineteen resources covering everything from users to irules.
+
+##Setup
+
+###What f5 affects
+
+* F5 device configuration.
+* Puppet device configuration.
+
+###Setup Requirements
+
+As F5 devices cannot run Puppet natively we require the use of a proxy system.
+This system must be running Puppet and have the "Savon"(http://www.savonrb.com)
+Ruby gem installed on it for working with the SOAP api.
+
+The following profile class would deploy an appropriate configuration as well
+as setup a cron job to run the F5 configuration once an hour.
+
+```puppet
+    class profile::f5_proxy(
+      $hostname = 'f5.puppetlabs.lan',
+      $username = 'admin',
+      $password = 'admin'
+    ) {
       include f5
 
-      f5::config { "f5.puppetlabs.lan":
-        username => 'admin',
-        password => 'admin',
-        url      => 'f5.puppetlabs.lan',
-        target   => '/etc/puppetlabs/puppet/device/f5.puppetlabs.lan.conf'
+      f5::config { $hostname:
+        username => $username,
+        password => $password,
+        url      => $hostname,
+        target   => "${::settings::confdir}/device/${hostname}"
       }
 
-      cron { "bigip":
-        command => 'puppet device --deviceconf /etc/puppetlabs/puppet/device/f5.puppetlabs.lan.conf',
-        min     => fqdn_rand(60),
+      cron { "bigip-puppet-device-run":
+        command => "puppet device --deviceconfig ${::settings::confdir}/device/${hostname}",
+        minute  => fqdn_rand(60),
       }
     }
+```
 
-1. Create F5 Device configuration file in $confdir/device.conf (typically /etc/puppet/device.conf or /etc/puppetlabs/puppet/device.conf)
+Once you've run this on a proxy you can then create a class and apply it to a
+node with the name of the f5 (in the above example f5.puppetlabs.lan).
 
-        [certname]
-        type f5
-        url https://username:password@address/
-
-2. F5 Partition support is added as part of device.conf (url.path of "" or "/" is interpretted as Common partition):
-        url https://username:password@address/partition
-
-3. Create the corresponding node configuration on the puppet master site.pp:
-
-        node f5.puppetlabs.lan {
-          f5_rule { 'demo':
-            ensure     => 'present',
-            definition => 'when HTTP_REQUEST {}',
-          }
-        }
-
-4. Execute puppet device command *:
-
-        $ puppet device
-
-5. Currently to simplify testing we allow usage of custom puppet fact to query/configure f5 resources against a specific system *:
-
-        $ FACTER_url=https://admin:admin@f5.puppetlabs.lan/ puppet resource f5_rule
-
-## Known Limitations
-
-* puppet agent on the proxy system will only enforce the system catalog, and it will not enforce the network device catalog. Network devices should be scheduled via cron to run puppet device command with the appropriate flags.
-* puppet device will run against all device specified in device.conf. If they should not be applied simultanously, maintain seperate conf files for f5 device and specify --deviceconfig.
-* puppet resource attribute hash values will be squashed unless the following commit [23d5aeb](https://github.com/jhelwig/puppet/commit/23d5aeb5cbc1f55ba4f40d9def149f22d8be33aa) or feature [#9879](http://projects.puppetlabs.com/issues/9879) is included in puppet on the proxy server.
-* Because pluginsync only support custom facts/functions [#7316](http://projects.puppetlabs.com/issues/7316), all puppet commands needs the appropriate RUBYLIB path (including puppet master):
-
-        export RUBYLIB=/etc/puppet/modules/f5/lib/:$RUBYLIB
-
-For more information see: http://www.puppetlabs.com/blog/puppet-network-device-management/
-
-## F5 Facts
-Similar to Puppet 2.7 cisco devices, the F5 facts are not collected via facter, so please review $vardir/yaml/facts for F5 system information.
-
-    --- !ruby/object:Puppet::Node::Facts
-      expiration: 2011-08-19 10:26:54.779410 -07:00
-      name: bigip
-      values:
-        clientversion: 2.7.2
-        environment: production
-        clientcert: bigip
-        !ruby/sym _timestamp: 2011-08-19 09:56:55.077534 -07:00
-        !ruby/sym annunciator_board_part_revision: ""
-        !ruby/sym annunciator_board_serial: ""
-        !ruby/sym chassis_serial: b500b9b79397
-        !ruby/sym disk_free_/: 82 MB
-        !ruby/sym disk_free_/config: 369 MB
-        !ruby/sym disk_free_/shared: 1835 MB
-        !ruby/sym disk_free_/usr: 301 MB
-        !ruby/sym disk_free_/var/log: 1829 MB
-        !ruby/sym disk_free_/var: 2219 MB
-        !ruby/sym disk_size_/: 201 MB
-        !ruby/sym disk_size_/config: 398 MB
-        !ruby/sym disk_size_/shared: 2015 MB
-        !ruby/sym disk_size_/usr: 1007 MB
-        !ruby/sym disk_size_/var/log: 2015 MB
-        !ruby/sym disk_size_/var: 2421 MB
-        !ruby/sym domain: puppetlabs.lan
-        !ruby/sym fqdn: f5.puppetlabs.lan
-        !ruby/sym group_id: DefaultGroup
-        !ruby/sym hardware_cache_size: 3072 KB
-        !ruby/sym hardware_cores: "1"
-        !ruby/sym hardware_cpu_mhz: "2654.616"
-        !ruby/sym hardware_cpus: &id002 cpus
-        !ruby/sym hardware_cpus_model: *id001
-        !ruby/sym hardware_cpus_slot: "0"
-        !ruby/sym hardwaremodel: i686
-        !ruby/sym host_board_part_revision: ""
-        !ruby/sym host_board_serial: ""
-        !ruby/sym hostname: f5
-        !ruby/sym macaddress: 00:0C:29:B7:93:97
-        !ruby/sym marketing_name: Z99
-        !ruby/sym model: &id001 Intel(R) Core(TM)2 Duo CPU     P8800  @ 2.66GHz
-        !ruby/sym name: *id002
-        !ruby/sym os_release: 2.6.18-164.2.1.el5.1.0.f5app
-        !ruby/sym os_version: "#1 SMP Sat Feb 6 00:16:40 PST 2010"
-        !ruby/sym platform: Z99
-        !ruby/sym product_category: Z99
-        !ruby/sym pva_version: ""
-        !ruby/sym slot: "0"
-        !ruby/sym switch_board_part_revision: ""
-        !ruby/sym switch_board_serial: ""
-        !ruby/sym system_id: 568E1D2F-1974-0D1B-F952-4691FBEAE92D
-        !ruby/sym system_name: Linux
-        !ruby/sym timezone: PDT
-        !ruby/sym uptime: 1 days
-        !ruby/sym uptime_days: "1"
-        !ruby/sym uptime_hours: "30"
-        !ruby/sym uptime_seconds: "108141"
-        !ruby/sym version: BIG-IP_v10.1.0
-
-## Appendix
-Sample Puppet F5 manifests and usage notes where applicable. F5 API documentation:
-http://devcentral.f5.com/wiki/iControl.APIReference.ashx
-
-f5_(key|certificate) content attribute accepts the certificate in PEM format:
-
-    ----BEGIN CERTIFICATE-----
-    MIICbDCCAdWgAwIBAgIBATANBgkqhkiG9w0BAQUFADAVMRMwEQYDVQQDDApyYWlk
-    ...
-    -----END CERTIFICATE-----
-
-The certificate content can be embedded via file or template function:
-
-    f5_key { 'ca-key':
-      ensure  => 'present',
-      content => file('/etc/puppet/ssl/ca_key.pem'),
-      mode    => 'MANAGEMENT_MODE_DEFAULT',
+```puppet
+  class profile:f5_users {
+    f5_user { 'test':
+      ensure   => present,
+      password => {'is_encrypted' => 'false', 'password' => 'test'}
     }
+  }
+```
 
-    f5_certificate { 'ca-bundle':
-      ensure  => 'present',
-      content => file('/etc/puppet/ssl/ca_bundle.pem'),
-      mode    => 'MANAGEMENT_MODE_DEFAULT',
-    }
+###Beginning with [Modulename]  
 
-Certificates comparison is completed via sha1 fingerprint which is also used during logging instead of the actual certificate content.
+To begin with you can simply call the types from the proxy system we set up
+earlier.  You can run puppet resource directly.
 
-    notice: /Stage[main]//F5_certificate[ca-bundle]/content: content changed 'sha1(0197e53f31798d43eac830b8561887dae22fd5c2)' to 'sha1(39c2e7fa576e98431bbab66ca0cb14e01cb8bfe4)'
+```
+$ FACTER_url=https://admin:admin@f5.puppetlabs.lan/ puppet resource f5_user
+```
 
-f5_file resource is intended for f5_external_class to manage datagroup files. The performance in v10 is slow because it requires downloading the file to calculate the file checksum. Content should be the string content of the file, and internally the type converts into md5 checksum (example below content comparison value is 'md5(b8353824beaf868010d823cf128ecc97)'). f5_files are processed in 64KB chunks per F5 recommendation: http://devcentral.f5.com/Tutorials/TechTips/tabid/63/articleType/ArticleView/articleId/144/iControl-101--06--File-Transfer-APIs.aspx.
+You can change a property by hand this way too.
 
-    f5_file { '/config/addr.class':
-      ensure  => 'present',
-      content => 'host 192.168.1.1,
-                  host 192.168.1.2 := "host 2",
-                  network 192.168.2.0/24,
-                  network 192.168.3.0/24 := "network 2",',
-    }
+```
+$ FACTER_url=https://admin:admin@f5.puppetlabs.lan/ puppet resource f5_user test ensure=absent
+```
 
-    f5_monitor { 'my_https':
-      ensure                    => 'present',
-      manual_resume_state       => 'STATE_ENABLED',
-      template_destination      => ['ATYPE_STAR_ADDRESS_STAR_PORT', '*:*'],
-      template_integer_property => { 'ITYPE_INTERVAL'            => '5',
-                                     'ITYPE_PROBE_INTERVAL'      => '0',
-                                     'ITYPE_PROBE_NUM_PROBES'    => '0',
-                                     'ITYPE_PROBE_NUM_SUCCESSES' => '0',
-                                     'ITYPE_PROBE_TIMEOUT'       => '0',
-                                     'ITYPE_TIMEOUT'             => '16',
-                                     'ITYPE_TIME_UNTIL_UP'       => '0',
-                                     'ITYPE_UNSET'               => '0',
-                                     'ITYPE_UP_INTERVAL'         => '0' },
-      template_state            => 'STATE_ENABLED',
-      template_string_property  => { 'STYPE_CIPHER_LIST'        => 'DEFAULT:+SHA:+3DES:+kEDH',
-                                     'STYPE_CLIENT_CERTIFICATE' => '',
-                                     'STYPE_CLIENT_KEY'         => '',
-                                     'STYPE_PASSWORD'           => '',
-                                     'STYPE_RECEIVE'            => '',
-                                     'STYPE_SEND'               => 'GET /',
-                                     'STYPE_SSL_OPTIONS'        => 'enabled',
-                                     'STYPE_USERNAME'           => '' },
-      template_transparent_mode => 'false',
-      template_type             => 'TTYPE_HTTPS',
-    }
+##Usage
 
-    f5_node { '192.168.1.1':
-      ensure                => 'present',
-      connection_limit      => '10',
-      dynamic_ratio         => '1',
-      ratio                 => '1',
-      screen_name           => 'demo_node',
-      session_enabled_state => 'STATE_ENABLED',
-    }
+You can explore the providers and the options they allow by running puppet
+resource f5_x for each provider to see what's already on your F5 as a
+starting point.   Beyond that all the parameters available for each resource
+can be found below.
 
-F5_pool resource notes:
+##Reference
 
-* The member attribute is not order dependent, the monitor_associate is order dependent.
-* The member attribute may contain addresses A.B.C.D%ID such as: 192.168.1.1.%0, ID indicates route domain (0 is common).
+###Global
 
-See F5 documentation: http://support.f5.com/kb/en-us/products/big-ip_ltm/manuals/product/tmos_management_guide_10_1/tmos_route_domains.html
+All resource names are required to be in the format of /Partition/name.
 
-    f5_pool { 'webserver':
-      ensure                          => 'present',
-      action_on_service_down          => 'SERVICE_DOWN_ACTION_NONE',
-      allow_nat_state                 => 'STATE_ENABLED',
-      allow_snat_state                => 'STATE_ENABLED',
-      client_ip_tos                   => '65535',
-      client_link_qos                 => '65535',
-      gateway_failsafe_unit_id        => '0',
-      lb_method                       => 'LB_METHOD_ROUND_ROBIN',
-      member                          => { '192.168.1.1:80' => { 'ratio'            => '1' ,
-                                                                 'dynamic_ratio'    => '1',
-                                                                 'priority'         => '2',
-                                                                 'connection_limit' => '0' },
-                                           '192.168.1.2:80' => { 'ratio'            => '1',
-                                                                 'dynamic_ratio'    => '1',
-                                                                 'priority'         => '1',
-                                                                 'connection_limit' => '0' } },
-      minimum_active_member           => '0',
-      minimum_up_member               => '0',
-      minimum_up_member_action        => 'HA_ACTION_FAILOVER',
-      minimum_up_member_enabled_state => 'STATE_DISABLED',
-      monitor_association             => { 'monitor_templates' => ['http', 'demo'],
-                                           'quorum'            => '0',
-                                           'type'              => 'MONITOR_RULE_TYPE_AND_LIST' },
-      server_ip_tos                   => '65535',
-      server_link_qos                 => '65535',
-      simple_timeout                  => '0',
-      slow_ramp_time                  => '10',
-    }
+###f5_certificate
 
-    f5_rule { 'demo':
-      ensure     => 'present',
-      definition => 'when HTTP_REQUEST {}',
-    }
+`f5_certificate` can be used to manage SSL certificates on the F5.
 
-    f5_snat { 'nat':
-      ensure                  => 'present',
-      connection_mirror_state => 'STATE_DISABLED',
-      original_address        => ['0.0.0.0', '0.0.0.0'],
-      source_port_behavior    => 'SOURCE_PORT_PRESERVE',
-      translation_target      => ['SNAT_TYPE_TRANSLATION_ADDRESS', '10.10.10.10'],
-      vlan                    => { 'state' => 'STATE_DISABLED',
-                                   'vlans' => ['default'] },
-    }
+####name
 
-    f5_snatpool { 'nat_pool':
-      ensure => 'present',
-      member => ['1.1.1.1', '1.1.1.2'],
-    }
+The name of the certificate to manage.
 
-    f5_snattranslationaddress { '1.1.1.1':
-      ensure           => 'present',
-      arp_state        => 'STATE_ENABLED',
-      connection_limit => '0',
-      enabled_state    => 'STATE_ENABLED',
-      ip_timeout       => '4294967295',
-      tcp_timeout      => '4294967295',
-      udp_timeout      => '4294967295',
-      unit_id          => '1',
-    }
+####content
 
-F5_virtualserver does not atomically change rules (F5 API limitation), so to reorder rule priority please use irule priority which can be modified in f5_rule. See: http://devcentral.f5.com/wiki/iRules.priority.ashx
+The certificate content in PEM format. (sha1 fingerprint).
 
-    f5_virtualserver { 'www':
-      ensure                  => 'present',
-      cmp_enable_mode         => 'RESOURCE_TYPE_CMP_ENABLE_ALL',
-      cmp_enabled_state       => 'STATE_ENABLED',
-      connection_limit        => '5000000',
-      connection_mirror_state => 'STATE_DISABLED',
-      destination             => '192.168.1.1:90',
-      enabled_state           => 'STATE_DISABLED',
-      gtm_score               => '0',
-      protocol                => 'PROTOCOL_TCP',
-      profile                 => { 'http'       => 'PROFILE_CONTEXT_TYPE_ALL',
-                                   'oneconnect' => 'PROFILE_CONTEXT_TYPE_ALL' },
-      rule                    => [ 'demo', 'demo2' ],
-      snat_pool               => 'alpha',
-      snat_type               => 'SNAT_TYPE_SNATPOOL',
-      source_port_behavior    => 'SOURCE_PORT_PRESERVE',
-      translate_address_state => 'STATE_ENABLED',
-      translate_port_state    => 'STATE_ENABLED',
-      type                    => 'RESOURCE_TYPE_POOL',
-      vlan                    => { 'state' => 'STATE_DISABLED',
-                                   'vlans' => ['default'] },
-      wildmask                => '255.255.255.255',
-    }
+####real_content
 
-F5 datagroup consists of f5_string_class and f5_external_class. f5_external_class will autorequire f5_files that matches the file_name (fully qualified file path).
+The actual certificate content in PEM format.
 
-    f5_string_class { 'default_accept_language':
-      ensure  => 'present',
-      members => {'en' => '', 'ja' => '', 'zh-cn' => '', 'zh-tw' => ''},
-    }
+####mode
 
-    f5_external_class { 'addr':
-      ensure         => 'present',
-      data_separator => ':=',
-      file_format    => 'FILE_FORMAT_CSV',
-      file_mode      => 'FILE_MODE_TYPE_READ_WRITE',
-      file_name      => '/config/addr.class',
-      type           => 'CLASS_TYPE_ADDRESS',
-    }
+The management mode of the certificate.
 
-## Development
+Valid options are: MANAGEMENT_MODE_DEFAULT, MANAGEMENT_MODE_WEBSERVER,
+MANAGEMENT_MODE_EM, MANAGEMENT_MODE_IQUERY, MANAGEMENT_MODE_IQUERY_BIG3D
 
-The following section applies to developers of this module only.
+###f5_external_class
 
-### Testing
+`f5_external_class` manages external classes (datagroups).
 
-You will need to install the 'f5-icontrol' gem for most of the tests to work.
-This file is available in the 'files' section of this module.
+####name
 
-    gem install --no-ri files/f5-icontrol-10.2.0.2.gem
+The name of the external class to manage.
+
+####file_format
+
+The file format for the specified classes.
+
+Valid options are: FILE_FORMAT_UNKNOWN, FILE_FORMAT_CSV
+
+####file_mode
+
+The file modes for the specified classes.
+
+Valid options are: FILE_MODE_UNKNOWN, FILE_MODE_TYPE_READ,
+FILE_MODE_TYPE_READ_WRITE
+
+####file_name
+
+The file names for the specified classes.
+
+####data_separator
+
+The data seperator for the specified classes.
+
+####type
+
+The class types for the specified classes.
+
+Valid options are: CLASS_TYPE_UNDEFINED, CLASS_TYPE_ADDRESS, CLASS_TYPE_STRING,
+CLASS_TYPE_VALUE
+
+###f5_file
+
+`f5_file` manages arbitary files on the f5.
+
+####path
+
+The absolute filepath to a file on the F5.
+
+####content
+
+The contents of the file.
+
+###f5_inet
+
+`f5_inet` manages the inet properties on the F5.
+
+#####name
+
+The BigIP hostname.
+
+#####hostname
+
+The BigIP hostname.
+
+#####ntp_server_address
+
+The NTP server address.
+
+###f5_key
+
+`f5_key` manages security keys on the F5.
+
+####name
+
+The name of the key to manage.
+
+####content
+
+The certificate key in PEM format (sha1 fingerprint).
+
+####real_content
+
+Stores actual key PEM-formatted content.
+
+####mode
+
+The key management mode.
+
+Valid options are:  MANAGEMENT_MODE_DEFAULT, MANAGEMENT_MODE_WEBSERVER,
+MANAGEMENT_MODE_EM, MANAGEMENT_MODE_IQUERY, MANAGEMENT_MODE_IQUERY_BIG3D
+
+###f5_monitor
+
+####name
+
+The name of the monitor to manage.
+
+####is_directly_usable
+
+Determines if the specified monitor templates can be used directly, or if a
+user-defined monitor based on each monitor must be created first before it can
+be used.
+
+Valid options are: true (default), false
+
+####is_read_only
+
+Determines if the specified monitor templates are read-only. The user can only
+modify properties for read/write monitor templates.
+
+Valid options are: true, false (default)
+
+####manual_resume_state
+
+The monitor templates' manual resume states. When enabled and a monitor has
+marked an object down, that object will not be marked up by the monitor, i.e.
+the object will be manually marked up.
+
+Valid options are: STATE_DISABLED, STATE_ENABLED
+
+####parent_template
+
+The parent monitor templates from which the specified monitor templates are
+derived. A user-defined monitor template will get its defaults from its parent
+monitor template.
+
+Default: ''
+
+####template_destination
+
+The destination IP:port values for the specified templates. NOTE: This should
+only be done when the monitor templates in 'template_names' have NOT been
+associated to any node addresses or pool members.
+
+Default: ['ATYPE_STAR_ADDRESS_STAR_PORT', '*:*']
+
+####template_integer_property
+
+The integer property values of the specified monitor templates.
+
+Default: { 'ITYPE_INTERVAL' => 5, 'ITYPE_TIMEOUT'  => 16 }
+
+####template_state
+
+The monitor templates' enabled/disabled states. This will enable/disable all
+instances that use the specified templates. This serves as a quick and
+convenient method to enable/disable all instances, but if you want only to
+enable/disable a specific instance, use set_instance_enabled.
+
+Valid options: STATE_DISABLED, STATE_ENABLED
+
+####template_string_property
+
+The string property values of the specified monitor templates.
+
+####template_type
+
+The template types of the specified monitor templates.
+
+Valid options: TTYPE_UNSET, TTYPE_ICMP, TTYPE_TCP, TTYPE_TCP_ECHO,
+TTYPE_EXTERNAL, TTYPE_HTTP, TTYPE_HTTPS, TTYPE_NNTP, TTYPE_FTP, TTYPE_POP3,
+TTYPE_SMTP, TTYPE_MSSQL, TTYPE_GATEWAY, TTYPE_IMAP, TTYPE_RADIUS, TTYPE_LDAP,
+TTYPE_WMI, TTYPE_SNMP_DCA_BASE, TTYPE_SNMP_DCA, TTYPE_REAL_SERVER, TTYPE_UDP,
+TTYPE_NONE, TTYPE_ORACLE, TTYPE_SOAP, TTYPE_GATEWAY_ICMP, TTYPE_SIP,
+TTYPE_TCP_HALF_OPEN, TTYPE_SCRIPTED, TTYPE_WAP, TTYPE_RPC, TTYPE_SMB,
+TTYPE_SASP, TTYPE_MODULE_SCORE, TTYPE_FIREPASS, TTYPE_INBAND,
+TTYPE_RADIUS_ACCOUNTING, TTYPE_DIAMETER, TTYPE_VIRTUAL_LOCATION, TTYPE_MYSQL,
+TTYPE_POSTGRESQL
+
+####template_transparent_mode
+
+The monitor template transparent mode.
+
+Valid options: true, false
+
+###f5_node
+
+Manage F5 nodes.
+
+####name
+
+The nodes hostname.
+ 
+####connection_limit
+
+The connection limits for the specified node addresses.
+ 
+####dynamic_ratio
+
+The dynamic ratios of a node addresses.
+ 
+####addresses
+
+The IP addresses of the specified node addresses.
+
+####ratios
+
+The ratios for the specified node addresses.
+
+####session_enabled_state
+
+The states that allows new sessions to be established for the specified node
+addresses.
+ 
+Valid options: STATE_DISABLED, STATE_ENABLED
+
+###f5_pool
+
+Manage F5 pools.
+
+####name
+
+The name of the pool to manage.
+
+####action_on_service_down
+
+The action to take when the node goes down for the specified pools.
+
+Valid options: SERVICE_DOWN_ACTION_NONE, SERVICE_DOWN_ACTION_RESET,
+SERVICE_DOWN_ACTION_DROP, SERVICE_DOWN_ACTION_RESELECT
+
+####allow_nat_state
+
+The states indicating whether NATs are allowed for the specified pool.
+
+Valid options: STATE_DISABLED, STATE_ENABLED
+
+####allow_snat_state
+
+The states indicating whether SNATs are allowed for the specified pools.
+
+Valid options: STATE_DISABLED, STATE_ENABLED
+
+####client_ip_tos
+
+The IP ToS values for client traffic for the specified pools.
+
+####client_link_qos
+
+The link QoS values for client traffic for the specified pools.
+
+####gateway_failsafe_device
+
+The gateway failsafe devices for the specified pools.
+
+####lb_method
+
+The load balancing methods for the specified pools.
+
+Valid options: LB_METHOD_ROUND_ROBIN, LB_METHOD_RATIO_MEMBER,
+LB_METHOD_LEAST_CONNECTION_MEMBER, LB_METHOD_OBSERVED_MEMBER,
+LB_METHOD_PREDICTIVE_MEMBER, LB_METHOD_RATIO_NODE_ADDRESS,
+LB_METHOD_LEAST_CONNECTION_NODE_ADDRESS, LB_METHOD_FASTEST_NODE_ADDRESS,
+LB_METHOD_OBSERVED_NODE_ADDRESS, LB_METHOD_PREDICTIVE_NODE_ADDESS,
+LB_METHOD_DYNAMIC_RATIO, LB_METHOD_FASTEST_APP_RESPONSE,
+LB_METHOD_LEAST_SESSIONS, LB_METHOD_DYNAMIC_RATIO_MEMBER, LB_METHOD_L3_ADDR,
+LB_METHOD_UNKNOWN, LB_METHOD_WEIGHTED_LEAST_CONNECTION_MEMBER,
+LB_METHOD_WEIGHTED_LEAST_CONNECTION_NODE_ADDRESS, LB_METHOD_RATIO_SESSION,
+LB_METHOD_RATIO_LEAST_CONNECTION_MEMBER,
+LB_METHOD_RATIO_LEAST_CONNECTION_NODE_ADDRESS
+
+####member
+
+The list of pool members.
+
+####minimum_active_member
+
+The minimum active member counts for the specified pools.
+
+####minimum_up_member
+
+The minimum member counts that are required to be in the up state for the
+specified pools.
+
+####minimum_up_member_action
+
+The actions to be taken if the minimum number of members required to be UP for
+the specified pools is not met.
+
+####minimum_up_member_enabled_state
+
+The states indicating that the feature that requires a minimum number of
+members to be UP is enabled/disabled for the specified pools.
+
+####monitor_association
+
+The monitor associations for the specified pools, i.e. the monitor rules used
+by the pools. The pool monitor association should be specified as a hash
+consisting of the following keys:
+
+```
+{ 'monitor_templates' => [],
+  'quorum' => '0',
+  'type' => 'MONITOR_RULE_TYPE_AND_LIST' }
+```
+
+####server_ip_tos
+
+The IP ToS values for server traffic for the specified pools.
+
+####server_link_qos
+
+The link QoS values for server traffic for the specified pools.
+
+####simple_timeout
+
+The simple timeouts for the specified pools.
+
+####slow_ramp_time
+
+The ramp-up time (in seconds) to gradually ramp up the load on newly added or
+freshly detected UP pool members.
+
+###f5_profileclientssl
+
+Manage F5 Client SSL profiles.
+
+####name
+
+The name of the client SSL profile to manage.
+
+####certificate_file
+
+The certificate filenames to be used by BIG-IP acting as an SSL server.
+
+####key_file
+
+The key filenames to be used by BIG-IP acting as an SSL server. If a full path
+is not specified, the file name is relative to /config/ssl/ssl.key."
+
+####ca_file
+
+The CA to use to validate client certificates.
+
+####client_certificate_ca_file
+
+The CA to use to validate client certificates.
+
+####peer_certification_mode
+
+The peer certification modes for the specified client SSL profiles.
+
+####chain_file
+
+The certificate chain filenames for the specified client SSL profiles.
+
+###f5_profilepersistence
+
+Manage the loadbalancer's persistence profile.
+
+####name
+
+The persistence profile name.
+
+####across_pool_state
+
+The states to indicate whether persistence entries added under this profile are
+available across pools.
+
+####across_service_state
+
+The states to indicate whether persistence entries added under this profile are
+available across services.
+
+####across_virtual_state
+
+The states to indicate whether persistence entries added under this profile are
+available across virtuals.
+
+####cookie_expiration
+
+The cookie expiration in seconds for the specified Persistence profiles.
+Applicable when peristence mode is PERSISTENCE_MODE_COOKIE.
+
+####cookie_hash_length
+
+The cookie hash lengths for the specified profiles. Applicable when peristence
+mode is PERSISTENCE_MODE_COOKIE, and cookie persistence method is
+COOKIE_PERSISTENCE_METHOD_HASH.
+
+####cookie_hash_offset
+
+The cookie hash offsets for the specified profiles. Applicable when peristence
+mode is PERSISTENCE_MODE_COOKIE, and cookie persistence method is
+COOKIE_PERSISTENCE_METHOD_HASH
+
+####cookie_name
+
+The cookie names for the specified Persistence profiles. Applicable when
+peristence mode is PERSISTENCE_MODE_COOKIE.
+
+####cookie_persistence_method
+
+The cookie persistence methods to be used when in cookie persistence mode.
+Applicable when peristence mode is PERSISTENCE_MODE_COOKIE.
+
+####default_profile
+
+The names of the default profiles from which the specified profiles will derive
+default values for its attributes.
+
+####description
+
+The descriptions for a set of persistence profiles.
+
+####ending_hash_pattern
+
+The pattern marking the end of the section of payload data whose hashed value
+is used for the persistence value for a set of persistence profiles. This only
+returns useful values if the persistence mode is PERSISTENCE_MODE_HASH and the
+hash method is PERSISTENCE_HASH_CARP.
+
+####hash_length
+
+The length of payload data whose hashed value is used for the persistence value
+for a set of persistence profiles. This only returns useful values if the
+persistence mode is PERSISTENCE_MODE_HASH and the hash method is
+PERSISTENCE_HASH_CARP.
+
+####hash_method
+
+The hash method used to generate the persistence values for a set of
+persistence profiles. This only returns useful values if the persistence mode
+is PERSISTENCE_MODE_HASH.
+
+####hash_more_data_state
+
+The enabled state whether to perform another hash operation after the current
+hash operation completes for a set of persistence profiles. This only returns
+useful values if the persistence mode is PERSISTENCE_MODE_HASH and the hash
+method is PERSISTENCE_HASH_CARP.
+
+####hash_offset
+
+The offset to the start of the payload data whose hashed value is used as the
+persistence value for a set of persistence profiles. This only returns useful
+values if the persistence mode is PERSISTENCE_MODE_HASH and the hash method is
+PERSISTENCE_HASH_CARP.
+
+####map_proxy_address
+
+The proxy map address used when map proxies state is enabled on source address
+persistence mode.
+
+####map_proxy_class
+
+The proxy map IP address class/datagroup name used when map known proxies state
+is enabled on source address persistence mode.
+
+####map_proxy_state
+
+The states to indicate whether to map known proxies when the persistence mode
+is source address affinity.
+
+####mask
+
+The masks used in either simple or sticky persistence mode.
+
+####maximum_hash_buffer_size
+
+The maximum size of the buffer used to hold the section of the payload data
+whose hashed value is used for the persistence value for a set of persistence
+values. This only returns useful values if the persistence mode is
+PERSISTENCE_MODE_HASH and the hash method is PERSISTENCE_HASH_CARP.
+
+####mirror_state
+
+The mirror states for the specified Persistence profiles.
+
+####msrdp_without_session_directory_state
+
+The states to indicate whether MS terminal services have been configured
+without a session directory for the specified Persistence profiles.
+
+####override_connection_limit_state
+
+The state indicating, when enabled, that the pool member connection limits are
+not enforced for persisted clients.
+
+####persistence_mode
+
+The persistence modes for the specified Persistence profiles.
+
+####rule
+
+The UIE rules for the specified Persistence profiles. Applicable when
+peristence mode is PERSISTENCE_MODE_UIE.
+
+####sip_info
+
+The sip_info headers for the specified Persistence profiles. Applicable when
+peristence mode is PERSISTENCE_MODE_SIP.
+
+####starting_hash_pattern
+
+The pattern marking the start of the section of payload data whose hashed value
+is used for the persistence value for a set of persistence profiles. This only
+returns useful values if the persistence mode is PERSISTENCE_MODE_HASH and the
+hash method is PERSISTENCE_HASH_CARP.
+
+####timeout
+
+The timeout for the specified Persistence profiles. The number of seconds to
+timeout a persistence entry.
+
+###f5_route
+
+Manage static routes within the F5.
+
+####name
+
+The name of the routing object to manage.
+
+####description
+
+Description of the route.
+
+####destination
+
+Destination of the route
+
+####netmask
+
+Netmask of the route.
+
+####mtu
+
+MTU of the route
+
+####gateway
+
+Gateway of the route
+
+####pool
+
+Pool to route to.
+
+####vlan
+
+VLAN to route to.
+
+###f5_rule
+
+####name
+
+The name of the rule to manage.
+
+####definition
+
+The rule definition.
+
+###f5_snat
+
+#####name
+
+The name of the snat to manage.
+
+#####connection_mirror_state
+
+The connection mirror states for a specified SNATs.
+
+Valid options are: STATE_DISABLED, STATE_ENABLED
+
+#####original_address
+
+The list of original client addresses used to filter the traffic to the SNATs."
+
+
+#####source_port_behavior
+
+The source port behavior for the specified SNATs.
+
+Valid options are: SOURCE_PORT_PRESERVE, SOURCE_PORT_PRESERVE_STRICT,
+SOURCE_PORT_CHANGE
+
+#####translation_target
+
+The translation targets for the specified SNATs. If the target type is
+SNAT_TYPE_AUTOMAP, then the translation object should be empty.
+
+#####vlan
+
+The list of VLANs on which access to the specified SNATs is disabled/enabled.
+
+###f5_snatpool
+
+####name
+
+The name of the snatpool to manage.
+
+####membership
+
+Membes of the snat pool.
+
+####member
+
+The list of members belonging to the specified SNAT pools.
+
+###f5_snattranslationaddress
+
+####name
+
+The snat translation address to manage.
+
+####addresses
+
+The IP addresses of the specified SNAT translation address/
+
+####arp_state
+
+The ARP states for the specified translation SNAT address.
+
+Valid options are: STATE_DISABLED, STATE_ENABLED
+
+####connection_limit
+
+The connection limits of the specified original SNAT translation address.
+
+####enabled_state
+
+The state of a SNAT translation address.
+
+Valid options are: STATE_DISABLED, STATE_ENABLED
+
+####ip_timeout
+
+The IP idle timeouts of the specified SNAT translation address.
+
+####tcp_timeout
+
+The TCP idle timeouts of the specified SNAT translation address.
+
+####udp_timeout
+
+The UDP idle timeouts of the specified SNAT translation addresses.
+
+###f5_snmpconfiguration
+
+WARNING:  The backend API for snmpconfiguration is extremely brittle and any
+mistaken input can easily crash the SOAP handler.
+
+####name
+
+The name to show via SNMP.
+
+####access_info
+
+Creates access maps from group/securitymodel/security level to a view.  
+
+####agent_group_id
+
+Sets the agent group id.
+
+####agent_interface
+
+Sets the interface information for the agent
+
+####agent_listen_address
+
+Sets a list of agent listen addresses. This makes the agent listen on the
+specified list of sockets instead of the default port, which is 161.  
+
+####agent_trap_state
+
+Sets the authentication trap enabled state.
+
+####agent_user_id
+
+The agent user id.
+
+####auth_trap_state
+
+The auth trap state.
+
+####check_disk
+
+Create a disk check instance.
+
+####check_file
+
+Create a file check instance.
+
+####check_load
+
+Create a load check instance.
+
+####check_process
+
+Create a process check instance.
+
+####client_access
+
+Creates a list of client access controls. These are stored in the
+/etc/hosts.allow file.  
+
+####community_to_security_info
+
+Creates mappings from a source/community pair to security names. The first
+source/community combination that matches the incoming packet is selected.
+
+####create_user
+
+Creates SNMPV3 users.
+
+####engine_id
+
+Sets the snmp engine identifier.
+
+####exec
+
+Creates a program instance.
+
+####exec_fix
+
+Sets an exec fix instance that registers a command that knows how to fix errors
+with the given program.
+
+####generic_traps_v2
+
+Creates generic traps that allows any type of trap destination to be specified
+with any version of SNMP.
+
+####group_info
+
+Creates mappings from securitymodel/securityname to group.  
+
+####ignore_disk
+
+Adds disk devices to the ignore list.
+
+####pass_through
+
+Creates a list of pass through controls.
+
+####pass_through_persist
+
+Creates a list of persist pass through controls.
+
+####process_fix
+
+Sets a process fix instance that registers a command that knows how to fix
+errors with the given process. 
+
+####proxy
+
+Creates a list of snmp proxies.
+
+####readonly_community
+
+Creates read-only communities that can be used to access the agent. 
+
+####readonly_user
+
+Creates SNMPv3 USM read-only users in the VACM access configuration tables.
+
+####readwrite_community
+
+Creates read-write communities that can be used to access the agent. 
+
+####readwrite_user
+
+Creates SNMPv3 USM read-write users in the VACM access configuration tables.
+
+####system_information
+
+Sets the system location, system contact, and system name for the agent. 
+
+####trap_community
+
+Sets the trap community string.
+
+####view_info
+
+Creates named views.
+
+###f5_string_class
+
+####name
+
+The name of the string class to manage.
+
+####members
+
+The string class members.
+
+###f5_user
+
+####name
+
+The user name to manage.
+
+####user_permission
+
+The list of user permissions.
+
+####description
+
+The description for the specified user.
+
+####fullname
+
+The full name for the specified user.
+
+####password
+
+The password for the specified user.
+
+####login_shell
+
+The login shell for the specified user.
+
+###f5_virtualserver
+
+####name
+
+The virtual server name.
+
+####clone_pool
+
+The virtual server clone pool.
+
+####cmp_enabled_state
+
+The virtual server cmp enable state.
+
+Valid options are: STATE_DISABLED, STATE_ENABLED
+
+####connection_limit
+
+The virtual server connection limit.
+
+####connection_mirror_state
+
+The virtual server connection limit.
+
+Valid options are: STATE_DISABLED, STATE_ENABLED
+
+####default_pool_name
+
+The virtual server default pool name.
+
+####destination
+
+The virtual server destination virtual address and port.
+
+####enabled_state
+
+The virtual server state.
+
+####fallback_persistence_profile
+
+The virtual server fallback persistent profile.
+
+####gtm_score
+
+The virtual server gtm score.
+
+####last_hop_pool
+
+The virtual server lasnat64 state.
+
+####nat64_state
+
+The virtual server nat64 state.
+
+Valid options are: STATE_DISABLED, STATE_ENABLED
+
+####protocol
+
+The virtual server protocol.
+
+Valid options are: PROTOCOL_ANY, PROTOCOL_IPV6, PROTOCOL_ROUTING,
+PROTOCOL_NONE, PROTOCOL_FRAGMENT, PROTOCOL_DSTOPTS, PROTOCOL_TCP, PROTOCOL_UDP,
+PROTOCOL_ICMP, PROTOCOL_ICMPV6, PROTOCOL_OSPF, PROTOCOL_SCTP
+
+####rate_class
+
+The virtual server rate class.
+
+####persistence_profile
+
+The virtual server persistence profiles.
+
+####profile
+
+The virtual server profiles.
+
+####rule
+
+The virtual server rules. The rule order isn't enforced since F5 API does not
+provide ability to reorder rules, use irule priority to dictate rule processing
+order
+
+####snat_type
+
+The virtual server snat type.
+
+Valid options are: SNAT_TYPE_NONE, SNAT_TYPE_TRANSLATION_ADDRESS,
+SNAT_TYPE_SNATPOOL, SNAT_TYPE_AUTOMAP
+
+####snat_pool
+
+Virtual server snat_pool.
+
+####source_port_behavior
+
+The virtual server source port behavior.
+
+Valid options are: SOURCE_PORT_PRESERVE, SOURCE_PORT_PRESERVE_STRICT,
+SOURCE_PORT_CHANGE
+
+####translate_address_state
+
+The virtual server translate address state.
+
+Valid options are: STATE_DISABLED, STATE_ENABLED
+
+####translate_port_state
+
+The virtual server translate port state.
+
+Valid options are: STATE_DISABLED, STATE_ENABLED
+
+####type
+
+The virtual server type.
+
+Valid options are: RESOURCE_TYPE_POOL, RESOURCE_TYPE_IP_FORWARDING,
+RESOURCE_TYPE_L2_FORWARDING, RESOURCE_TYPE_REJECT, RESOURCE_TYPE_FAST_L4,
+RESOURCE_TYPE_FAST_HTTP, RESOURCE_TYPE_STATELESS
+
+####vlan
+
+The virtual server vlan.
+
+####wildmask
+
+The virtual server wildmask.
+
+##Limitations
+
+- F5 v11.0+
+- Nori 2.4
+- Savon X
+
+##Development
+
+Puppet Labs modules on the Puppet Forge are open projects, and community
+contributions are essential for keeping them great. We can’t access the
+huge number of platforms and myriad of hardware, software, and deployment
+configurations that Puppet is intended to serve.
+
+We want to keep it as easy as possible to contribute changes so that our
+modules work in your environment. There are a few guidelines that we need
+contributors to follow so that we can have a chance of keeping on top of things.
+
+You can read the complete module contribution guide [on the Puppet Labs wiki.](http://projects.puppetlabs.com/projects/module-site/wiki/Module_contributing)

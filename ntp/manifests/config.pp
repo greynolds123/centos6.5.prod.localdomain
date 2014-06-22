@@ -1,11 +1,23 @@
-class ntp::config {
-   file { '/etc/ntp.conf':
-   ensure  => present,
-   owner   => 'root',
-   group   => 'root',
-   mode    => '644',
-   source  => templates('ntp/templates/ntp.erb'),
-   require => Class[ntp::install],
-   notify  => Class[ntp::service]
+#
+class ntp::config inherits ntp {
+
+  if $keys_enable {
+    $directory = dirname($keys_file)
+    file { $directory:
+      ensure  => directory,
+      owner   => 0,
+      group   => 0,
+      mode    => '0755',
+      recurse => true,
+    }
   }
- }
+
+  file { $config:
+    ensure  => file,
+    owner   => 0,
+    group   => 0,
+    mode    => '0644',
+    content => template($config_template),
+  }
+
+}

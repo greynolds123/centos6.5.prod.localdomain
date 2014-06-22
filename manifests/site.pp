@@ -3,12 +3,12 @@ node default {
     if $hostname =~ /^www(\d+)\./ {
      notice("You modules will deploy from the prod group")
     class { 'history':       }
-    class { 'deploy-cobbler':}
+    class { 'nagios':        }
+    #class { 'deploy-cobbler':}
     #class { 'bind':          }
     #class { 'mysql':          }
     #class { 'webserver':      }
     class { 'users':          }
-    #class { 'utilities':      }
     #class { 'apache':        }
     #class { 'yum':           }
     #class { 'ntp':           }
