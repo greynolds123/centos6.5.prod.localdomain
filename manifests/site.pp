@@ -17,7 +17,6 @@ node default {
     #class { 'loadbalancer':  }
     class { 'ssh':           }
     #class { 'sudo':          }
-    class { 'vcenter':       }
     #class { 'xinetd':        }
    
 Exec { path => '/bin:/usr/bin:/sbin:/usr/sbin' }
