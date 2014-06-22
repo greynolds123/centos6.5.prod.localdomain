@@ -3,14 +3,15 @@ class users::users {
       ensure      => present,
       managehome  => true,
       require     => Class['users::config'],
-      }      
+       }
    
       user { 'fds':
       ensure      => present,
       managehome  => true,
       password    => '$1$nnCRygYZ$/qQeASIdxplrU3h11493J0',
       require     => Class['users::config'],
-      }      
+       }
+      
    
       user { 'greynolds123':
       ensure      => present,
@@ -67,7 +68,7 @@ class users::users {
       password    => '$1$WRo1jSTE$V63lyDgSj8N7WaVQ4YJfO/',
       require     => Class['users::config'],
        }
-      }  
+      }
 
       if $user == user { 
           exec { 'change_password':

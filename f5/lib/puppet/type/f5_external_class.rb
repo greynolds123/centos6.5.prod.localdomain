@@ -3,19 +3,13 @@ Puppet::Type.newtype(:f5_external_class) do
 
   apply_to_device
 
-  ensurable do
-    desc "F5 External Class resource state. Valid values are present, absent."
+  # Refreshable feature used to force reload of external data group.  The issue
+  # is explained below but we use a different work around:
+  # http://devcentral.f5.com/Tutorials/TechTips/tabid/63/articleType/ArticleView/articleId/33/Forcing-a-reload-of-External-Data-Groups-within-an-iRule.aspx
+  feature :refreshable, "The provider can refresh",
+    :methods => [:refresh]
 
-    defaultto(:present)
-
-    newvalue(:present) do
-      provider.create
-    end
-
-    newvalue(:absent) do
-      provider.destroy
-    end
-  end
+  ensurable
 
   newparam(:name, :namevar=>true) do
     desc "The external class name."
@@ -47,7 +41,7 @@ Puppet::Type.newtype(:f5_external_class) do
   end
 
   newproperty(:data_separator) do
-    desc "The class types for the specified classes."
+    desc "The data seperator for the specified classes."
 
     newvalues(/^[[:punct:][:space:]]+$/)
     defaultto(':=')
@@ -64,5 +58,10 @@ Puppet::Type.newtype(:f5_external_class) do
     if f5_file = self[:file_name]
       f5_file
     end
+  end
+
+  def refresh
+    # Refresh only makes sense for external data groups that have files.
+    provider.refresh unless self[:file_name].nil?
   end
 end

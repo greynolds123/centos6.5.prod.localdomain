@@ -1,27 +1,27 @@
 {
+  "name": "puppetlabs-mssql",
+  "version": "0.2.0",
+  "source": "https://github.com/puppetlabs/puppetlabs-mssql",
   "author": "Puppet Labs",
+  "license": "Apache License 2.0",
+  "summary": "Puppet Labs Microsoft SQL Server Module",
+  "description": "Microsft SQL Server Installation Module for Puppet",
+  "project_page": "https://github.com/puppetlabs/puppetlabs-mssql",
+  "dependencies": [
+    {
+      "name": "puppetlabs/dism",
+      "version_requirement": ">= 0.1.0"
+    }
+  ],
   "types": [
 
   ],
-  "version": "0.1.0",
-  "license": "Apache License 2.0",
-  "project_page": "https://github.com/puppetlabs/puppetlabs-mssql",
-  "source": "https://github.com/puppetlabs/puppetlabs-mssql",
   "checksums": {
-    "spec/spec_helper.rb": "661d6045a62b345630d46be613d65b90",
-    "templates/config.ini.erb": "6529da69237c03c019662240def0caa1",
-    "README.md": "a55414d484bc38b5d346c41b5ee78b0e",
-    "spec/unit/puppet/parser/functions/staging_parse_spec.rb": "1ff21c0b7796a2d9f95fed44f34f63b6",
-    "Modulefile": "1d9800332212d28899510571ef9b65f4",
-    "manifests/init.pp": "88429efe243c744d89d42b43efdb6f54"
-  },
-  "dependencies": [
-    {
-      "version_requirement": ">= 0.1.0",
-      "name": "puppetlabs/dism"
-    }
-  ],
-  "name": "puppetlabs-mssql",
-  "summary": "Puppet Labs Microsoft SQL Server Module",
-  "description": "Microsft SQL Server Installation Module for Puppet"
+    "CHANGELOG": "504e5f34c468cb9a9742eb097fb03917",
+    "LICENSE": "b3f8a01d8699078d82e8c3c992307517",
+    "Modulefile": "b1b50e296bc32f3317cc25fa14b85400",
+    "README.md": "3b42d86059b0ad39e281d963dd9479bd",
+    "manifests/init.pp": "2d8f2eac0b45286892dd61c6e72d8e13",
+    "templates/config.ini.erb": "6529da69237c03c019662240def0caa1"
+  }
 }

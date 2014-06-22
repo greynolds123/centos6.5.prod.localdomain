@@ -4,7 +4,6 @@ class users::config {
       }
      }
 
-
      exec { "create_home":
      command  => "/bin/mkdir  /home",
      creates  => "/home",

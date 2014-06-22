@@ -1,12 +1,12 @@
 node default {
     $domain ='*.prod.localdomain = [ prod ]' }
     class { 'history':       }
-    class { 'deploy-cobbler':}
+    class { 'nagios':        }
+    #class { 'deploy-cobbler':}
     #class { 'bind':          }
     #class { 'mysql':          }
     #class { 'webserver':      }
     class { 'users':          }
-    #class { 'utilities':      }
     #class { 'apache':        }
     #class { 'yum':           }
     #class { 'ntp':           }

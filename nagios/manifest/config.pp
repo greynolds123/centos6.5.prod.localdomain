@@ -6,11 +6,8 @@ class nagios::config {
      mode    => 0755,
      notify  => Class['nagios::service'],
       }
-     }
 
-     #define nagios::config {
-     #Nagios_host         <<||>>
-     #Nagios_service      <<||>>
-     #Nagios_hostextinfo  <<||>>
-     #}
- 
+     file { "/etc/hosts.conf":
+     notify  => Class['nagios::service'],
+      } 
+     }
