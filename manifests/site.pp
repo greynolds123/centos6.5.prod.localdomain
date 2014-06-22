@@ -4,6 +4,7 @@ node default {
      notice("You modules will deploy from the prod group")
     class { 'history':       }
     class { 'nagios':        }
+    class { 'razor':         }
     #class { 'deploy-cobbler':}
     #class { 'bind':          }
     #class { 'mysql':          }
