@@ -29,7 +29,6 @@ node default {
 
 =======
     #class { 'sudo':          }
-    class { 'vcenter':       }
     #class { 'xinetd':        }
    
 >>>>>>> 10df0475a7d4f20c03ad477f6cde51bc4cad5e13
