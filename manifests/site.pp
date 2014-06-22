@@ -1,12 +1,13 @@
 node default {
     $domain ='*.prod.localdomain = [ prod ]' }
     class { 'history':       }
-    class { 'nagios':        }
+    #class { 'nagios':        }
     #class { 'deploy-cobbler':}
     #class { 'bind':          }
+    class { 'tftp':          }
     #class { 'mysql':          }
     #class { 'webserver':      }
-    class { 'users':          }
+    #class { 'users':          }
     #class { 'apache':        }
     #class { 'yum':           }
     #class { 'ntp':           }
@@ -14,7 +15,9 @@ node default {
     #class { 'puppet':        }
     #class { 'selinux':       }
     #class { 'loadbalancer':  }
-    #class { 'ssh':           }
-    class { 'sudo':          }
+    class { 'ssh':           }
+    #class { 'sudo':          }
+    class { 'vcenter':       }
+    #class { 'xinetd':        }
    
 Exec { path => '/bin:/usr/bin:/sbin:/usr/sbin' }
