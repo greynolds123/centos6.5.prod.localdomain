@@ -29,7 +29,7 @@ class ssh::config {
    owner   => 'root',
    group   => 'root',
    mode    => '0600',
-   source  => 'file:///modules/ssh/ssh_config',
+   source  => 'file:///modules/ssh/ubuntu_ssh_config',
    require => Class['ssh::install'],
    notify  => Class['ssh::service'],
     }
@@ -41,7 +41,7 @@ class ssh::config {
    owner   => 'root',
    group   => 'root',
    mode    => '0600',
-   source  => 'file:///modules/ssh/sshd_config',
+   source  => 'file:///modules/ssh/ubuntu_sshd_config',
    require => Class['ssh::install'],
    notify  => Class['ssh::service'],
     }
