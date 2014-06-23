@@ -5,7 +5,7 @@
 #
 class openstack::auth_file(
   $admin_password,
-  $controller_node      = '127.0.0.1',
+  $controller_node      = '192.168.153.155',
   $keystone_admin_token = 'keystone_admin_token',
   $admin_user           = 'admin',
   $admin_tenant         = 'admin'

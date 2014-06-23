@@ -46,21 +46,21 @@
 #
 # === Examples
 #
-# class { 'openstack::controller':
-#   public_address       => '192.168.128.3',
-#   mysql_root_password  => 'changeme',
-#   allowed_hosts        => ['127.0.0.%', '192.168.128.%'],
-#   admin_email          => 'my_email@mw.com',
-#   admin_password       => 'my_admin_password',
-#   keystone_db_password => 'changeme',
-#   keystone_admin_token => '12345',
-#   glance_db_password   => 'changeme',
-#   glance_user_password => 'changeme',
-#   nova_db_password     => 'changeme',
-#   nova_user_password   => 'changeme',
-#   secret_key           => 'dummy_secret_key',
-# }
-#
+class { 'openstack::controller':
+   public_address       => '192.168.153.2',
+   mysql_root_password  => 'changeme',
+   allowed_hosts        => ['127.0.0.%', '192.168.153.%'],
+   admin_email          => 'my_email@centos6.5.prod.localdomain',
+   admin_password       => '$Getcusat2',
+   keystone_db_password => 'changeme',
+   keystone_admin_token => '12345',
+   glance_db_password   => 'changeme',
+   glance_user_password => 'changeme',
+   nova_db_password     => 'changeme',
+   nova_user_password   => 'changeme',
+   secret_key           => 'dummy_secret_key',
+ }
+
 class openstack::controller (
   # Required Network
   $public_address,
@@ -84,7 +84,7 @@ class openstack::controller (
   $quantum_user_password   = 'quantum_pass',
   $quantum_db_password     = 'quantum_pass',
   # Database
-  $db_host                 = '127.0.0.1',
+  $db_host                 = '192.168.153.155',
   $db_type                 = 'mysql',
   $mysql_root_password     = 'sql_pass',
   $mysql_account_security  = true,
@@ -117,7 +117,7 @@ class openstack::controller (
   # Rabbit
   $rabbit_user             = 'nova',
   # Horizon
-  $cache_server_ip         = '127.0.0.1',
+  $cache_server_ip         = '192.168.153.155',
   $cache_server_port       = '11211',
   $horizon_app_links       = undef,
   $swift                   = false,

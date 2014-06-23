@@ -28,14 +28,14 @@
 #
 # === Example
 #
-# class { 'openstack::keystone':
-#   db_host               => '127.0.0.1',
-#   keystone_db_password  => 'changeme',
-#   keystone_admin_token  => '12345',
-#   admin_email           => 'root@localhost',
-#   admin_password        => 'changeme',
-#   public_address        => '192.168.128.3',
-#  }
+class { 'openstack::keystone':
+   db_host               => '192.168.153.155',
+   keystone_db_password  => 'changeme',
+   keystone_admin_token  => '12345',
+   admin_email           => 'root@centos6.5.localdomain',
+   admin_password        => 'changeme',
+   public_address        => '192.168.153.2',
+  }
 
 class openstack::keystone (
   $db_host,

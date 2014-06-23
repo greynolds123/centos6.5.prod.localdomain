@@ -24,18 +24,18 @@
 #
 # === Example
 #
-# class { 'openstack::glance':
-#   glance_user_password => 'changeme',
-#   db_password          => 'changeme',
-#   db_host              => '127.0.0.1',
-# }
+class { 'openstack::glance':
+   glance_user_password => 'changeme',
+   db_password          => 'changeme',
+   db_host              => '192.168.153.155',
+ }
 
 class openstack::glance (
   $db_host,
   $glance_user_password,
   $glance_db_password,
-  $keystone_host        = '127.0.0.1',
-  $auth_uri             = "http://127.0.0.1:5000/",
+  $keystone_host        = '192.168.153.155',
+  $auth_uri             = "http://192.168.153.155:5000/",
   $db_type              = 'mysql',
   $glance_db_user       = 'glance',
   $glance_db_dbname     = 'glance',

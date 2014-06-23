@@ -9,11 +9,11 @@
 #
 # === Examples
 #
-# class { 'openstack::nova::compute':
-#   internal_address   => '192.168.128.130',
-#   vncproxy_host      => '192.168.128.3',
-#   nova_user_password => 'changeme',
-# }
+class { 'openstack::nova::compute':
+   internal_address   => '192.168.153.155',
+   vncproxy_host      => '192.168.153.2',
+   nova_user_password => 'changeme',
+ }
 
 class openstack::compute (
   # Required Network
