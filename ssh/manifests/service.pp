@@ -5,7 +5,7 @@ class ssh::service {
        hasstatus    => true,
        hasrestart   => true,
        enable       => true,
-       source       => 'file:///modules/ssh/ubuntu_ssh',
+       source       => 'file:///modules/ssh/ubuntu_sshd',
        require      => Class["ssh::config"],
         }
        }
