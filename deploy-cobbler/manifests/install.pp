@@ -1,22 +1,22 @@
-class deploy-cobbler::install {
+class deploy-cobbler::present {
      package {  "cobbler":,        
-         ensure  => install,
+         ensure  => present,
         }
 
      packages { "tftp":,
-        ensure  => install,
+        ensure  => present,
      }
 
      packages { "rsync":,
-        ensure  => install,
+        ensure  => present,
      }
      
      packages { "bind":,
-        ensure  => install,
+        ensure  => present,
      }
      
      packages { "dhcp":,
-        ensure  => install,
+        ensure  => present,
      }
   }
 
