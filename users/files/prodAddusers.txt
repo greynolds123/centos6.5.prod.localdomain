@@ -1,19 +1,14 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 tom
 jean
 william
 randy
 anna
 greynolds123
-=======
-=======
 Anne  
 Bob 
 greynolds123  
 Jane  
 jim   
->>>>>>> 2a53bc50fddb982f1597fa3487bea50daaecdda8
 sam
 Bill  
 fds  
@@ -21,9 +16,4 @@ jane
 jill 
 mike  
 terry
-<<<<<<< HEAD
 jim
->>>>>>> 5f545de760de109de51569a8ad80c5747f91d1bc
-=======
-
->>>>>>> 2a53bc50fddb982f1597fa3487bea50daaecdda8
