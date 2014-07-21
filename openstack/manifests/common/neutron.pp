@@ -38,8 +38,8 @@ class openstack::common::neutron {
     auth_host           => hiera('openstack::controller::address::management'),
     auth_password       => hiera('openstack::neutron::password'),
     database_connection => $::openstack::resources::connectors::neutron,
-    enabled             => $::openstack::profile::base::is_controller,
-    sync_db             => $::openstack::profile::base::is_controller,
+    enabled             => $::openstack::propuppet::base::is_controller,
+    sync_db             => $::openstack::propuppet::base::is_controller,
     mysql_module        => '2.2',
   }
 

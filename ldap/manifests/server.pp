@@ -158,12 +158,12 @@ define ldap::server (
       # Make sure that we have an ssl certificate.  If not, generate a self-
       # signed certificate as long as the files are empty.
       if( ! defined( File[ $ssl_cert_file ] ) ) {
-        file{ $ssl_cert_file:
+        file{ $ssl_cert_puppet:
           notify  => Exec[ 'ldap-ssl-cert-create' ],
         }
       }
       if( ! defined( File[ $ssl_key_file ] ) ) {
-        file{ $ssl_key_file:
+        file{ $ssl_key_puppet:
           notify  => Exec[ 'ldap-ssl-cert-create' ],
         }
       }

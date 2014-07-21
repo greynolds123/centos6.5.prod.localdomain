@@ -1,5 +1,5 @@
 # The profile to install an OpenStack specific MongoDB server
-class openstack::profile::mongodb {
+class openstack::propuppet::mongodb {
   $management_network = hiera('openstack::network::management')
   $inferred_address = ip_for_network($management_network)
   $explicit_address = hiera('openstack::controller::address::management')

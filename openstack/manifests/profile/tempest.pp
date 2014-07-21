@@ -1,5 +1,5 @@
 # Profile to install the tempest service
-class openstack::profile::tempest {
+class openstack::propuppet::tempest {
   $users      = hiera('openstack::users')
   $api_ip     = hiera('openstack::controller::address::api')
   $admin_user = hiera('openstack::tempest::username_admin')

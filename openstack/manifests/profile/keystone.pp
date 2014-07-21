@@ -1,5 +1,5 @@
 # The profile to install the Keystone service
-class openstack::profile::keystone {
+class openstack::propuppet::keystone {
 
   openstack::resources::controller { 'keystone': }
   openstack::resources::database { 'keystone': }

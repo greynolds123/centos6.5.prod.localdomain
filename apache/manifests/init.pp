@@ -204,7 +204,7 @@ class apache (
     $vhost_load_dir = $vhost_dir
   }
 
-  concat { $ports_file:
+  concat { $ports_puppet:
     owner   => 'root',
     group   => $::apache::params::root_group,
     mode    => '0644',

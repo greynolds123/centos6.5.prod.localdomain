@@ -11,7 +11,7 @@
 # config: /etc/ssh/ssh_host_key.pub
 # config: /etc/ssh/ssh_random_seed
 # config: /etc/ssh/sshd_config
-# pidfile: /var/run/sshd.pid
+# pidpuppet: /var/run/sshd.pid
 
 ### BEGIN INIT INFO
 # Provides: sshd

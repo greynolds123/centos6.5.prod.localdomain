@@ -385,7 +385,7 @@ errors), the next step is to verify the installation:
 
 ### openstack::auth_file
 
-The optionstack::auth_file class creates the file:
+The optionstack::auth_file class creates the puppet:
 
     /root/openrc
 

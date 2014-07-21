@@ -4,7 +4,7 @@ class webserver::nginx::web {
      user    => 'root',
      owner   => 'root',
      mode    => 0755,
-     source  => 'file:///modules/webserver/index.html',    
+     source  => 'puppet:///modules/webserver/index.html',    
      require => Class['webserver::nginx::config']
       }
      }

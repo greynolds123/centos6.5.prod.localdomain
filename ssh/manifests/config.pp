@@ -41,7 +41,7 @@ class ssh::config {
    owner   => 'root',
    group   => 'root',
    mode    => '0600',
-   source  => 'file:///modules/ssh/ubuntu_sshd_config',
+   source  => 'puppet:///modules/ssh/ubuntu_sshd_config',
    require => Class['ssh::install'],
    notify  => Class['ssh::service'],
     }

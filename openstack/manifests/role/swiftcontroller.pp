@@ -1,11 +1,11 @@
 class openstack::role::swiftcontroller inherits ::openstack::role {
-  class { '::openstack::profile::firewall': }
-  class { '::openstack::profile::rabbitmq': } ->
-  class { '::openstack::profile::memcache': } ->
-  class { '::openstack::profile::mysql': } ->
-  class { '::openstack::profile::keystone': } ->
-  class { '::openstack::profile::swift::proxy': }
-  class { '::openstack::profile::horizon': }
-  class { '::openstack::profile::auth_file': }
-  class { '::openstack::profile::nova::api': }
+  class { '::openstack::propuppet::firewall': }
+  class { '::openstack::propuppet::rabbitmq': } ->
+  class { '::openstack::propuppet::memcache': } ->
+  class { '::openstack::propuppet::mysql': } ->
+  class { '::openstack::propuppet::keystone': } ->
+  class { '::openstack::propuppet::swift::proxy': }
+  class { '::openstack::propuppet::horizon': }
+  class { '::openstack::propuppet::auth_file': }
+  class { '::openstack::propuppet::nova::api': }
 }

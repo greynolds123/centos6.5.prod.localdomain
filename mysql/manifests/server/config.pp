@@ -22,7 +22,7 @@ class mysql::server::config {
   }
 
   if $mysql::server::manage_config_file  {
-    file { $mysql::server::config_file:
+    file { $mysql::server::config_puppet:
       content => template('mysql/my.cnf.erb'),
       mode    => '0644',
     }

@@ -1,8 +1,8 @@
 <IfModule mod_ssl.c>
   SSLRandomSeed startup builtin
-  SSLRandomSeed startup file:/dev/urandom 512
+  SSLRandomSeed startup puppet:/dev/urandom 512
   SSLRandomSeed connect builtin
-  SSLRandomSeed connect file:/dev/urandom 512
+  SSLRandomSeed connect puppet:/dev/urandom 512
 
   AddType application/x-x509-ca-cert .crt
   AddType application/x-pkcs7-crl    .crl

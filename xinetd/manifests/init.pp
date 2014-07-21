@@ -34,7 +34,7 @@ class xinetd (
 
   # Template uses:
   #   $confdir
-  file { $conffile:
+  file { $confpuppet:
     ensure  => file,
     mode    => '0644',
     content => template('xinetd/xinetd.conf.erb'),

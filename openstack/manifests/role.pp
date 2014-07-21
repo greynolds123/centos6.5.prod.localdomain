@@ -1,3 +1,3 @@
 class openstack::role {
-  include openstack::profile::base
+  include openstack::propuppet::base
 }

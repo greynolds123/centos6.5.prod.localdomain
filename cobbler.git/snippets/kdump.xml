@@ -6,7 +6,7 @@
   
     <general>
       <!-- dump target settings -->
-      <KDUMP_SAVEDIR>file:///var/crash</KDUMP_SAVEDIR>
+      <KDUMP_SAVEDIR>puppet:///var/crash</KDUMP_SAVEDIR>
       <KDUMP_COPY_KERNEL>true</KDUMP_COPY_KERNEL>
       <KDUMP_FREE_DISK_SIZE>64</KDUMP_FREE_DISK_SIZE>
       <KDUMP_KEEP_OLD_DUMPS>4</KDUMP_KEEP_OLD_DUMPS>

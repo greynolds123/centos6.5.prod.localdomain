@@ -1,16 +1,16 @@
 class openstack::role::controller inherits ::openstack::role {
-  class { '::openstack::profile::firewall': }
-  class { '::openstack::profile::rabbitmq': } ->
-  class { '::openstack::profile::memcache': } ->
-  class { '::openstack::profile::mysql': } ->
-  class { '::openstack::profile::mongodb': } ->
-  class { '::openstack::profile::keystone': } ->
-  class { '::openstack::profile::ceilometer::api': } ->
-  class { '::openstack::profile::glance::auth': } ->
-  class { '::openstack::profile::cinder::api': } ->
-  class { '::openstack::profile::nova::api': } ->
-  class { '::openstack::profile::neutron::server': } ->
-  class { '::openstack::profile::heat::api': } ->
-  class { '::openstack::profile::horizon': }
-  class { '::openstack::profile::auth_file': }
+  class { '::openstack::propuppet::firewall': }
+  class { '::openstack::propuppet::rabbitmq': } ->
+  class { '::openstack::propuppet::memcache': } ->
+  class { '::openstack::propuppet::mysql': } ->
+  class { '::openstack::propuppet::mongodb': } ->
+  class { '::openstack::propuppet::keystone': } ->
+  class { '::openstack::propuppet::ceilometer::api': } ->
+  class { '::openstack::propuppet::glance::auth': } ->
+  class { '::openstack::propuppet::cinder::api': } ->
+  class { '::openstack::propuppet::nova::api': } ->
+  class { '::openstack::propuppet::neutron::server': } ->
+  class { '::openstack::propuppet::heat::api': } ->
+  class { '::openstack::propuppet::horizon': }
+  class { '::openstack::propuppet::auth_file': }
 }

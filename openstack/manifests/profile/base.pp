@@ -1,5 +1,5 @@
 # The base profile for OpenStack. Installs the repository and ntp
-class openstack::profile::base {
+class openstack::propuppet::base {
   # everyone also needs to be on the same clock
   class { '::ntp': }
 

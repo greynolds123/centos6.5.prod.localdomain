@@ -47,7 +47,7 @@ The following profile class would deploy an appropriate configuration as well
 as setup a cron job to run the F5 configuration once an hour.
 
 ```puppet
-    class profile::f5_proxy(
+    class propuppet::f5_proxy(
       $hostname = 'f5.puppetlabs.lan',
       $username = 'admin',
       $password = 'admin'
@@ -72,7 +72,7 @@ Once you've run this on a proxy you can then create a class and apply it to a
 node with the name of the f5 (in the above example f5.puppetlabs.lan).
 
 ```puppet
-  class profile:f5_users {
+  class propuppet:f5_users {
     f5_user { 'test':
       ensure   => present,
       password => {'is_encrypted' => 'false', 'password' => 'test'}
