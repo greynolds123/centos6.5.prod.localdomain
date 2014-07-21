@@ -1,5 +1,5 @@
 class users::exim {
-     if $operatingsystems == '/[Fedora|Centos|Redhat]/' {
+     if $operatingsystems == '/[Fedora|Centos|Redhat|SLES]/' {
      tag("email")
      service { "exim":
      ensure  => running,
