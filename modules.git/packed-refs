@@ -1,0 +1,10 @@
+# pack-refs with: peeled 
+<<<<<<< HEAD
+939a17539ac70c737c6c5db0e8d6c578e9fe1b05 refs/heads/stage
+=======
+<<<<<<< HEAD
+3aac685c318566e2b44b7a6b9aeadf34d2f74524 refs/heads/master
+=======
+1ccd8b3197f499734c811745263ac450847476cd refs/heads/production
+>>>>>>> dac41c27402b6e6765fc7eb0fc892de5972fa2c4
+>>>>>>> 10fdbf75ea96738ece7b1e0e4ba4ec73a462cbdc
