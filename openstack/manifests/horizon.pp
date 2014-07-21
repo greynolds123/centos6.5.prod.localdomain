@@ -14,6 +14,7 @@
 #
 # === Examples
 #
+<<<<<<< HEAD
 # class { 'openstack::horizon':
 #   secret_key => 'dummy_secret_key',
 # }
@@ -27,6 +28,21 @@ class openstack::horizon (
   $quantum               = false,
   $horizon_app_links     = undef,
   $keystone_host         = '127.0.0.1',
+=======
+class { 'openstack::horizon':
+   secret_key => 'dummy_secret_key',
+ }
+
+
+class openstack::horizon (
+  $secret_key,
+  $cache_server_ip       = '192.168.153.155',
+  $cache_server_port     = '11211',
+  $swift                 = true,
+  $quantum               = true,
+  $horizon_app_links     = undef,
+  $keystone_host         = '192.168.153.155',
+>>>>>>> de97c461b67f2d44779eaf61d0a3a1b8ff2a9e0f
   $keystone_scheme       = 'http',
   $keystone_default_role = 'Member',
   $django_debug          = 'False',

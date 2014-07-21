@@ -10,6 +10,7 @@
 #
 # === Examples
 #
+<<<<<<< HEAD
 # class { 'openstack::nova::controller':
 #   public_address     => '192.168.128.3',
 #   db_host            => '127.0.0.1',
@@ -18,6 +19,16 @@
 #   nova_db_password   => 'changeme',
 # }
 #
+=======
+ class { 'openstack::nova::controller':
+   public_address     => '192.168.153.2',
+   db_host            => '192.168.153.155',
+   rabbit_password    => 'changeme',
+   nova_user_password => 'changeme',
+   nova_db_password   => 'changeme',
+ }
+
+>>>>>>> de97c461b67f2d44779eaf61d0a3a1b8ff2a9e0f
 
 class openstack::nova::controller (
   # Network Required
@@ -60,7 +71,11 @@ class openstack::nova::controller (
   # VNC
   $vnc_enabled               = true,
   # General
+<<<<<<< HEAD
   $keystone_host             = '127.0.0.1',
+=======
+  $keystone_host             = '192.168.153.155',
+>>>>>>> de97c461b67f2d44779eaf61d0a3a1b8ff2a9e0f
   $verbose                   = 'False',
   $enabled                   = true
 ) {
@@ -185,7 +200,11 @@ class openstack::nova::controller (
       quantum_admin_password    => $quantum_user_password,
     #$use_dhcp                  = 'True',
     #$public_interface          = undef,
+<<<<<<< HEAD
       quantum_connection_host   => 'localhost',
+=======
+      quantum_connection_host   => 'centos6.5.prod.localdomain',
+>>>>>>> de97c461b67f2d44779eaf61d0a3a1b8ff2a9e0f
       quantum_auth_strategy     => 'keystone',
       quantum_url               => "http://${keystone_host}:9696",
       quantum_admin_tenant_name => 'services',

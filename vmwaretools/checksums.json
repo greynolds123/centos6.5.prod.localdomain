@@ -1,0 +1,21 @@
+{
+  "CHANGELOG.md": "f7ddbc54f81eb2af29ec9b09056a15df",
+  "Gemfile": "2c0007b9e2a1d4a8a1f6b33f09f040c5",
+  "Gemfile.lock": "2389b99f821896180765033cf5f04115",
+  "LICENSE": "d32239bcb673463ab874e80d47fae504",
+  "Modulefile": "e9b16a8162426db720caf8b870a0dcf2",
+  "README.md": "51d2e542b9aa29c10435d02b521d6c98",
+  "Rakefile": "89d22f3f79595f73160b900303b86f26",
+  "lib/facter/esx_version.rb": "b0f02b7b18c93ca321389a199e5d0803",
+  "lib/facter/vmwaretools_version.rb": "316e50d3a7564966446ef8ec459116f8",
+  "manifests/config.pp": "3d68d84f59b6464c251a0d6e4c0d50a8",
+  "manifests/config_tools.pp": "e91a67f66031d8730f75b4c0bad15779",
+  "manifests/init.pp": "edf87781704817eed737fd2fbb10c73c",
+  "manifests/install/archive.pp": "9cce9d20ec02fca1695fd6b980285c04",
+  "manifests/install/exec.pp": "6959b2a0739bcad510387f74d00f760b",
+  "manifests/install/package.pp": "140c934df7dd9875f0c44ab7a98e8f64",
+  "manifests/install.pp": "b8f82f8dc9e8bac7576285f949394cf8",
+  "manifests/params.pp": "bf672ccf9a605f354abd325757bfcd5f",
+  "manifests/timesync.pp": "8182b224feeea7f9e5643d6142142a61",
+  "templates/download.sh.erb": "71aaa330bc24abada779b765df6aa287"
+}

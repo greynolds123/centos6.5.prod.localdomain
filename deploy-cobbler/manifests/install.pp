@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 class deploy-cobbler::install {
      package {  "cobbler":,        
          ensure  => install,
@@ -17,6 +18,27 @@ class deploy-cobbler::install {
      
      packages { "dhcp":,
         ensure  => install,
+=======
+class deploy-cobbler::present {
+     package {  "cobbler":,        
+         ensure  => present,
+        }
+
+     packages { "tftp":,
+        ensure  => present,
+     }
+
+     packages { "rsync":,
+        ensure  => present,
+     }
+     
+     packages { "bind":,
+        ensure  => present,
+     }
+     
+     packages { "dhcp":,
+        ensure  => present,
+>>>>>>> de97c461b67f2d44779eaf61d0a3a1b8ff2a9e0f
      }
   }
 

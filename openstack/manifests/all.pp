@@ -36,6 +36,7 @@
 #  [nova_volume] The name of the volume group to use for nova volume allocation. Optional. Defaults to 'nova-volumes'.
 # === Examples
 #
+<<<<<<< HEAD
 #  class { 'openstack::all':
 #    public_address       => '192.168.128.3',
 #    mysql_root_password  => 'changeme',
@@ -51,6 +52,23 @@
 #    secret_key           => 'dummy_secret_key',
 #  }
 #
+=======
+class { 'openstack::all':
+    public_address       => '192.168.153.2',
+    mysql_root_password  => 'changeme',
+    rabbit_password      => 'changeme',
+    keystone_db_password => 'changeme',
+    keystone_admin_token => '12345',
+    admin_email          => 'root@centos6.5.prod.localdomain',
+    admin_password       => 'my_admin_password',
+    nova_db_password     => 'changeme',
+    nova_user_password   => 'changeme',
+    glance_db_password   => 'changeme',
+    glance_user_password => 'changeme',
+    secret_key           => 'dummy_secret_key',
+  }
+
+>>>>>>> de97c461b67f2d44779eaf61d0a3a1b8ff2a9e0f
 # === Authors
 #
 # Dan Bode <bodepd@gmail.com>
@@ -73,7 +91,11 @@ class openstack::all (
   $nova_db_password,
   $nova_user_password,
   $secret_key,
+<<<<<<< HEAD
   $internal_address = '127.0.0.1',
+=======
+  $internal_address = '192.168.153.155',
+>>>>>>> de97c461b67f2d44779eaf61d0a3a1b8ff2a9e0f
   # cinder and quantum password are not required b/c they are
   # optional. Not sure what to do about this.
   $cinder_user_password    = 'cinder_pass',
@@ -83,7 +105,11 @@ class openstack::all (
   # Database
   $db_type                 = 'mysql',
   $mysql_account_security  = true,
+<<<<<<< HEAD
   $allowed_hosts           = ['127.0.0.%'],
+=======
+  $allowed_hosts           = ['127.0.0.% , 192.168.153.%'],
+>>>>>>> de97c461b67f2d44779eaf61d0a3a1b8ff2a9e0f
   # Keystone
   $keystone_db_user        = 'keystone',
   $keystone_db_dbname      = 'keystone',
@@ -108,7 +134,11 @@ class openstack::all (
   # Rabbit
   $rabbit_user             = 'nova',
   # Horizon
+<<<<<<< HEAD
   $cache_server_ip         = '127.0.0.1',
+=======
+  $cache_server_ip         = '192.168.153.155',
+>>>>>>> de97c461b67f2d44779eaf61d0a3a1b8ff2a9e0f
   $cache_server_port       = '11211',
   $swift                   = false,
   $horizon_app_links       = undef,
@@ -138,7 +168,11 @@ class openstack::all (
   if ($db_type == 'mysql') {
     if ($enabled) {
       Class['glance::db::mysql'] -> Class['glance::registry']
+<<<<<<< HEAD
       $nova_db = "mysql://${nova_db_user}:${nova_db_password}@127.0.0.1/nova?charset=utf8"
+=======
+      $nova_db = "mysql://${nova_db_user}:${nova_db_password}@192.168.153.155/nova?charset=utf8"
+>>>>>>> de97c461b67f2d44779eaf61d0a3a1b8ff2a9e0f
     } else {
       $nova_db = false
     }
@@ -173,7 +207,11 @@ class openstack::all (
   class { 'openstack::keystone':
     verbose                   => $verbose,
     db_type                   => $db_type,
+<<<<<<< HEAD
     db_host                   => '127.0.0.1',
+=======
+    db_host                   => '192.168.153.155',
+>>>>>>> de97c461b67f2d44779eaf61d0a3a1b8ff2a9e0f
     db_password               => $keystone_db_password,
     db_name                   => $keystone_db_dbname,
     db_user                   => $keystone_db_user,
@@ -182,8 +220,13 @@ class openstack::all (
     admin_email               => $admin_email,
     admin_password            => $admin_password,
     public_address            => $public_address,
+<<<<<<< HEAD
     internal_address          => '127.0.0.1',
     admin_address             => '127.0.0.1',
+=======
+    internal_address          => '192.168.153.155',
+    admin_address             => '192.168.153.155',
+>>>>>>> de97c461b67f2d44779eaf61d0a3a1b8ff2a9e0f
     region                    => $region,
     glance_user_password      => $glance_user_password,
     nova_user_password        => $nova_user_password,
@@ -197,7 +240,11 @@ class openstack::all (
   class { 'openstack::glance':
     verbose                   => $verbose,
     db_type                   => $db_type,
+<<<<<<< HEAD
     db_host                   => '127.0.0.1',
+=======
+    db_host                   => '192.168.153.155',
+>>>>>>> de97c461b67f2d44779eaf61d0a3a1b8ff2a9e0f
     glance_db_user            => $glance_db_user,
     glance_db_dbname          => $glance_db_dbname,
     glance_db_password        => $glance_db_password,
@@ -232,7 +279,11 @@ class openstack::all (
     image_service      => 'nova.image.glance.GlanceImageService',
     glance_api_servers => 'localhost:9292',
     verbose            => $verbose,
+<<<<<<< HEAD
     rabbit_host        => '127.0.0.1',
+=======
+    rabbit_host        => '192.168.153.153',
+>>>>>>> de97c461b67f2d44779eaf61d0a3a1b8ff2a9e0f
   }
 
   # Configure nova-api
@@ -263,12 +314,20 @@ class openstack::all (
     }
   } else {
     # Set up Quantum
+<<<<<<< HEAD
     $quantum_sql_connection = "mysql://${quantum_db_user}:${quantum_db_password}@127.0.0.1/${quantum_db_dbname}?charset=utf8"
+=======
+    $quantum_sql_connection = "mysql://${quantum_db_user}:${quantum_db_password}@192.168.153.153/${quantum_db_dbname}?charset=utf8"
+>>>>>>> de97c461b67f2d44779eaf61d0a3a1b8ff2a9e0f
 
     class { 'quantum':
       verbose         => $verbose,
       debug           => $verbose,
+<<<<<<< HEAD
       rabbit_host     => '127.0.0.1',
+=======
+      rabbit_host     => '192.168.153.153',
+>>>>>>> de97c461b67f2d44779eaf61d0a3a1b8ff2a9e0f
       rabbit_user     => $rabbit_user,
       rabbit_password => $rabbit_password,
     }
@@ -305,10 +364,17 @@ class openstack::all (
     #$public_interface          = undef,
       quantum_connection_host   => 'localhost',
       quantum_auth_strategy     => 'keystone',
+<<<<<<< HEAD
       quantum_url               => "http://127.0.0.1:9696",
       quantum_admin_tenant_name => 'services',
       #quantum_admin_username    => 'quantum',
       quantum_admin_auth_url    => "http://127.0.0.1:35357/v2.0",
+=======
+      quantum_url               => "http://192.168.153.153:9696",
+      quantum_admin_tenant_name => 'services',
+      #quantum_admin_username    => 'quantum',
+      quantum_admin_auth_url    => "http://192.168.153.153:35357/v2.0",
+>>>>>>> de97c461b67f2d44779eaf61d0a3a1b8ff2a9e0f
     }
   }
 
@@ -336,7 +402,11 @@ class openstack::all (
   if ($cinder) {
     class { "cinder::base":
       verbose         => $verbose,
+<<<<<<< HEAD
       sql_connection  => "mysql://${cinder_db_user}:${cinder_db_password}@127.0.0.1/${cinder_db_dbname}?charset=utf8",
+=======
+      sql_connection  => "mysql://${cinder_db_user}:${cinder_db_password}@192.168.153.153/${cinder_db_dbname}?charset=utf8",
+>>>>>>> de97c461b67f2d44779eaf61d0a3a1b8ff2a9e0f
       rabbit_password => $rabbit_password,
     }
 
@@ -347,7 +417,11 @@ class openstack::all (
     class { 'cinder::scheduler': }
     class { 'cinder::volume': }
     class { 'cinder::volume::iscsi':
+<<<<<<< HEAD
       iscsi_ip_address => '127.0.0.1',
+=======
+      iscsi_ip_address => '192.168.153.153',
+>>>>>>> de97c461b67f2d44779eaf61d0a3a1b8ff2a9e0f
       volume_group     => $nova_volume,
     }
   } else {

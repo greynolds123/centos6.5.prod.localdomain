@@ -23,6 +23,7 @@
 #
 # === Example
 #
+<<<<<<< HEAD
 # class { 'openstack::db::mysql':
 #    mysql_root_password  => 'changeme',
 #    keystone_db_password => 'changeme',
@@ -30,6 +31,15 @@
 #    nova_db_password     => 'changeme',
 #    allowed_hosts        => ['127.0.0.1', '10.0.0.%'],
 #  }
+=======
+class { 'openstack::db::mysql':
+    mysql_root_password  => 'changeme',
+    keystone_db_password => 'changeme',
+    glance_db_password   => 'changeme',
+    nova_db_password     => 'changeme',
+    allowed_hosts        => ['192.168.153.155', '10.0.0.%'],
+  }
+>>>>>>> de97c461b67f2d44779eaf61d0a3a1b8ff2a9e0f
 class openstack::db::mysql (
     # Required MySQL
     # passwords
