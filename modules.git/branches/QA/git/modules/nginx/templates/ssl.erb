@@ -1,0 +1,29 @@
+#
+# HTTPS server configuration
+#
+
+server {
+    listen       443;
+    server_name  centos6.5.localdomain;
+
+    ssl                  on;
+<<<<<<< HEAD
+    ssl_certificate      /etc/pki/tls/certs/centos6.5.localdomain.pem;
+    ssl_certificate_key  /etc/pki/tls/private/centos6.5.localdomain.key;
+=======
+    ssl_certificate      /etc/pki/tls/certs.pem;
+    ssl_certificate_key  /etc/pki/tls/private/crnos6.5.localdomain.key;
+>>>>>>> 6a709305df8f552600a0a710abce3da33d2d5281
+
+    ssl_session_timeout  5m;
+
+    ssl_protocols  SSLv2 SSLv3 TLSv1;
+    ssl_ciphers  ALL:!ADH:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP;
+    ssl_prefer_server_ciphers   on;
+
+    location / {
+        root   html;
+        index  index.html index.htm;
+    }
+}
+
