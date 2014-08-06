@@ -3,6 +3,7 @@ class history::config {
     ensure  => present,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     owner   => "root",
     group   => "root",
 =======
@@ -13,6 +14,10 @@ class history::config {
     owner   => "root",
     group   => "root",
 >>>>>>> 18b67f1e00c138b3dee73a70ce811be10d603371
+=======
+    owner   => root,
+    group   => root,
+>>>>>>> b2ee718dd61d28cd8abb19d7056dfb7f81c4ec42
     mode    =>  0644,
     source  => 'puppet:///modules/history/history.sh',
      }

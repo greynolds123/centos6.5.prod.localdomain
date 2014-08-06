@@ -45,6 +45,7 @@ class { 'openstack::keystone':
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
    admin_email           => 'root@centos7.localdomain',
 =======
    admin_email           => 'root@centos6.5.localdomain',
@@ -54,6 +55,9 @@ class { 'openstack::keystone':
    admin_email           => 'root@centos7.localdomain',
 =======
 >>>>>>> 18b67f1e00c138b3dee73a70ce811be10d603371
+   admin_email           => 'root@centos6.5.localdomain',
+>>>>>>> b2ee718dd61d28cd8abb19d7056dfb7f81c4ec42
+=======
    admin_email           => 'root@centos6.5.localdomain',
 >>>>>>> b2ee718dd61d28cd8abb19d7056dfb7f81c4ec42
    admin_password        => 'changeme',

@@ -8,6 +8,7 @@ class selinux::policy {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 18b67f1e00c138b3dee73a70ce811be10d603371
       false   => template('selinux/$module/$title/$title.te'),
@@ -23,6 +24,10 @@ class selinux::policy {
 >>>>>>> b2ee718dd61d28cd8abb19d7056dfb7f81c4ec42
 =======
 >>>>>>> 18b67f1e00c138b3dee73a70ce811be10d603371
+=======
+        false   => templates('selinux/templates/$module/$title/$title.te'),
+        default => templates('selinux/templates/$module/$title.te'),
+>>>>>>> b2ee718dd61d28cd8abb19d7056dfb7f81c4ec42
       },
       require => File["/etc/selinux/targeted/policy"],
     }

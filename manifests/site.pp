@@ -5,6 +5,7 @@ node default {
     class { 'history':       }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     #class { 'nagios':        }
 =======
     class { 'nagios':        }
@@ -12,11 +13,15 @@ node default {
 =======
     #class { 'nagios':        }
 >>>>>>> 18b67f1e00c138b3dee73a70ce811be10d603371
+=======
+    class { 'nagios':        }
+>>>>>>> b2ee718dd61d28cd8abb19d7056dfb7f81c4ec42
     #class { 'deploy-cobbler':}
     #class { 'bind':          }
     #class { 'mysql':          }
     #class { 'webserver':      }
     class { 'users':          }
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     #class  { 'apache':        }
@@ -26,11 +31,15 @@ node default {
 =======
     #class  { 'apache':        }
 >>>>>>> 18b67f1e00c138b3dee73a70ce811be10d603371
+=======
+    class  { 'apache':        }
+>>>>>>> b2ee718dd61d28cd8abb19d7056dfb7f81c4ec42
     #class  { 'dism':          }
     class  { 'f5':            }
     class  { 'java':          }
     #class  { 'mcollective':   }
     class  { 'netapp':        }
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     #class  { 'openstack':     }
@@ -61,12 +70,24 @@ node default {
 =======
     class { 'ldap':          }
 >>>>>>> 18b67f1e00c138b3dee73a70ce811be10d603371
+=======
+    class  { 'openstack':     }
+    class  { 'razor':         }
+    #class  { 'splunk':        }
+    #class  { 'vmware_lib':    }
+    class  { 'vmwaretools':   }
+    #class  { 'regiastry':     }
+    #class { 'yum':           }
+    #class { 'ntp':           }
+    #class { 'ldap':          }
+>>>>>>> b2ee718dd61d28cd8abb19d7056dfb7f81c4ec42
     #class { 'puppet':        }
     #class { 'selinux':       }
     #class { 'loadbalancer':  }
     class { 'ssh':           }
     class { 'sudo':          }
     class { 'xinetd':        }
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 }   
@@ -76,4 +97,7 @@ node default {
 =======
 }   
 >>>>>>> 18b67f1e00c138b3dee73a70ce811be10d603371
+=======
+   
+>>>>>>> b2ee718dd61d28cd8abb19d7056dfb7f81c4ec42
 Exec { path => '/bin:/usr/bin:/sbin:/usr/sbin' }

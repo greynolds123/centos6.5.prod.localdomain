@@ -13,6 +13,7 @@ class webserver::nginx::ssl {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 18b67f1e00c138b3dee73a70ce811be10d603371
     file {'/etc/pki/tls/certs/centos7.prod.localdomain.pem':
@@ -25,6 +26,9 @@ class webserver::nginx::ssl {
 >>>>>>> b2ee718dd61d28cd8abb19d7056dfb7f81c4ec42
 =======
 >>>>>>> 18b67f1e00c138b3dee73a70ce811be10d603371
+=======
+    file {'/etc/pki/tls/certs/centos6.5.prod.localdomain.pem':
+>>>>>>> b2ee718dd61d28cd8abb19d7056dfb7f81c4ec42
      ensure  => present,
      owner   => 'root',
      group   => 'root',        
@@ -38,6 +42,7 @@ class webserver::nginx::ssl {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
      file {'/etc/pki/tls/certs/centos7.prod.localdomain.key':
 =======
      file {'/etc/pki/tls/certs/centos6.5.prod.localdomain.key':
@@ -47,6 +52,9 @@ class webserver::nginx::ssl {
      file {'/etc/pki/tls/certs/centos7.prod.localdomain.key':
 =======
 >>>>>>> 18b67f1e00c138b3dee73a70ce811be10d603371
+     file {'/etc/pki/tls/certs/centos6.5.prod.localdomain.key':
+>>>>>>> b2ee718dd61d28cd8abb19d7056dfb7f81c4ec42
+=======
      file {'/etc/pki/tls/certs/centos6.5.prod.localdomain.key':
 >>>>>>> b2ee718dd61d28cd8abb19d7056dfb7f81c4ec42
      ensure  => present,
