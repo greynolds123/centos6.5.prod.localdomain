@@ -1,6 +1,14 @@
 class selinux::install {
    package { audit: ensure => installed }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 18b67f1e00c138b3dee73a70ce811be10d603371
+>>>>>>> 4cd73f9172b56ea1ed268e235245c13e64378eb0
    file { "/etc/selinux/targeted/policy":
     ensure => "directory",
     owner  => "root",
@@ -11,6 +19,16 @@ class selinux::install {
 
     file { "/etc/selinux/targeted/policy/policy.24":
 =======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> b2ee718dd61d28cd8abb19d7056dfb7f81c4ec42
+=======
+>>>>>>> 18b67f1e00c138b3dee73a70ce811be10d603371
+=======
+>>>>>>> b2ee718dd61d28cd8abb19d7056dfb7f81c4ec42
+>>>>>>> 4cd73f9172b56ea1ed268e235245c13e64378eb0
    file { "/etc/selinux/targeted":
     owner  => "root",
     group  => "root",
@@ -19,14 +37,46 @@ class selinux::install {
     ensure => directory;
   }
     file { "/etc/selinux/targeted/<% policy %>":
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> b2ee718dd61d28cd8abb19d7056dfb7f81c4ec42
+=======
+=======
+>>>>>>> 18b67f1e00c138b3dee73a70ce811be10d603371
+>>>>>>> b2ee718dd61d28cd8abb19d7056dfb7f81c4ec42
+=======
+>>>>>>> 4cd73f9172b56ea1ed268e235245c13e64378eb0
 >>>>>>> b2ee718dd61d28cd8abb19d7056dfb7f81c4ec42
      owner   => "root",
      group   => "root",
      mode    => 0755,
      ensure  => present,
 <<<<<<< HEAD
+<<<<<<< HEAD
      content => 'puppet:///selinux/policy.24',
 =======
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+     content => 'puppet:///selinux/policy.24',
+=======
+     content => template('selinux/templates/<% policy %>'),
+     require => File["/etc/selinux/semanage.conf"];
+>>>>>>> b2ee718dd61d28cd8abb19d7056dfb7f81c4ec42
+=======
+=======
+     content => 'puppet:///selinux/policy.24',
+=======
+>>>>>>> 18b67f1e00c138b3dee73a70ce811be10d603371
+     content => template('selinux/templates/<% policy %>'),
+     require => File["/etc/selinux/semanage.conf"];
+>>>>>>> b2ee718dd61d28cd8abb19d7056dfb7f81c4ec42
+=======
+>>>>>>> 4cd73f9172b56ea1ed268e235245c13e64378eb0
      content => template('selinux/templates/<% policy %>'),
      require => File["/etc/selinux/semanage.conf"];
 >>>>>>> b2ee718dd61d28cd8abb19d7056dfb7f81c4ec42

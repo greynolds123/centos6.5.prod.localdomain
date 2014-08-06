@@ -1,3 +1,16 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> b2ee718dd61d28cd8abb19d7056dfb7f81c4ec42
+=======
+>>>>>>> 18b67f1e00c138b3dee73a70ce811be10d603371
+=======
+>>>>>>> b2ee718dd61d28cd8abb19d7056dfb7f81c4ec42
+>>>>>>> 4cd73f9172b56ea1ed268e235245c13e64378eb0
 class deploy-cobbler::install {
      package {  "cobbler":,        
          ensure  => install,
@@ -17,8 +30,49 @@ class deploy-cobbler::install {
      
      packages { "dhcp":,
         ensure  => install,
+<<<<<<< HEAD
 
     } 
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+    } 
+=======
+=======
+>>>>>>> b2ee718dd61d28cd8abb19d7056dfb7f81c4ec42
+=======
+class deploy-cobbler::present {
+     package {  "cobbler":,        
+         ensure  => present,
+        }
+
+     packages { "tftp":,
+        ensure  => present,
+     }
+
+     packages { "rsync":,
+        ensure  => present,
+     }
+     
+     packages { "bind":,
+        ensure  => present,
+     }
+     
+     packages { "dhcp":,
+        ensure  => present,
+>>>>>>> de97c461b67f2d44779eaf61d0a3a1b8ff2a9e0f
+     }
+<<<<<<< HEAD
+>>>>>>> b2ee718dd61d28cd8abb19d7056dfb7f81c4ec42
+=======
+
+    } 
+>>>>>>> 18b67f1e00c138b3dee73a70ce811be10d603371
+=======
+>>>>>>> b2ee718dd61d28cd8abb19d7056dfb7f81c4ec42
+>>>>>>> 4cd73f9172b56ea1ed268e235245c13e64378eb0
   }
 
     exec { "correct_authn":

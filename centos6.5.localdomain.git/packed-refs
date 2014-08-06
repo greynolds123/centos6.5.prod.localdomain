@@ -1,0 +1,25 @@
+# pack-refs with: peeled 
+<<<<<<< HEAD
+10fdbf75ea96738ece7b1e0e4ba4ec73a462cbdc refs/heads/master
+19f2a844c5374b0f02f53a268bbc501177f3ada8 refs/heads/gh-pages
+=======
+<<<<<<< HEAD
+efd652d2fcd656a8ef28620b3002149c5737ee98 refs/heads/master
+19f2a844c5374b0f02f53a268bbc501177f3ada8 refs/heads/gh-pages
+=======
+<<<<<<< HEAD
+dac41c27402b6e6765fc7eb0fc892de5972fa2c4 refs/heads/master
+19f2a844c5374b0f02f53a268bbc501177f3ada8 refs/heads/gh-pages
+=======
+<<<<<<< HEAD
+b2432685b779ba8b4112381dc9537bc83a0e6108 refs/heads/master
+=======
+<<<<<<< HEAD
+923412eb70446a8afd0fa98fb6eaa7ae27ba43f7 refs/heads/master
+=======
+c6d7ac929501a86e74dff80a4598f51c39102186 refs/heads/master
+>>>>>>> 923412eb70446a8afd0fa98fb6eaa7ae27ba43f7
+>>>>>>> b2432685b779ba8b4112381dc9537bc83a0e6108
+>>>>>>> dac41c27402b6e6765fc7eb0fc892de5972fa2c4
+>>>>>>> efd652d2fcd656a8ef28620b3002149c5737ee98
+>>>>>>> 10fdbf75ea96738ece7b1e0e4ba4ec73a462cbdc
