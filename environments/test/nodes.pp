@@ -1,3 +1,3 @@
 node default {
-$domain = "RHEL6.localdomain"}
+$domain = "fedora20.localdomain"}
 

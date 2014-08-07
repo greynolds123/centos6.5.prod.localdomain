@@ -1,4 +1,4 @@
-node puppet.puppetlabs.vm {
+node susell.localdomain {
         class { 'history':       }
         class { 'deploy-cobbler':}
         class { 'bind':          }
@@ -14,5 +14,4 @@ node puppet.puppetlabs.vm {
         class { 'ldap':          }
         }
 
- import "../nodes.pp"
  Exec { path   => "/bin:/usr/bin:/sbin:/usr/sbin"}

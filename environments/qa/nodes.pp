@@ -1,3 +1,3 @@
 node default {
-$domain = "puppet.puppetlabs.vm"}
+$domain = "suse11.localdomain"}
 

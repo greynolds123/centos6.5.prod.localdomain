@@ -14,6 +14,5 @@ node Mysqldb.localdomain {
          class { 'ssh':           }
          class { 'ldap':          }
          }   
- import ../nodes.pp
  Exec { path   => "/bin:/usr/bin:/sbin:/usr/sbin"}
 

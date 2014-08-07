@@ -1,2 +1,2 @@
 node default {
-$domain = "RHEL5.localdomain"}
+$domain = "*.stg.localdomain = [stg]"}

@@ -1,4 +1,4 @@
-node RHEL5.localdomain {
+node  {
        class { 'history':       }
        class { 'deploy-cobbler':}
        class { 'bind':          }
@@ -13,5 +13,5 @@ node RHEL5.localdomain {
        class { 'sudo':          }
        class { 'ldap':          }
        }
- import "../nodes.pp"
- Exec { path   => "/bin:/usr/bin:/sbin:/usr/sbin"}
+ 
+Exec { path   => "/bin:/usr/bin:/sbin:/usr/sbin"}

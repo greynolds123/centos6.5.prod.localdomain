@@ -1,4 +1,4 @@
-node RHEL6.localdomain{
+node fedora20.localdomain {
          class { 'history':       }
          class { 'deploy-cobbler':}
          class { 'bind':          }
@@ -13,6 +13,6 @@ node RHEL6.localdomain{
          class { 'sudo':          }
          class { 'ldap':          }
          }
- import "../nodes.pp"
+ 
  Exec { path   => "/bin:/usr/bin:/sbin:/usr/sbin"}
 
