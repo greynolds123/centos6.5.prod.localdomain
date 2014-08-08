@@ -34,8 +34,3 @@ node default {
     class { 'xinetd':        }
 }   
 Exec { path => '/bin:/usr/bin:/sbin:/usr/sbin' }
-
-   augeas { 'enable-ip-forwarding':
-   context => '/files/etc/sysctl.conf',
-   changes => ['set net.ipv4.ip_forward 1'],
- }
