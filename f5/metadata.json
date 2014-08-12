@@ -1,0 +1,24 @@
+{
+  "name": "puppetlabs-f5",
+  "version": "0.5.1",
+  "author": "puppetlabs",
+  "summary": "Manage F5",
+  "license": "Apache License Version 2.0",
+  "source": "git@github.com:puppetlabs/puppetlabs-f5.git",
+  "project_page": "https://github.com/puppetlabs/puppetlabs-f5",
+  "issues_url": "https://github.com/puppetlabs/puppetlabs-f5/issues",
+  "requirements": [
+    {
+      "name": "pe",
+      "version_requirement": ">=3.2.0 <4.0.0"
+    },
+    {
+      "name": "puppet",
+      "version_requirement": "3.x"
+    }
+  ],
+  "description": "Puppet type/provider for managing F5 device configuration.",
+  "dependencies": [
+  
+  ]
+}

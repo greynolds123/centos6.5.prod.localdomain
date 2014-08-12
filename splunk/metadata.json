@@ -1,0 +1,45 @@
+{
+  "license": "Apache Version 2.0",
+  "author": "Matthew Lauber",
+  "source": "https://github.com/mklauber/splunk",
+  "project_page": "https://github.com/mklauber/splunk",
+  "types": [
+
+  ],
+  "dependencies": [
+    {
+      "version_requirement": ">1.0.0",
+      "name": "puppetlabs/concat"
+    }
+  ],
+  "checksums": {
+    "README.md": "252e1692da1c43d28e2854a73bd80df0",
+    "manifests/output/tcpServer.pp": "c8f52edd55239d4a194b2f3de572f4b1",
+    "templates/outputs.conf/tcpGroup.erb": "80d81cb1a4f73e958181049d1b1fb249",
+    "templates/outputs.conf/tcpout.erb": "508049b16d01cbd2481b65225f1c037d",
+    "manifests/input/monitor.pp": "e446c5f9d9cd4a3c06a7a1284cc1ec27",
+    "spec/fixtures/manifests/init.pp": "d41d8cd98f00b204e9800998ecf8427e",
+    "spec/spec_helper.rb": "3011a30b013ba2e44f7bf8615fdf2b8a",
+    "templates/outputs.conf/tcpServer.erb": "dfd815cef0c97c73a9f99638b39fd568",
+    "manifests/output/syslog.pp": "874aa6702f15c5109d8d63fde4ac10d6",
+    "Modulefile": "f14dcdaf13b13ecacc41df5b65fe5290",
+    "templates/inputs.conf/tcp.erb": "904326190ca02d1fe5ffe2ec21217952",
+    "manifests/output/tcpGroup.pp": "5e91663cb338676ff81160cd148df85f",
+    "manifests/server.pp": "6d574be8693bef8be92fca00fd342ad6",
+    "templates/outputs.conf/syslog.erb": "72a1ad3723527a23d06baeddd91ffa66",
+    "manifests/init.pp": "d36901890c9867288f6e51e55ceaa67a",
+    "Gemfile": "c047ae1e13f49c6a54af56c293fba614",
+    "templates/inputs.conf/monitor.erb": "78ef62248af7064a48ec018f8e8e56aa",
+    "manifests/output/tcpout.pp": "badede238eb8ed55f7a2487ffe7ef0be",
+    "travis.yml": "bd5c9f7af7cad6c9f9276f17565ce007",
+    "manifests/input/tcp.pp": "fa92031798f71e5efb26c918f9b55351",
+    "templates/inputs.conf/default.erb": "1463df6c1a29a13835ea5ebfd1414874",
+    "manifests/forwarder.pp": "764e3c8b46e595ebd902e3cbe14db6e2",
+    "manifests/input/default.pp": "30161469b116a0c31beca3a537d75a34",
+    "Rakefile": "1fbd54a8986984b00ead656c17de9724"
+  },
+  "description": "A splunk module that manages the installation and configuration of splunk servers and splunk Universal Forwarders.  \n\nInputs and outputs are configured as Resources.",
+  "name": "mklauber-splunk",
+  "version": "0.7.0",
+  "summary": "A puppet module for managing splunk servers and forwarders."
+}
