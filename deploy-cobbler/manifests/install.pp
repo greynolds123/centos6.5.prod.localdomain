@@ -1,8 +1,11 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> f05b609dd85950d8c62f48b02534cb009fcf5c1b
+=======
+>>>>>>> origin/master
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -16,10 +19,15 @@
 >>>>>>> b2ee718dd61d28cd8abb19d7056dfb7f81c4ec42
 >>>>>>> 4cd73f9172b56ea1ed268e235245c13e64378eb0
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 18b67f1e00c138b3dee73a70ce811be10d603371
 =======
 >>>>>>> f05b609dd85950d8c62f48b02534cb009fcf5c1b
+=======
+=======
+>>>>>>> 18b67f1e00c138b3dee73a70ce811be10d603371
+>>>>>>> origin/master
 class deploy-cobbler::install {
      package {  "cobbler":,        
          ensure  => install,
@@ -42,8 +50,11 @@ class deploy-cobbler::install {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> f05b609dd85950d8c62f48b02534cb009fcf5c1b
+=======
+>>>>>>> origin/master
 
     } 
 =======
@@ -87,12 +98,18 @@ class deploy-cobbler::present {
 >>>>>>> b2ee718dd61d28cd8abb19d7056dfb7f81c4ec42
 >>>>>>> 4cd73f9172b56ea1ed268e235245c13e64378eb0
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/master
 =======
 
     } 
 >>>>>>> 18b67f1e00c138b3dee73a70ce811be10d603371
+<<<<<<< HEAD
 =======
 >>>>>>> f05b609dd85950d8c62f48b02534cb009fcf5c1b
+=======
+>>>>>>> origin/master
   }
 
     exec { "correct_authn":
