@@ -1,0 +1,135 @@
+[main]
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 18b67f1e00c138b3dee73a70ce811be10d603371
+>>>>>>> 4cd73f9172b56ea1ed268e235245c13e64378eb0
+=======
+>>>>>>> 18b67f1e00c138b3dee73a70ce811be10d603371
+    certname = centos7.prod.localdomain
+    dns_alt_names = centos7.prod,centos7.prod.localdomain
+=======
+    certname = centos6.5.prod.localdomain
+    dns_alt_names = centos6.5.prod,centos6.5.prod.localdomain
+>>>>>>> b2ee718dd61d28cd8abb19d7056dfb7f81c4ec42
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+    certname = centos6.5.prod.localdomain
+    dns_alt_names = centos6.5.prod,centos6.5.prod.localdomain
+>>>>>>> b2ee718dd61d28cd8abb19d7056dfb7f81c4ec42
+=======
+>>>>>>> 18b67f1e00c138b3dee73a70ce811be10d603371
+=======
+    certname = centos6.5.prod.localdomain
+    dns_alt_names = centos6.5.prod,centos6.5.prod.localdomain
+>>>>>>> b2ee718dd61d28cd8abb19d7056dfb7f81c4ec42
+>>>>>>> 4cd73f9172b56ea1ed268e235245c13e64378eb0
+=======
+>>>>>>> 18b67f1e00c138b3dee73a70ce811be10d603371
+    vardir = /var/opt/lib/pe-puppet
+    logdir = /var/log/pe-puppet
+    rundir = /var/run/pe-puppet
+    environmentpath = $confdir/environments
+    modulepath = /etc/puppetlabs/puppet/modules:/opt/puppet/share/puppet/modules
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 18b67f1e00c138b3dee73a70ce811be10d603371
+>>>>>>> 4cd73f9172b56ea1ed268e235245c13e64378eb0
+=======
+>>>>>>> 18b67f1e00c138b3dee73a70ce811be10d603371
+    server = centos7.prod.localdomain
+    user  = pe-puppet
+    group = pe-puppet
+    archive_files = true
+    archive_file_server = centos7.prod.localdomain
+
+[master]
+    certname = centos7.prod.localdomain
+    ca_name = 'Puppet CA generated on centos7.prod.localdomain at 2014-05-18 10:31:03 -0700'
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> b2ee718dd61d28cd8abb19d7056dfb7f81c4ec42
+=======
+>>>>>>> 18b67f1e00c138b3dee73a70ce811be10d603371
+=======
+>>>>>>> b2ee718dd61d28cd8abb19d7056dfb7f81c4ec42
+>>>>>>> 4cd73f9172b56ea1ed268e235245c13e64378eb0
+=======
+>>>>>>> 18b67f1e00c138b3dee73a70ce811be10d603371
+    server = centos6.5.prod.localdomain
+    user  = pe-puppet
+    group = pe-puppet
+    archive_files = true
+    archive_file_server = centos6.5.prod.localdomain
+
+[master]
+    certname = centos6.5.prod.localdomain
+    ca_name = 'Puppet CA generated on centos6.5.prod.localdomain at 2014-05-18 10:31:03 -0700'
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> b2ee718dd61d28cd8abb19d7056dfb7f81c4ec42
+=======
+=======
+>>>>>>> 18b67f1e00c138b3dee73a70ce811be10d603371
+>>>>>>> b2ee718dd61d28cd8abb19d7056dfb7f81c4ec42
+=======
+>>>>>>> 4cd73f9172b56ea1ed268e235245c13e64378eb0
+=======
+>>>>>>> 18b67f1e00c138b3dee73a70ce811be10d603371
+>>>>>>> b2ee718dd61d28cd8abb19d7056dfb7f81c4ec42
+    reports = console,store,puppetdb
+    node_terminus = console
+    ssl_client_header = SSL_CLIENT_S_DN
+    ssl_client_verify_header = SSL_CLIENT_VERIFY
+    storeconfigs_backend = puppetdb
+    storeconfigs = true
+
+[agent]
+    report = true
+    classfile = $vardir/classes.txt
+    localconfig = $vardir/localconfig
+    graph = true
+    pluginsync = true
+    environment = production
+
+[dev]
+    modulepath = $confdir/environments/dev/modules
+    manifest   = $confdir/environments/dev/manifest/site.pp
+
+[mysql]
+    modulepath = $confdir/environments/mysql/modules
+    manifest   = $confdir/environments/mysql/manifest/site.pp
+
+[qa]
+    modulepath = $confdir/environments/qa/modules
+    manifest   = $confdir/environments/qa/manifest/site.pp
+
+[stage]
+    modulepath = $confdir/environments/stg/modules
+    manifest   = $confdir/environments/stg/manifest/site.pp
+
+[test]
+    modulepath = $confdir/environments/test/modules
+    manifest   = $configdirenvironments/test/manifest/site.pp
