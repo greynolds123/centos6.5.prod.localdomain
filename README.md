@@ -1,5 +1,5 @@
 centos7.prod.localdomain
 ==========================
 
-This is a test to recover and repopulate a lost repo in production
+The recovery of the production repo was suceesful. The migration of centos6.5 to centos7.0 is now complete. 
 
