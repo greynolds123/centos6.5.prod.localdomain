@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # == Class: ldap::params
 #
 # Default paramaters for different operating systems, etc
@@ -91,3 +92,15 @@ class ldap::params {
     }
   }
 }
+=======
+class ldap::params {
+   case $operatingsystem {
+    Solaris: {
+      $ntp_package_name = 'ntp'
+     }
+    /(RedHat|Fedora)/: {
+      $ntp_package_name = 'ntp'
+     }
+   }
+ }
+>>>>>>> 10220c1a980b9d78bb42c987e27b5b07236b6b89
