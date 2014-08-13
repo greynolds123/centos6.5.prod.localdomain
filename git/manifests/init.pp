@@ -1,8 +1,15 @@
-# =Class: git
+# Class: git
 #
-# Sets up requirements for git. See git::repo for more information on how to
-# use this module.
+# This class installs git
 #
-class git {
-  include git::install
+# Actions:
+#   - Install the git package
+#
+# Sample Usage:
+#  class { 'git': }
+#
+class git ($package_name = 'git') {
+  package { $package_name:
+    ensure => installed,
+  }
 }

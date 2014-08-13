@@ -37,7 +37,7 @@ AddType application/x-pkcs7-crl    .crl
 #   The filtering dialog program (`builtin' is a internal
 #   terminal dialog) has to provide the pass phrase on stdout.
 <% if @passwd_file -%>
-NSSPassPhraseDialog  "puppet:<%= @passwd_file %>"
+NSSPassPhraseDialog  "file:<%= @passwd_file %>"
 <% else -%>
 NSSPassPhraseDialog  builtin
 <% end -%>
@@ -66,8 +66,8 @@ NSSSession3CacheTimeout 86400
 # This does not support seeding the RNG with each connection.
 
 NSSRandomSeed startup builtin
-#NSSRandomSeed startup puppet:/dev/random  512
-#NSSRandomSeed startup puppet:/dev/urandom 512
+#NSSRandomSeed startup file:/dev/random  512
+#NSSRandomSeed startup file:/dev/urandom 512
 
 #
 # TLS Negotiation configuration under RFC 5746

@@ -2,9 +2,9 @@
 # Private, and should not be used on its own
 # usage: include from controller, declare from worker
 # This is to handle dependency
-# depends on openstack::propuppet::base having been added to a node
+# depends on openstack::profile::base having been added to a node
 class openstack::common::nova ($is_compute    = false) {
-  $is_controller = $::openstack::propuppet::base::is_controller
+  $is_controller = $::openstack::profile::base::is_controller
 
   $management_network = hiera('openstack::network::management')
   $management_address = ip_for_network($management_network)

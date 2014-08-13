@@ -1,30 +1,87 @@
-# Puppet module for managing git
+#git
 
-Installs and configures git.
+####Table of Contents
 
-Part of the Foreman installer: http://github.com/theforeman/foreman-installer
+1. [Overview - What is the [Modulename] module?](#overview)
+2. [Module Description - What does the module do?](#module-description)
+3. [Setup - The basics of getting started with [Modulename]](#setup)
+    * [What [Modulename] affects](#what-registry-affects)
+4. [Usage - Configuration options and additional functionality](#usage)
+6. [Limitations - OS compatibility, etc.](#limitations)
+7. [Development - Guide for contributing to the module](#development)
 
-# Contributing
+##Overview
 
-* Fork the project
-* Commit and push until you are happy with your contribution
-* Send a pull request with a description of your changes
+Simple module that can install git or gitosis
 
-# More info
+##Module Description
 
-See http://theforeman.org or at #theforeman irc channel on freenode
+This module installs the git revision control system on a target node. It does not manage a git server or any associated services; it simply ensures a bare minimum set of features (e.g. just a package) to use git.
 
-Copyright (c) 2010-2013 Ohad Levy and their respective owners
+##Setup
 
-Except where specified in provided modules, this program and entire
-repository is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-any later version.
+###What git affects
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
+* Package['git']
+
+The specifics managed by the module may vary depending on the platform.
+
+##Usage
+
+###I just want `git` installed
+Simply include the `git` class.
+
+```puppet
+include git
+```
+
+###I want to use `git subtree` with bash completion
+
+```puppet
+include git::subtree
+```
+
+###I want to set my user.name and user.email
+
+```puppet
+git::config { 'user.name':
+  value => 'John Doe',
+}
+
+git::config { 'user.email':
+  value => 'john.doe@example.com',
+}
+```
+
+##Reference
+
+###Classes
+
+* `git`: Installs the git client package.
+* `gitosis`: Installs the gitosis package. No configuration
+* `subtree`: Installs and configures git-subtree for git 1.7 and up.
+
+###Resources
+
+* `git::config`: Set git global configuration for the user running puppet.
+
+###Facts
+
+* `git_exec_path`: Path to the directory containing all `git-*` commands.
+* `git_version`: Version of git that is installed. Undefined if not installed.
+
+##Limitations
+
+This module is known to work with the following operating system families:
+
+ - RedHat 5, 6
+ - Debian 6.0.7 or newer
+ - Ubuntu 12.04 or newer
+
+##Development
+
+Puppet Labs modules on the Puppet Forge are open projects, and community contributions are essential for keeping them great. We can’t access the huge number of platforms and myriad of hardware, software, and deployment configurations that Puppet is intended to serve.
+
+We want to keep it as easy as possible to contribute changes so that our modules work in your environment. There are a few guidelines that we need contributors to follow so that we can have a chance of keeping on top of things.
+
+You can read the complete module contribution guide [on the Puppet Labs wiki.](http://projects.puppetlabs.com/projects/module-site/wiki/Module_contributing)

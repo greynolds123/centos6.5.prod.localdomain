@@ -178,25 +178,15 @@
    APPENDIX: How to apply the Apache License to your work.
 
       To apply the Apache License to your work, attach the following
-<<<<<<< HEAD
-      boilerplate notice, with the fields enclosed by brackets "[]"
-      replaced with your own identifying information. (Don't include
-      the brackets!) The text should be enclosed in the appropriate
-=======
       boilerplate notice, with the fields enclosed by brackets "{}"
       replaced with your own identifying information. (Don't include
       the brackets!)  The text should be enclosed in the appropriate
->>>>>>> de97c461b67f2d44779eaf61d0a3a1b8ff2a9e0f
       comment syntax for the file format. We also recommend that a
       file or class name and description of purpose be included on the
       same "printed page" as the copyright notice for easier
       identification within third-party archives.
 
-<<<<<<< HEAD
-   Copyright [yyyy] [name of copyright owner]
-=======
    Copyright {2013} {Puppet Labs}
->>>>>>> de97c461b67f2d44779eaf61d0a3a1b8ff2a9e0f
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.

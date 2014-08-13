@@ -1,5 +1,5 @@
 # The profile to install rabbitmq and set the firewall
-class openstack::propuppet::rabbitmq {
+class openstack::profile::rabbitmq {
   $management_address = hiera('openstack::controller::address::management')
 
   if $::osfamily == 'RedHat' {

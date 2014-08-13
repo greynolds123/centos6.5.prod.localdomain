@@ -40,9 +40,18 @@
 #   }
 #
 define registry::value($key, $value=undef, $type='string', $data=undef) {
+  # ensure windows os
+  if $::operatingsystem != 'windows'{
+    fail("Unsupported OS ${::operatingsystem}")
+  }
+
   # validate our inputs.
-  validate_re($key, '^\w+', "key parameter must not be empty but it is key => '$key'")
-  validate_re($type, '^\w+', "type parameter must not be empty but it is type => '$type'")
+  validate_re($key, '^\w+',
+    'key parameter must not be empty but it is key => "$key""')
+  validate_re($type, '^\w+',
+    'type parameter must not be empty but it is type => "$type"')
+
+
 
   $value_real = $value ? {
     undef       => $name,
@@ -54,8 +63,8 @@ define registry::value($key, $value=undef, $type='string', $data=undef) {
   Registry_key { ensure => present }
   Registry_value { ensure => present }
 
-  if !defined(Registry_key["${key}"]) {
-    registry_key { "${key}": }
+  if !defined(Registry_key[$key]) {
+    registry_key { $key: }
   }
 
   # If value_real is an empty string then the default value of the key will be

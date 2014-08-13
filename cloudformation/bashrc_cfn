@@ -1,0 +1,6 @@
+export AWS_CLOUDFORMATION_HOME=/Users/ryan/.puppet/modules/cloudformation/AWSCloudFormation-1.0.9
+export PATH=$AWS_CLOUDFORMATION_HOME/bin:$PATH
+export AWS_CREDENTIAL_FILE=/Users/ryan/.puppet/modules/cloudformation/aws_credentials
+export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home
+export RUBYLIB=/Users/ryan/.puppet/modules/cloudformation/lib:$RUBYLIB
+export EC2_REGION=us-west-1

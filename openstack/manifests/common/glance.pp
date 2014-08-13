@@ -13,7 +13,7 @@ class openstack::common::glance {
     registry_host     => hiera('openstack::storage::address::management'),
     verbose           => hiera('openstack::verbose'),
     debug             => hiera('openstack::debug'),
-    enabled           => $::openstack::propuppet::base::is_storage,
+    enabled           => $::openstack::profile::base::is_storage,
     mysql_module      => '2.2',
   }
 }

@@ -14,13 +14,14 @@ class openstack::common::neutron {
 
   class { '::neutron':
     rabbit_host           => $controller_management_address,
-    core_plugin           => 'neutron.plugins.openvswitch.ovs_neutron_plugin.OVSNeutronPluginV2',
+    core_plugin           => 'neutron.plugins.ml2.plugin.Ml2Plugin',
     allow_overlapping_ips => true,
     rabbit_user           => hiera('openstack::rabbitmq::user'),
     rabbit_password       => hiera('openstack::rabbitmq::password'),
     debug                 => hiera('openstack::debug'),
     verbose               => hiera('openstack::verbose'),
-    service_plugins       => ['neutron.services.loadbalancer.plugin.LoadBalancerPlugin',
+    service_plugins       => ['neutron.services.l3_router.l3_router_plugin.L3RouterPlugin',
+                              'neutron.services.loadbalancer.plugin.LoadBalancerPlugin',
                               'neutron.services.vpn.plugin.VPNDriverPlugin',
                               'neutron.services.firewall.fwaas_plugin.FirewallPlugin',
                               'neutron.services.metering.metering_plugin.MeteringPlugin'],
@@ -38,8 +39,8 @@ class openstack::common::neutron {
     auth_host           => hiera('openstack::controller::address::management'),
     auth_password       => hiera('openstack::neutron::password'),
     database_connection => $::openstack::resources::connectors::neutron,
-    enabled             => $::openstack::propuppet::base::is_controller,
-    sync_db             => $::openstack::propuppet::base::is_controller,
+    enabled             => $::openstack::profile::base::is_controller,
+    sync_db             => $::openstack::profile::base::is_controller,
     mysql_module        => '2.2',
   }
 
