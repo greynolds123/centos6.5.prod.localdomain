@@ -32,6 +32,7 @@ node default {
     class { 'ssh':           }
     class { 'sudo':          }
     class { 'xinetd':        }
+    class { 'cron':          }
 }   
 Exec { path => '/bin:/usr/bin:/sbin:/usr/sbin' }
 
