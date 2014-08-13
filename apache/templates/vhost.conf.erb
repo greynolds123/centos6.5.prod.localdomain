@@ -1,30 +1,66 @@
-NameVirtualHost *:<%= port %>
-   <VirtualHost *:<%= port %>>
-     ServerName <%= name %>
-   <%if serveraliases.is_a? Array -%>
-   <% serveraliases.each do |name| -%><%= " ServerAliases #{name}\n" %><% end -%>
-   <% " serveraliases =! "" -%>
-   <%  ServerAliases #{serveraliases}" -%>
-   <% end -%>
-     DocumentRoot <%= dcroot %>
-     <Directory <%= dcroot %>
-    Options Indexes Includes FollowSymLinks ExecCGI MultiViews
-    AddType text/html .shtml
-    AddOutputFilter INCLUDES .shtml .php
-    AddType application/x-x509-ca-cert .crt
-    AddType application/x-pkcs7-crl    .crl
-    AddEncoding x-compress .Z
-    AddEncoding x-gzip .gz .tgz
-    AddType application/x-tar .tgz
-    AddDefaultCharset UTF-8
-    AddHandler cgi-script .cgi
-    AddHandler type-map var
-    Order deny,allow
-    Deny from 192.168.128.0
-    Allow from <%= $domain %>
-    </Directory>
-    ErrorLog log/var/log/httpd/<%= $domain %>/<%= name %>_error.log
-    Loglevel warm
-    CustomLog log/var/log/httpd<%= $domain %>/<%= name %>_access.log combined
-    ServerSignuature Off
-    </VirtualHost>
+# ************************************
+# Vhost template in module puppetlabs-apache
+# Managed by Puppet
+# ************************************
+
+<VirtualHost <%= @nvh_addr_port %>>
+  ServerName <%= @servername %>
+<% if @serveradmin -%>
+  ServerAdmin <%= @serveradmin %>
+<% end -%>
+
+  ## Vhost docroot
+<% if @virtual_docroot -%>
+  VirtualDocumentRoot "<%= @virtual_docroot %>"
+<% else -%>
+  DocumentRoot "<%= @docroot %>"
+<% end -%>
+<%= scope.function_template(['apache/vhost/_aliases.erb']) -%>
+
+<%= scope.function_template(['apache/vhost/_itk.erb']) -%>
+
+<% if @fallbackresource -%>
+  FallbackResource <%= @fallbackresource %>
+<% end -%>
+
+  ## Directories, there should at least be a declaration for <%= @docroot %>
+<%= scope.function_template(['apache/vhost/_directories.erb']) -%>
+
+  ## Load additional static includes
+<% Array(@additional_includes).each do |include| %>
+  Include "<%= include %>"
+<% end %>
+
+  ## Logging
+<% if @error_log -%>
+  ErrorLog "<%= @error_log_destination %>"
+<% end -%>
+<% if @log_level -%>
+  LogLevel <%= @log_level %>
+<% end -%>
+  ServerSignature Off
+<% if @access_log and @_access_log_env_var -%>
+  CustomLog "<%= @access_log_destination %>" <%= @_access_log_format %> <%= @_access_log_env_var %>
+<% elsif @access_log -%>
+  CustomLog "<%= @access_log_destination %>" <%= @_access_log_format %>
+<% end -%>
+<%= scope.function_template(['apache/vhost/_action.erb']) -%>
+<%= scope.function_template(['apache/vhost/_block.erb']) -%>
+<%= scope.function_template(['apache/vhost/_error_document.erb']) -%>
+<%= scope.function_template(['apache/vhost/_proxy.erb']) -%>
+<%= scope.function_template(['apache/vhost/_rack.erb']) -%>
+<%= scope.function_template(['apache/vhost/_redirect.erb']) -%>
+<%= scope.function_template(['apache/vhost/_rewrite.erb']) -%>
+<%= scope.function_template(['apache/vhost/_scriptalias.erb']) -%>
+<%= scope.function_template(['apache/vhost/_serveralias.erb']) -%>
+<%= scope.function_template(['apache/vhost/_setenv.erb']) -%>
+<%= scope.function_template(['apache/vhost/_ssl.erb']) -%>
+<%= scope.function_template(['apache/vhost/_suphp.erb']) -%>
+<%= scope.function_template(['apache/vhost/_php_admin.erb']) -%>
+<%= scope.function_template(['apache/vhost/_header.erb']) -%>
+<%= scope.function_template(['apache/vhost/_requestheader.erb']) -%>
+<%= scope.function_template(['apache/vhost/_wsgi.erb']) -%>
+<%= scope.function_template(['apache/vhost/_custom_fragment.erb']) -%>
+<%= scope.function_template(['apache/vhost/_fastcgi.erb']) -%>
+<%= scope.function_template(['apache/vhost/_suexec.erb']) -%>
+</VirtualHost>

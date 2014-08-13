@@ -1,13 +1,13 @@
 require 'puppet/provider/f5'
 
 Puppet::Type.type(:f5_external_class).provide(:f5_external_class, :parent => Puppet::Provider::F5) do
-  @doc = "Manages f5 String classes (datagroups)"
+  @doc = "Manages f5 external classes (datagroups)"
 
   confine :feature => :posix
   defaultfor :feature => :posix
 
   def self.wsdl
-    'LocalLB.Class'
+    'LocalLB.DataGroupFile'
   end
 
   def wsdl
@@ -15,9 +15,17 @@ Puppet::Type.type(:f5_external_class).provide(:f5_external_class, :parent => Pup
   end
 
   def self.instances
-    transport[wsdl].get_external_class_list.collect do |ext|
-      new(:name => ext.class_name)
+    instances = []
+
+    begin
+      transport[wsdl].call(:get_external_class_list_v2)[:get_external_class_list_response][:return].collect do |ext|
+        instances << new(:name => ext.class_name)
+      end
+    rescue Exception => e
+      Puppet.debug("Puppet::Provider::F5_external_class:  No external classes found.  Exception: #{e.message}")
     end
+
+    instances
   end
 
   methods = [
@@ -28,30 +36,35 @@ Puppet::Type.type(:f5_external_class).provide(:f5_external_class, :parent => Pup
 
   methods.each do |method|
     define_method(method.to_sym) do
-      if transport[wsdl].respond_to?("get_external_class_#{method}".to_sym)
-        profile_string = transport[wsdl].send("get_external_class_#{method}", resource[:name]).first
+      symbol = "get_external_class_#{method}_v2".to_sym
+      if transport[wsdl].operations.include?(symbol)
+        response = transport[wsdl].call(symbol)
       end
     end
+    return response if response
   end
 
   methods.each do |method|
-    define_method("#{method}=") do |profile_string|
-      if transport[wsdl].respond_to?("set_external_class_#{method}".to_sym)
-        transport[wsdl].send("set_external_class_#{method}", resource[:name], [resource[method.to_sym]])
+    define_method("#{method}=") do |value|
+      symbol = "set_external_class_#{method}_v2".to_sym
+      if transport[wsdl].operations.include?(symbol)
+        message = { class_names: {item: resource[:names]}, file_names: {item: resource[method.to_sym]}}
+        transport[wsdl].call(symbol, message: message)
       end
     end
   end
 
   def data_separator
-    transport[wsdl].get_data_separator(resource[:name]).first
+    transport[wsdl].call(:get_data_separator, message: { item: resource[:name] })
   end
 
   def data_separator=(value)
-    transport[wsdl].set_data_separator(resource[:name], [ resource[:data_separator] ])
+    message = { files: { item: resource[:name] }, separators: { item: resource[:data_separator] } }
+    transport[wsdl].call(:set_data_separator, message: message)
   end
 
   def type
-    transport[wsdl].get_class_type(resource[:name]).first
+    transport[wsdl].call(:get_value_type, message: { files: resource[:name]})
   end
 
   def type=(value)
@@ -62,7 +75,7 @@ Puppet::Type.type(:f5_external_class).provide(:f5_external_class, :parent => Pup
     # F5 external class can not conflict with address, string, or value class
     # namevar.  Since Puppet can not enforce unique resource names, it is not
     # safe to delete the class.
-    Puppet.debug("Puppet::Provider::F5_external_class: creating F5 string class #{resource[:name]}")
+    Puppet.debug("Puppet::Provider::F5_external_class: creating F5 external class #{resource[:name]}")
 
     metainfo = {
                  :class_name  => resource[:name],
@@ -76,9 +89,14 @@ Puppet::Type.type(:f5_external_class).provide(:f5_external_class, :parent => Pup
   end
 
   def destroy
-    Puppet.debug("Puppet::Provider::F5_external_class: deleting F5 string class #{resource[:name]}")
+    Puppet.debug("Puppet::Provider::F5_external_class: deleting F5 external class #{resource[:name]}")
 
     transport[wsdl].delete_class(resource[:name])
+  end
+
+  def refresh
+    Puppet.debug("Puppet::Provider::F5_external_class: refreshing F5 external class #{resource[:name]}")
+    transport[wsdl].set_external_class_file_name(resource[:name], resource[:file_name])
   end
 
   def exists?

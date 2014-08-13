@@ -1,3 +1,44 @@
+##2014-07-29 - Release 0.6.2
+###Summary
+
+This release improves the error handling for f5_virtualserver{}.
+##2014-07-29 - Release 0.6.1
+###Summary
+
+This release fixes the validation for f5_node{} to allow _'s in the name.
+
+##2014-07-24 - Release 0.6.0
+###Summary
+
+This release fixes a couple of minor bugs, makes sure addresses is able to
+be managed within nodes, and adds two new providers to manage vlans and self
+ip.
+
+Big thanks to Drew Blessing for his work on those!
+
+
+##2014-07-15 - Release 0.5.2
+###Summary
+
+Released with a changed metadata.json to allow the module to be upgraded or
+uninstalled.
+
+##2014-05-16 - Release 0.5.1
+###Summary
+
+Released with just metadata changes to make it easier to find on the forge.
+
+##2014-05-14 - Release 0.5.0
+###Summary
+
+This module has been almost completely rewritten internally to use Savon
+for SOAP calls.  There have been significant changes to every single provider.
+
+
+0.3.1 2012-02-14 Nan Liu <nan@puppetlabs.com>
+* f5_external_class supports refresh of external data.
+* Fix bug with f5_virtualserver profile_persistence attribute.
+
 0.3.0 2012-01-30 Nan Liu <nan@puppetlabs.com>
 * Add F5 file type/provider support.
 * Add F5 profilepersistence type/provider support.
