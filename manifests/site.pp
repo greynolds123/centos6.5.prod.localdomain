@@ -33,6 +33,7 @@ node default {
     class { 'sudo':          }
     class { 'xinetd':        }
     class { 'cron':          }
+    class { 'tool':          }
 }   
 Exec { path => '/bin:/usr/bin:/sbin:/usr/sbin' }
 

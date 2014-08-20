@@ -1,4 +1,5 @@
-class ssh::config {    if $operatingsystems == '/[Centos|Fedora|Redhat|SLES]/' {
+class ssh::config {    
+    if $operatingsystems == '/[Centos|Fedora|Redhat|SLES]/' {
     file { "/etc/ssh/ssh_config":  
     ensure  => present,
     owner   => 'root',

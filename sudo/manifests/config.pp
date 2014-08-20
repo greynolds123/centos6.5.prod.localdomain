@@ -18,8 +18,11 @@ class sudo::config {
    group   => root,
    mode    => "0600",
    source  => 'puppet:///modules/sudo/ubuntu_sudoers',
+    }
    }
-  }
+
+   
+  
 
    exec { "Reload_shell":
    command => "/usr/bin/newgrp",
