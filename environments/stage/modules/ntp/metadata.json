@@ -1,0 +1,32 @@
+{
+  "license": "Apache 2.0",
+  "author": "Matthias Saou",
+  "project_page": "https://github.com/thias/puppet-ntp",
+  "dependencies": [
+
+  ],
+  "version": "1.1.4",
+  "source": "git://github.com/thias/puppet-ntp",
+  "summary": "Network Time Protocol module",
+  "name": "thias-ntp",
+  "description": "Install, enable and configure ntpd for both client and server use.",
+  "types": [
+
+  ],
+  "checksums": {
+    "manifests/init.pp": "a3755c5d6c94f9c02806391ccf7394be",
+    "templates/ntp.conf-gentoo.orig": "dc50e31c2d46104d40c1a494af1f9fc6",
+    "templates/ntp.conf-rhel.erb": "e48c2c8d851a598403784fe243308081",
+    "ChangeLog": "c0f65855383c8db72bf6dc662659d802",
+    "templates/ntp.conf-gentoo.erb": "70fe6f03dabcbaff8a7726d6b0e0bf04",
+    "templates/ntpd-logrotate.erb": "352ee4676f2319b51c8fb7a8c92e10cf",
+    "tests/init.pp": "4a7666d02e4a3d43324f16a37c8802e9",
+    "templates/ntp.conf-rhel.orig": "2ce42df01efc8b1745097faa7b83d9e5",
+    "manifests/params.pp": "194d8e3c02c78c425f2cfde97749ab3b",
+    "templates/chrony.conf-rhel.erb": "97d224e3a8486a6324ee37ca40e78644",
+    "README.md": "a99317ac8e022631aded21cfdee983cb",
+    "Modulefile": "64cc0749bd95d8d08ecebace438066ce",
+    "templates/chrony.conf-rhel.orig": "be748b51ff69a262103208cdc14c3c27",
+    "LICENSE": "83e46d88c72d131428fd758472adc03a"
+  }
+}

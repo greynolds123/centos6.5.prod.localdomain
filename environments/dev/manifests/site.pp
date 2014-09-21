@@ -1,21 +1,37 @@
-node dev {
-    class { 'dev':
-    $domain ='*.dev.localdomain  = [ dev ]' }
+node default {
+    $domain ='*.dev.localdomain = [ dev ]' }
+    if $hostname =~ /^www(\d+)\./ {
+    notice {"Your modules will deploy to the dev group":}
     class { 'history':       }
-    class { 'deploy-cobbler':}
-    class { 'bind':          }
-    class { 'users':         }
-    class { 'apache':        }
+    class { 'nagios':        }
+    #class { 'deploy-cobbler':}
+    #class { 'bind':          }
+    #class { 'mysql':          }
+    class { 'webserver':      }
+    class { 'users':          }
+    #class  { 'apache':        }
+    #class  { 'dism':          }
+    class  { 'f5':            }
+    class  { 'java':          }
+    #class  { 'mcollective':   }
+    class  { 'netapp':        }
+    #class  { 'openstack':     }
+    #class  { 'razor':         }
+    #class  { 'splunk':        }
+    #class  { 'vmware_lib':    }
+    #class  { 'vmwaretools':   }
+    #class  { 'regiastry':     }
     class { 'yum':           }
-    class { 'ntp':           }
+    #class { 'ntp':           }
     class { 'ldap':          }
-    class { 'puppet':        }
-    class { 'selinux':       }
-    class { 'loadbalancer':  }
+    #class { 'puppet':        }
+    #class { 'selinux':       }
+    #class { 'loadbalancer':  }
     class { 'ssh':           }
     class { 'sudo':          }
-     }
-    }
-
-Exec { Path ='/bin:/usr/bin:/sbin:/usr/sbin' }
+    class { 'xinetd':        }
+    class { 'cron':          }
+    class { 'tool':          }
+}   
+Exec { path => '/bin:/usr/bin:/sbin:/usr/sbin' }
 

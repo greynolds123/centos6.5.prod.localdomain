@@ -1,3 +1,3 @@
-node default {
-$domain = "Rhel6.dev.localdomain"}
+node dev {
+$domain = "Rhel6.5.dev.localdomain"}
 

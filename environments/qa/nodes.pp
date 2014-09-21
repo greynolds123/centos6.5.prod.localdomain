@@ -1,3 +1,3 @@
-node default {
-$domain = "puppet.puppetlabs.vm"}
+node qa {
+$domain = "Rhel6.5.qa.localdomain"}
 

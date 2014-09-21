@@ -1,0 +1,32 @@
+{
+  "checksums": {
+    "example.yaml": "40bcf1db8d2e1a1da8ab385d6c2014c6",
+    "templates/nsswitch.conf.erb": "1b3ba0bba475b1e382047c5a805c476d",
+    "templates/sssd.conf.erb": "a1be5c2867e4137addd206eb81b9a8da",
+    "templates/ldap.conf.erb": "e92efb64551e7caaa46672779d2d3b5c",
+    "templates/system-auth.erb": "f5cecae6f3fe8ad3a5e58b74261ef4d2",
+    "Rakefile": "f37e6131fe7de9a49b09d31596f5fbf1",
+    "spec/spec_helper.rb": "3ea886dd135e120afa31e0aab12e85b0",
+    "manifests/config.pp": "14ff5c7cfbbc79dad33239db5d9cd4a5",
+    "Modulefile": "61a74a45a8867b4e41f520899f2c7e26",
+    "README.md": "15f3f09c548e48182977451a93e13905",
+    "manifests/service.pp": "87f0ec0f5d9e5aba97ef08e2b96b2caf",
+    "manifests/install.pp": "bd043aa4bcac4c8047759ff6516329db",
+    "manifests/init.pp": "29fc46fdb7b4eaa38a0a2301cffbe9ed",
+    "tests/init.pp": "8944098eb61111f55d654e36e47b0d01"
+  },
+  "license": "Apache License, Version 2.0",
+  "version": "0.1.1",
+  "source": "https://github.com/erwbgy/puppet-pamldap.git",
+  "types": [
+
+  ],
+  "description": "Use LDAP for user login/authentication/authorisation/name resolution",
+  "summary": "Use LDAP for user login/authentication/authorisation/name resolution",
+  "author": "erwbgy",
+  "name": "erwbgy-pamldap",
+  "dependencies": [
+
+  ],
+  "project_page": "http://erwbgy.github.com/puppet-pamldap/"
+}
