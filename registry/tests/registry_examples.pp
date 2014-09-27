@@ -69,14 +69,22 @@ class registry_example {
     data   => [ 'one', 'two', 'three' ],
   }
 
+<<<<<<< HEAD
   $some_string = "somestring"
+=======
+  $some_string = 'somestring'
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
   registry_value { 'HKLM\Software\Vendor\Bar\valuearray2':
     ensure => present,
     type   => array,
     data   => [ 0, 'zero', '0', 123456, 'two', $some_string ],
   }
 
+<<<<<<< HEAD
   $some_array = [ "array1", "array2", "array3" ]
+=======
+  $some_array = [ 'array1', 'array2', 'array3' ]
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
   registry_value { 'HKLM\Software\Vendor\Bar\valuearray3':
     ensure => present,
     type   => array,

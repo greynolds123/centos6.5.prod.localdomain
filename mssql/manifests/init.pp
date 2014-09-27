@@ -11,7 +11,11 @@ class mssql (
   $rssvcpassword  = 'sqlrssvc2008demo',
   $sqlsvcaccount  = 'SQLSVC',
   $sqlsvcpassword = 'sqlsvc2008demo',
+<<<<<<< HEAD
   $instancedir    = "C:\\Program Files\\Microsoft SQL Server",
+=======
+  $instancedir    = 'C:\\Program Files\\Microsoft SQL Server',
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
   $ascollation    = 'Latin1_General_CI_AS',
   $sqlcollation   = 'SQL_Latin1_General_CP1_CI_AS',
   $admin          = 'Administrator'

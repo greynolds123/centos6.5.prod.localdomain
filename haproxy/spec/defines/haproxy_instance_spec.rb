@@ -1,10 +1,22 @@
 require 'spec_helper'
 
+<<<<<<< HEAD
+=======
+________________
+
+Define here how capture the data from the metadata and add it to pass it to the modules
+
+
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
 describe 'haproxy::instance', :type => :define do
   let (:pre_condition) { '$concat_basedir = "/tmp"' }
 
   describe 'without parameters' do
+<<<<<<< HEAD
     let (:facts) { debian_facts }
+=======
+    let (:facts) { rhel_facts }
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
     let (:title) { '_VALUE_' }
 
     it do
@@ -14,7 +26,11 @@ describe 'haproxy::instance', :type => :define do
 
   describe 'with parameter: ensure' do
     context 'ensure => present' do
+<<<<<<< HEAD
       let (:facts) { debian_facts }
+=======
+      let (:facts) { rhel_facts }
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
       let (:title) { '_NAME_' }
       let (:params) {
         {
@@ -29,7 +45,11 @@ describe 'haproxy::instance', :type => :define do
     end
 
     context 'ensure => present' do
+<<<<<<< HEAD
       let (:facts) { debian_facts }
+=======
+      let (:facts) { rhel_facts }
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
       let (:title) { '_NAME_' }
       let (:params) {
         {
@@ -45,7 +65,11 @@ describe 'haproxy::instance', :type => :define do
   end
 
   describe 'with parameter: acl' do
+<<<<<<< HEAD
     let (:facts) { debian_facts }
+=======
+    let (:facts) { rhel_facts }
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
     let (:title) { '_NAME_' }
     let (:params) {
       {
@@ -63,7 +87,11 @@ describe 'haproxy::instance', :type => :define do
   end
 
   describe 'with parameter: acl_backend' do
+<<<<<<< HEAD
     let (:facts) { debian_facts }
+=======
+    let (:facts) { rhel_facts }
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
     let (:title) { '_NAME_' }
     let (:params) {
       {
@@ -83,7 +111,11 @@ describe 'haproxy::instance', :type => :define do
   end
 
   describe 'with parameter: acl_header' do
+<<<<<<< HEAD
     let (:facts) { debian_facts }
+=======
+    let (:facts) { rhel_facts }
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
     let (:title) { '_NAME_' }
     let (:params) {
       {
@@ -103,7 +135,11 @@ describe 'haproxy::instance', :type => :define do
   end
 
   describe 'with parameter: balance' do
+<<<<<<< HEAD
     let (:facts) { debian_facts }
+=======
+    let (:facts) { rhel_facts }
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
     let (:title) { '_NAME_' }
     let (:params) {
       {
@@ -121,7 +157,11 @@ describe 'haproxy::instance', :type => :define do
   end
 
   describe 'with parameter: bind' do
+<<<<<<< HEAD
     let (:facts) { debian_facts }
+=======
+    let (:facts) { rhel_facts }
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
     let (:title) { '_NAME_' }
     let (:params) {
       {
@@ -140,7 +180,11 @@ describe 'haproxy::instance', :type => :define do
 
   describe 'with parameter: default_backend' do
     context 'instance => listen' do
+<<<<<<< HEAD
       let (:facts) { debian_facts }
+=======
+      let (:facts) { rhel_facts }
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
       let (:title) { '_NAME_' }
       let (:params) { {
         :default_backend => '_VALUE_',
@@ -157,7 +201,11 @@ describe 'haproxy::instance', :type => :define do
     end
 
     context 'instance => frontend' do
+<<<<<<< HEAD
       let (:facts) { debian_facts }
+=======
+      let (:facts) { rhel_facts }
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
       let (:title) { '_NAME_' }
       let (:params) {
         {
@@ -175,7 +223,11 @@ describe 'haproxy::instance', :type => :define do
     end
 
     context 'instance => backend' do
+<<<<<<< HEAD
       let (:facts) { debian_facts }
+=======
+      let (:facts) { rhel_facts }
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
       let (:title) { '_NAME_' }
       let (:params) { {
         :default_backend => '_VALUE_',
@@ -193,7 +245,11 @@ describe 'haproxy::instance', :type => :define do
   end
 
   describe 'with parameter: mode' do
+<<<<<<< HEAD
     let (:facts) { debian_facts }
+=======
+    let (:facts) { rhel_facts }
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
     let (:title) { '_NAME_' }
     let (:params) { {
       :mode => '_VALUE_',
@@ -209,7 +265,11 @@ describe 'haproxy::instance', :type => :define do
   end
 
   describe 'with parameter: option' do
+<<<<<<< HEAD
     let (:facts) { debian_facts }
+=======
+    let (:facts) { rhel_facts }
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
     let (:title) { '_NAME_' }
     let (:params) { {
       :option => [ '_VALUE_' ],
@@ -226,7 +286,11 @@ describe 'haproxy::instance', :type => :define do
 
   describe 'with parameter: server' do
     context 'instance => listen' do
+<<<<<<< HEAD
       let (:facts) { debian_facts }
+=======
+      let (:facts) { rhel_facts }
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
       let (:title) { '_NAME_' }
       let (:params) {
         {
@@ -244,7 +308,11 @@ describe 'haproxy::instance', :type => :define do
     end
 
     context 'instance => frontend' do
+<<<<<<< HEAD
       let (:facts) { debian_facts }
+=======
+      let (:facts) { rhel_facts }
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
       let (:title) { '_NAME_' }
       let (:params) {
         {
@@ -262,7 +330,11 @@ describe 'haproxy::instance', :type => :define do
     end
 
     context 'instance => backend' do
+<<<<<<< HEAD
       let (:facts) { debian_facts }
+=======
+      let (:facts) { rhel_facts }
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
       let (:title) { '_NAME_' }
       let (:params) {
         {

@@ -1,0 +1,2 @@
+pamldap::base_dn: 'dc=example,dc=com'
+pamldap::uris: [ 'ldap://10.0.96.13', 'ldap://10.1.96.13' ]

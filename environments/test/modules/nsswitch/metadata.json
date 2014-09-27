@@ -1,0 +1,31 @@
+{
+  "author": "ghoneycutt",
+  "name": "ghoneycutt-nsswitch",
+  "summary": "Manage nsswitch",
+  "checksums": {
+    "templates/nsswitch.conf.erb": "20742e0791c71d3ef2e651abc311c474",
+    "README.md": "1122678cc36fe1f4561b9399fd0b66f5",
+    "CHANGELOG": "d8c5d90b741949c4fd8c3e80b05fd9c4",
+    "LICENSE": "7adbf0cac6bb2f12810260eabee41039",
+    "spec/classes/init_spec.rb": "31e75d6d77b59aa714b8764fd9a0795d",
+    "Rakefile": "8ff6a0f7db638421d1742c5d365d0266",
+    "spec/spec_helper.rb": "3ea886dd135e120afa31e0aab12e85b0",
+    "Modulefile": "ccba13f4153987827a8dd0f9c2c1c05d",
+    "manifests/init.pp": "95c5b94dd6f5c636ba2a5f71e1d71a6b",
+    "Gemfile": "6992d521994d948eb6e48acd733a07bf"
+  },
+  "source": "git://github.com/ghoneycutt/puppet-module-nsswitch.git",
+  "license": "Apache License, Version 2.0",
+  "dependencies": [
+    {
+      "version_requirement": ">= 3.2.0",
+      "name": "puppetlabs/stdlib"
+    }
+  ],
+  "version": "1.1.0",
+  "description": "Manage nsswitch. Supports LDAP integration.",
+  "project_page": "https://github.com/ghoneycutt/puppet-module-nsswitch",
+  "types": [
+
+  ]
+}

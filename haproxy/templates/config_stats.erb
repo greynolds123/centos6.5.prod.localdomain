@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <% if @stats_enable %>listen stats <%= @stats_listen_address %>:<%= @stats_listen_port %>
 	mode  http
 	stats enable
@@ -5,3 +6,26 @@
 	stats realm <%= @stats_realm %>
 	<% if @stats_auth_enable %>stats auth <%= @stats_auth_user %>:<%= @stats_auth_pass %><% end %>
 <% end %>
+=======
+listen $PROXYNAME
+bind $ipaddress:$port
+mode http
+stats enable
+stats auth greynolds:password1
+option httplog
+option httpclose
+option forwardfor
+log global
+balance roundrobin
+server $PROXYNAME app1  $ipaddress:$port cookie $PROXYNAME app1 check inter 2000 rise 2 fall 3
+server $PROXYNAME app3  $ipaddress:$port cookie $PROXYNAME app3 check inter 2000 rise 2 fall 3
+
+listen $PROXYNAME
+bind $ipaddress:$port
+mode tcp
+option tcplog
+balance roundrobin
+server $PROXYNAME app2 $ipaddress:443 cookie $PROXYNAME app2  check inter 2000 rise 2 fall 3
+server $PROXYNAME app4 $ipaddress:443 cookie $PROXYNAME app4  check inter 2000 rise 2 fall 3
+
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
