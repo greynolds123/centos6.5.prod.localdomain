@@ -1,9 +1,9 @@
 class cron::config {
-  cron { "clearCache":
+  cron { 'clearCache':
    ensure  => present,
-   user    => "root",
-   command => "/bin/sh /root/clearCache.sh",
-   hour => "2",
-   minute => "15"
+   user    => 'root',
+   command => '/bin/sh /root/clearCache.sh',
+   hour    => '2',
+   minute  => '15'
  }
 }

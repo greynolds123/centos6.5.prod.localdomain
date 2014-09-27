@@ -1,5 +1,5 @@
 class cobbler::web-conf {
-     file { "/etc/httpd/conf.d/cobbler_web.conf":
+     file { '/etc/httpd/conf.d/cobbler_web.conf':
      ensure  =>  present,
      owner   =>  root,
      group   =>  root,

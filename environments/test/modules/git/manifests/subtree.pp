@@ -36,9 +36,9 @@ class git::subtree {
   }
   ->
   exec { "/usr/bin/make prefix=/usr libexecdir=${::git_exec_path} install":
-    path    => "/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin",
-    onlyif  => "grep -c /usr/ /usr/libexecdir && exit 1 || exit 0", 
-    cwd     => $source_dir
+    path   => '/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin',
+    onlyif => 'grep -c /usr/ /usr/libexecdir && exit 1 || exit 0',
+    cwd    => $source_dir
   }
 
   file { '/etc/bash_completion.d/git-subtree':

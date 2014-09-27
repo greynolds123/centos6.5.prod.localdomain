@@ -33,9 +33,9 @@ class r10k::webhook(
     before  => File['webhook_bin'],
   }
   file { 'webhook_bin':
-    source  => 'puppet:///modules/r10k/webhook',
-    path    => '/usr/local/bin/webhook',
-    notify  => Service['webhook'],
+    source => 'puppet:///modules/r10k/webhook',
+    path   => '/usr/local/bin/webhook',
+    notify => Service['webhook'],
   }
 
   service { 'webhook':

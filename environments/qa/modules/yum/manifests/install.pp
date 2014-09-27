@@ -1,13 +1,13 @@
 class yum::install {
-   package { "yum":
+   package { 'yum':
     ensure  =>  install,
     path    => '/etc/yum',
-    owner   => "root",
-    group   => "root",
-    mode    => "0644",
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
     require => Class['yum::params'],
     }
   }
-   package { "yum-utils":
+   package { 'yum-utils':
     ensure  => present,
     }

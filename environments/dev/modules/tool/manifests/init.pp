@@ -1,3 +1,3 @@
 class tool {
-    include tool::config 
+    include tool::config
     }

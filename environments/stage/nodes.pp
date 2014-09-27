@@ -1,3 +1,3 @@
-node stage {
-$domain = "centos7.prod.slave.localdomain"}
+node 'stage' {
+$domain = 'centos7.prod.slave.localdomain'}
 

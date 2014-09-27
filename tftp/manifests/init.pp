@@ -36,8 +36,8 @@ class tftp (
 ) inherits tftp::params {
 
   package { 'tftpd-hpa':
-    ensure  => present,
-    name    => $package,
+    ensure => present,
+    name   => $package,
   }
 
   if $defaults {

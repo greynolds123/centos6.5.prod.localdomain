@@ -7,4 +7,4 @@ class ssh::params {
        $ssh_package_name = 'openssh'
       }
    }
- }      
+ }

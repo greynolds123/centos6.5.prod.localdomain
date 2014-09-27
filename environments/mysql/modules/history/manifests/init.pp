@@ -1,3 +1,3 @@
 class history {
-   include  history::config 
+   include  history::config
      }

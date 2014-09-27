@@ -1,3 +1,3 @@
-node test {
-$domain = "Rhel7.test.localdomain"}
+node 'test' {
+$domain = 'Rhel7.test.localdomain'}
 

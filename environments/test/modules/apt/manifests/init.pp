@@ -88,8 +88,8 @@ class apt(
 
   if $purge_preferences {
     file { 'apt-preferences':
-      ensure  => absent,
-      path    => "${root}/preferences",
+      ensure => absent,
+      path   => "${root}/preferences",
     }
   }
 
@@ -136,9 +136,9 @@ class apt(
   }
 
   file { 'old-proxy-file':
-    ensure  => absent,
-    path    => "${apt_conf_d}/proxy",
-    notify  => Exec['apt_update'],
+    ensure => absent,
+    path   => "${apt_conf_d}/proxy",
+    notify => Exec['apt_update'],
   }
 
   # Need anchor to provide containment for dependencies.

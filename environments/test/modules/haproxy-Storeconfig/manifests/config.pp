@@ -5,9 +5,9 @@ class haproxy::config inherits haproxy {
   }
 
   concat { '/etc/haproxy/haproxy.cfg':
-    owner   => '0',
-    group   => '0',
-    mode    => '0644',
+    owner => '0',
+    group => '0',
+    mode  => '0644',
   }
 
   # Simple Header

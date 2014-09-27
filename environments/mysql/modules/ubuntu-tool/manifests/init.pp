@@ -1,3 +1,3 @@
 class tool {
-    include ubuntu-tool::config 
+    include ubuntu-tool::config
     }

@@ -1,5 +1,5 @@
 class deploy-cobbler::service {
-     service { "clobberd":
+     service { 'clobberd':
        ensure     => running,
        hasstatus  => true,
        hasrestart => true,
@@ -7,7 +7,7 @@ class deploy-cobbler::service {
        reauire    => Class[deploy-cobbler::config],
        }
      }
-exec { "chk_cobblerd":
-     command  => "/sbin/chkconfig --level 035 cobblerd on",
-     path     => "/bin:/usr/sbin:/sbin:/usr/sbin",
+exec { 'chk_cobblerd':
+     command => '/sbin/chkconfig --level 035 cobblerd on',
+     path    => '/bin:/usr/sbin:/sbin:/usr/sbin',
      }

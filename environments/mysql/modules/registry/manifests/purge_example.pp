@@ -107,7 +107,7 @@ class registry::purge_example {
       }
     }
     default: {
-      notify { "purge_example_notice":
+      notify { 'purge_example_notice':
         message => "The purge_example_mode fact is not set.  To try this
         example class first set \$env:FACTER_PURGE_EXAMPLE_MODE = 'setup' then
         run puppet agent, then set \$env:FACTER_PURGE_EXAMPLE_MODE = 'purge'

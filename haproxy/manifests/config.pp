@@ -2,7 +2,7 @@
 #
 class haproxy::config {
   File {
-    require => Class['::haproxy::install'],
+    require  => Class['::haproxy::install'],
     notify  => Service[$::haproxy::service_name],
     owner   => $::haproxy::config_user,
     group   => $::haproxy::config_group,
@@ -46,9 +46,9 @@ class haproxy::config {
   }
 
   concat { "${::haproxy::config_dir}/haproxy.cfg":
-    owner   => $::haproxy::config_user,
-    group   => $::haproxy::config_group,
-    mode    => $::haproxy::config_file_mode,
+    owner => $::haproxy::config_user,
+    group => $::haproxy::config_group,
+    mode  => $::haproxy::config_file_mode,
   }
 
   concat::fragment { 'haproxy.cfg_header':
@@ -79,7 +79,7 @@ class haproxy::config {
 }
    
    augeas { 'sysctl_changes':
-    context => '/files/etc/sysctl.conf',
+    context  => '/files/etc/sysctl.conf',
      changes => [
       'set net.core.somaxconn 16384',
       'set net.core.rmem_max  16777216',
@@ -96,38 +96,41 @@ class haproxy::config {
    notify {'Check sysconfig content': }
 
     exec { 'haproxy_install':
-     command  => '/bin/yum install haproxy -y',
-     path     => '/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin',
-     before   => Exec['restarting_rsyslog'],
+     command => '/bin/yum install haproxy -y',
+     path    => '/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin',
+     before  => Exec['restarting_rsyslog'],
      }
 
 
-    file { "/var/log/haproxy":
-     ensure  => "directory",
-    } 
-   
-    file { "/etc/rsyslog.conf":
-     ensure  => present,
-     owner   => "root",
-     group   => "root",
-     mode    => 0644,
-     content => template('haproxy/rsyslog.erb'),
-     }
+    file { '/var/log/haproxy':
+     ensure  => 'directory',
+    }
+
+ 
+     file { '/etc/rsyslog.conf':
+      ensure  => present,
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+      content => template('haproxy/rsyslog.erb'),
+      }
     
-    augeas { "rsyslog":
-      context => "/files/etc/rsyslog.conf",
+
+     augeas { 'rsyslog_entry':
+      context  => '/files/etc/rsyslog.conf',
        changes => [
-          "set entry[last()+1]/selector/facility local2",
-          "set entry[last()]/selector/level *",
+          'set entry[last()+1]/selector/facility local2',
+          'set entry[last()]/selector/level *',
           "set entry[last()]/action/file '/var/log/haproxy/haproxy.log'",
           ],
      }
 
+
      notify {'You will have to restart rsyslog': }
       
 
-     exec { "restarting_rsyslog":
+     exec { 'restarting_rsyslog':
       command => '/sbin/service rsyslog restart',
       path    => '/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin',
-      onlyif  => 'grep -c /etc/ /etc/rsyslog && exit 1 || exit 0'
+      onlyif  => 'grep -c /etc/ /etc/rsyslog && exit 1 || exit 0',
       }

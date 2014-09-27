@@ -1,7 +1,7 @@
 node default {
     $domain ='*.test.localdomain = [ test ]' }
     if $hostname =~ /^www(\d+)\./ {
-    notice {"Your modules will deploy to the test group":}
+    notice {'Your modules will deploy to the test group':}
     class { 'history':       }
     class { 'nagios':        }
     #class { 'deploy-cobbler':}
@@ -32,6 +32,6 @@ node default {
     class { 'xinetd':        }
     class { 'cron':          }
     class { 'tool':          }
-}   
+}
 Exec { path => '/bin:/usr/bin:/sbin:/usr/sbin' }
 

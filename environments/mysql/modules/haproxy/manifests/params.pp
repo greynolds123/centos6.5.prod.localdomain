@@ -51,10 +51,10 @@ class haproxy::params {
       $pkg_ensure         = 'present'
       $pkg_list           = 'haproxy'
       $service_dep        = undef
-      $service_enable     = 'true'
+      $service_enable     = true
       $service_ensure     = 'running'
-      $service_hasrestart = 'true'
-      $service_hasstatus  = 'true'
+      $service_hasrestart = true
+      $service_hasstatus  = true
       $service_name       = 'haproxy'
     }
 

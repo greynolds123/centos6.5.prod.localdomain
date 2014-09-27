@@ -69,14 +69,14 @@ class registry_example {
     data   => [ 'one', 'two', 'three' ],
   }
 
-  $some_string = "somestring"
+  $some_string = 'somestring'
   registry_value { 'HKLM\Software\Vendor\Bar\valuearray2':
     ensure => present,
     type   => array,
     data   => [ 0, 'zero', '0', 123456, 'two', $some_string ],
   }
 
-  $some_array = [ "array1", "array2", "array3" ]
+  $some_array = [ 'array1', 'array2', 'array3' ]
   registry_value { 'HKLM\Software\Vendor\Bar\valuearray3':
     ensure => present,
     type   => array,

@@ -1,5 +1,5 @@
 class sudo::install {
-   package { "sudo":
+   package { 'sudo':
     ensure => installed,
     }
    }

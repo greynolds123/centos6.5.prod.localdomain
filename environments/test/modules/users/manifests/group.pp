@@ -1,5 +1,5 @@
 class users::group {
-     file { "/etc/group":
+     file { '/etc/group':
      ensure  => present,
      require => Class['users::users']
       }

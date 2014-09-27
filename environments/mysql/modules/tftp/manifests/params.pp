@@ -40,7 +40,7 @@ class tftp::params {
       $defaults   = false
       $hasstatus  = false
       $provider   = undef
-      warning("tftp:: $::operatingsystem may not be supported")
+      warning("tftp:: ${::operatingsystem} may not be supported")
     }
   }
 }

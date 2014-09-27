@@ -3,14 +3,14 @@ class webserver::nginx::web {
      ensure  => present,
      user    => 'root',
      owner   => 'root',
-     mode    => 0755,
-     source  => 'file:///modules/webserver/index.html',    
+     mode    => '0755',
+     source  => 'file:///modules/webserver/index.html',
      require => Class['webserver::nginx::config']
       }
      }
 
      file { '/usr/share/nginx/logs':
-     ensure  => "directory",
-     mode    => 0755,
+     ensure => 'directory',
+     mode   => '0755',
      }
 

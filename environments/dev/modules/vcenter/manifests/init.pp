@@ -54,7 +54,7 @@ class vcenter (
 
   registry::value { 'Driver':
     value => 'Driver',
-    data  => "C:\\Windows\\system32\\sqlncli10.dll",
+    data  => 'C:\\Windows\\system32\\sqlncli10.dll',
     type  => string,
   }
 
