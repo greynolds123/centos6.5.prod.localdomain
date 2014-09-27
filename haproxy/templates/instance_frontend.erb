@@ -1,0 +1,8 @@
+frontend <%= @name %>
+	mode            <%= @mode %>
+	bind            <%= @bind %>
+<% @option.each do |option| -%>
+	option          <%= option %>
+<% end -%>
+	default_backend <%= @default_backend %>
+
