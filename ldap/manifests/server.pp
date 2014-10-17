@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
 # == Class: ldap::server
 #
 #  This class manages the installation and configuration of an OpenLDAP Server
@@ -149,7 +152,11 @@ class ldap::server (
   class { '::ldap::server::config': } ~>
   class { '::ldap::server::service': } ->
   anchor { 'ldap::server::end': }
+<<<<<<< HEAD
 =======
+=======
+
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
 define ldap::server (
   $ensure                = $ldap::server::config::ensure,
   $server_nodes          = $ldap::server::config::server_nodes,
@@ -262,9 +269,15 @@ define ldap::server (
       # safe to continue.  Otherwise, we don't want to do anything other than
       # install packages.
       exec{ 'ldap-notify-if-uninitialized':
+<<<<<<< HEAD
         command  => 'true',
         notify   => Exec[ 'ldap-remove-conf' ],
         unless    => "test -d '${ldap_conf_dir}'",
+=======
+        command => true,
+        notify  => Exec[ 'ldap-remove-conf' ],
+        unless  => "test -d '${ldap_conf_dir}'",
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
       }
 
       # Install our packages after we checked for an existing config and before
@@ -283,16 +296,27 @@ define ldap::server (
         command     => $exec_remove_conf,
         require     => Package[ $packages ],
         notify      => Exec[ 'ldap-server-init' ],
+<<<<<<< HEAD
         refreshonly => 'true',
+=======
+        refreshonly => true,
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
       }
 
       # Check to see if our directory base exists.  We don't want to touch
       # our ldap directory config if it does exist!
       exec{ 'ldap-notify-if-no-directory-base':
+<<<<<<< HEAD
         command  => 'true',
         notify   => Exec[ 'ldap-directory-populate' ],
         before   => Directory[ $directory_base ],
         unless   => "test -d '${directory_base}'",
+=======
+        command => true,
+        notify  => Exec[ 'ldap-directory-populate' ],
+        before  => Directory[ $directory_base ],
+        unless  => "test -d '${directory_base}'",
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
       }
 
       # Create the filesystem directories what will be used to store our
@@ -323,7 +347,11 @@ define ldap::server (
         command     => $exec_ssl_cert_create,
         unless      => $exec_ssl_cert_exists,
         before      => Exec[ 'ldap-server-init' ],
+<<<<<<< HEAD
         refreshonly => 'true',
+=======
+        refreshonly => true,
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
       }
 
       # Create our ldif files that will be used to configure our server
@@ -352,6 +380,7 @@ define ldap::server (
       # Now that everything is in place, we can initialize our server config.
       # This is only done if we did not have a config in place to begin with.
       exec{ 'ldap-server-init':
+<<<<<<< HEAD
         user      => $user,
         group     => $group,
         command   => $exec_server_init,
@@ -365,6 +394,21 @@ define ldap::server (
         subscribe   => Exec[ 'ldap-server-init' ],
         notify      => Service[ $service ],
         refreshonly => 'true',
+=======
+        user        => $user,
+        group       => $group,
+        command     => $exec_server_init,
+        require     => Ldap::Utils[ 'ldap::utils' ],
+        refreshonly => true,
+      }
+      exec{ 'ldap-server-populate':
+        user        => $user,
+        group       => $group,
+        command     => $exec_server_populate,
+        subscribe   => Exec[ 'ldap-server-init' ],
+        notify      => Service[ $service ],
+        refreshonly => true,
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
       }
 
       ldap::server::mk_directory_paths{ $directories:
@@ -378,9 +422,15 @@ define ldap::server (
       
       # Restart our service once our config has been initialized.
       service{ $service:
+<<<<<<< HEAD
         ensure    => 'running',
         enable    => 'true',
         before         => Exec[ 'ldap-directory-init' ],
+=======
+        ensure => 'running',
+        enable => true,
+        before => Exec[ 'ldap-directory-init' ],
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
       }
 
       # Now it is time to create our directories, but only if we created
@@ -394,7 +444,11 @@ define ldap::server (
         command     => $exec_directory_init,
         subscribe   => Exec[ 'ldap-server-populate' ],
         unless      => $exec_directory_is_initialized,
+<<<<<<< HEAD
         refreshonly => 'true'
+=======
+        refreshonly => true
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
       }
 
       # And now we can populate our directories as long as the directory base
@@ -408,19 +462,31 @@ define ldap::server (
         command     => $exec_directory_populate,
         subscribe   => Exec[ 'ldap-directory-init' ],
         unless      => $exec_directory_is_populated,
+<<<<<<< HEAD
         refreshonly => 'true',
+=======
+        refreshonly => true,
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
       }
     }
 
     'absent','purged': {
       package{ $packages:
+<<<<<<< HEAD
         ensure => $ensure,
+=======
+        ensure  => $ensure,
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
         require => Service[ $service ],
       }
 
       service{ $service:
         ensure => 'stopped',
+<<<<<<< HEAD
         enable => 'false',
+=======
+        enable => false,
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
       }
 
       directory{ $misc_dir:
@@ -436,7 +502,11 @@ define ldap::server (
       }
     }
     default: {
+<<<<<<< HEAD
       fail( "'$ensure' is not a valid value for 'ensure'" )
+=======
+      fail( "'${ensure}' is not a valid value for 'ensure'" )
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
     }
   }
 
@@ -444,5 +514,9 @@ define ldap::server (
     ensure => $ensure,
     notify => Service[ $service ],
   }
+<<<<<<< HEAD
 >>>>>>> 10220c1a980b9d78bb42c987e27b5b07236b6b89
+=======
+ }
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
 }

@@ -41,8 +41,13 @@
 #
 define registry::value($key, $value=undef, $type='string', $data=undef) {
   # validate our inputs.
+<<<<<<< HEAD
   validate_re($key, '^\w+', "key parameter must not be empty but it is key => '$key'")
   validate_re($type, '^\w+', "type parameter must not be empty but it is type => '$type'")
+=======
+  validate_re($key, '^\w+', "key parameter must not be empty but it is key => '${key}'")
+  validate_re($type, '^\w+', "type parameter must not be empty but it is type => '${type}'")
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
 
   $value_real = $value ? {
     undef       => $name,
@@ -54,8 +59,13 @@ define registry::value($key, $value=undef, $type='string', $data=undef) {
   Registry_key { ensure => present }
   Registry_value { ensure => present }
 
+<<<<<<< HEAD
   if !defined(Registry_key["${key}"]) {
     registry_key { "${key}": }
+=======
+  if !defined(Registry_key[$key]) {
+    registry_key { $key: }
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
   }
 
   # If value_real is an empty string then the default value of the key will be

@@ -2,7 +2,11 @@
 #
 class haproxy::config {
   File {
+<<<<<<< HEAD
     require => Class['::haproxy::install'],
+=======
+    require  => Class['::haproxy::install'],
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
     notify  => Service[$::haproxy::service_name],
     owner   => $::haproxy::config_user,
     group   => $::haproxy::config_group,
@@ -46,9 +50,15 @@ class haproxy::config {
   }
 
   concat { "${::haproxy::config_dir}/haproxy.cfg":
+<<<<<<< HEAD
     owner   => $::haproxy::config_user,
     group   => $::haproxy::config_group,
     mode    => $::haproxy::config_file_mode,
+=======
+    owner => $::haproxy::config_user,
+    group => $::haproxy::config_group,
+    mode  => $::haproxy::config_file_mode,
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
   }
 
   concat::fragment { 'haproxy.cfg_header':
@@ -77,4 +87,64 @@ class haproxy::config {
     }
   }
 }
+<<<<<<< HEAD
 
+=======
+   
+   augeas { 'sysctl_changes':
+    context  => '/files/etc/sysctl.conf',
+     changes => [
+      'set net.core.somaxconn 16384',
+      'set net.core.rmem_max  16777216',
+      'set net.core.wmem_max  16777216',
+      'set net.ipv4.tcp_rmem "4096 87380 16777216"',
+      'set net.ipv4.tcp_wmem "4096 65536 16777216"',
+      'set net.ipv4.tcp_syncookies 1',
+      'set net.ipv4.tcp_mem 50576 64768 98152',
+      'set net.core.netdev_max_backlog 2500',
+      'set net.ipv4.ip_forward 1',
+      ],
+    }
+   
+   notify {'Check sysconfig content': }
+
+    exec { 'haproxy_install':
+     command => '/bin/yum install haproxy -y',
+     path    => '/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin',
+     before  => Exec['restarting_rsyslog'],
+     }
+
+
+    file { '/var/log/haproxy':
+     ensure  => 'directory',
+    }
+
+ 
+     file { '/etc/rsyslog.conf':
+      ensure  => present,
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+      content => template('haproxy/rsyslog.erb'),
+      }
+    
+
+     augeas { 'rsyslog_entry':
+      context  => '/files/etc/rsyslog.conf',
+       changes => [
+          'set entry[last()+1]/selector/facility local2',
+          'set entry[last()]/selector/level *',
+          "set entry[last()]/action/file '/var/log/haproxy/haproxy.log'",
+          ],
+     }
+
+
+     notify {'You will have to restart rsyslog': }
+      
+
+     exec { 'restarting_rsyslog':
+      command => '/sbin/service rsyslog restart',
+      path    => '/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin',
+      onlyif  => 'grep -c /etc/ /etc/rsyslog && exit 1 || exit 0',
+      }
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8

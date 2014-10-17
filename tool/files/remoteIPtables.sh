@@ -95,9 +95,17 @@ fi
  
  ssh root@$d  $cwd -A INPUT  -p tcp -s $i --dport 8009 -j ACCEPT
  
+<<<<<<< HEAD
  ssh root@$d  $cwd -A INPUT  -p udp -s $i --dport 8009 -j ACCEPT;
 
  ssh root@$d  $cwd -A INPUT -m limit --limit 15/minute -j LOG --log-level 7 --log-prefix "Dropped"
+=======
+ ssh root@$d  $cwd -A INPUT  -p tcp -s $i --dport 5000 -j ACCEPT
+
+ ssh root@$d  $cwd -A INPUT  -p udp -s $i --dport 8009 -j ACCEPT
+
+ ssh root@$d  $cwd -A INPUT -m limit --limit 15/minute -j LOG --log-level 7 --log-prefix "Dropped";
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
 
        done
 
@@ -137,6 +145,11 @@ fi
  
  ssh root@$d  $cwd -A FORWARD  -p tcp -s $f --dport 8009 -j ACCEPT
  
+<<<<<<< HEAD
+=======
+ ssh root@$d  $cwd -A FORWARD  -p tcp -s $f --dport 5000 -j ACCEPT
+ 
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
  ssh root@$d  $cwd -A FORWARD  -p udp -s $f --dport 8009 -j ACCEPT;
 
 done
@@ -189,9 +202,17 @@ done
 
  ssh root@$d  $cwd -A OUTPUT  -p tcp -s $o --dport 8009 -j ACCEPT
  
+<<<<<<< HEAD
  ssh root@$d  $cwd -A OUTPUT  -p udp -s $o --dport 8009 -j ACCEPT
 
  ssh root@$d  $cwd -A OUTPUT -m limit --limit 15/minute -j LOG --log-level 7 --log-prefix "Dropped"
+=======
+ ssh root@$d  $cwd -A OUTPUT  -p tcp -s $o --dport 5000 -j ACCEPT
+ 
+ ssh root@$d  $cwd -A OUTPUT  -p udp -s $o --dport 8009 -j ACCEPT
+
+ ssh root@$d  $cwd -A OUTPUT -m limit --limit 15/minute -j LOG --log-level 7 --log-prefix "Dropped";
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
 
   done
 

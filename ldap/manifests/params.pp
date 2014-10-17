@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
 # == Class: ldap::params
 #
 # Default paramaters for different operating systems, etc
@@ -92,7 +95,11 @@ class ldap::params {
     }
   }
 }
+<<<<<<< HEAD
 =======
+=======
+
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
 class ldap::params {
    case $operatingsystem {
     Solaris: {
@@ -103,4 +110,7 @@ class ldap::params {
      }
    }
  }
+<<<<<<< HEAD
 >>>>>>> 10220c1a980b9d78bb42c987e27b5b07236b6b89
+=======
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8

@@ -2,6 +2,7 @@
 #
 # Typical Usage:
 #
+<<<<<<< HEAD
 # ldap_entry { 'cn=Foo,ou=Bar,dc=baz,dc=co,dc=uk':
 #   ensure      => present,
 #   host        => '1.2.3.4',
@@ -21,6 +22,27 @@
 #   password    => 'password',
 # }
 #
+=======
+ ldap_entry { 'cn=Foo,ou=Bar,dc=baz,dc=co,dc=uk':
+   ensure      => present,
+   host        => '1.2.3.4',
+   port        => 636,
+   base        => 'dc=baz,dc=co,dc=uk',
+   username    => 'cn=admin,dc=baz,dc=co,dc=uk',
+   password    => 'password',
+   attributes  => { givenName   => 'Foo',
+                    objectClass => ["top", "person", "inetorgPerson"]}
+ }
+
+ ldap_entry { 'cn=Foo,ou=Bar,dc=baz,dc=co,dc=uk':
+   ensure      => absent,
+   base        => 'dc=baz,dc=co,dc=uk',
+   host        => '1.2.3.4',
+   username    => 'cn=admin,dc=baz,dc=co,dc=uk',
+   password    => 'password',
+ }
+
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
 Puppet::Type.newtype(:ldap_entry) do
   @doc = 'Type to manage LDAP entries'
 

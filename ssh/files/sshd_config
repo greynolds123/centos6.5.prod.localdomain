@@ -135,7 +135,11 @@ UsePrivilegeSeparation sandbox		# Default for new installations.
 #VersionAddendum none
 
 # no default banner path
+<<<<<<< HEAD
 #Banner none
+=======
+Banner /etc/issue.net
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
 
 # Accept locale-related environment variables
 AcceptEnv LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES

@@ -26,12 +26,20 @@ class registry::compliance_example {
       $mode = 'setup'
       notify { 'compliance_example_mode_info':
         message => "Switch to audit mode using \$env:FACTER_REGISTRY_COMPLIANCE_EXAMPLE_MODE = 'audit'",
+<<<<<<< HEAD
         before  => Notify["compliance_example_mode"]
+=======
+        before  => Notify['compliance_example_mode']
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
       }
     }
   }
 
+<<<<<<< HEAD
   notify { "compliance_example_mode":
+=======
+  notify { 'compliance_example_mode':
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
     message => "Registry compliance example mode: ${mode}",
   }
 
@@ -67,7 +75,11 @@ class registry::compliance_example {
 
   # Create the nested key structure we want to audit.  The resource defaults
   # will determine the properties managed or audited.
+<<<<<<< HEAD
   registry_key { "${key_path}": }
+=======
+  registry_key { $key_path: }
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
   registry_key { "${key_path}\\SubKeyA": }
   registry_key { "${key_path}\\SubKeyA\\SubKeyA1": }
   registry_key { "${key_path}\\SubKeyA\\SubKeyA2": }

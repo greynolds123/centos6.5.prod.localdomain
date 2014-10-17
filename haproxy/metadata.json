@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "name": "arioch-haproxy",
   "version": "0.0.5",
@@ -49,3 +50,22 @@
     }
   ]
 }
+=======
+{
+  "name": "puppetlabs-haproxy",
+  "version": "0.1.0",
+  "author": "Glynn D. Reynolds and Puppetlabs",
+  "summary": "Software Proxy",
+  "license": "Apache 2.0",
+  "source": "https://forge.puppetlabs.com/puppetlabs/haproxy",
+  "project_page": "https://github.wellsfargo.com/u367471/u367471.local.git",
+  "issues_url": "https://github.wellsfargo.com/u367471/u367471.local.git/issues",
+  "dependencies": [
+    {
+      "name": "puppetlabs-stdlib",
+      "version_range": ">= 1.0.0"
+    }
+  ]
+}
+
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8

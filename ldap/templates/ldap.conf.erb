@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Base server configuration
 BASE <%= @base %>
 URI  <%= @uri %>
@@ -14,3 +15,23 @@ TLS_CERT <%= @ssl_cert %>
 TLS_KEY <%= @ssl_key %>
 TLS_REQCERT <%= @ssl_reqcert %>
 <% end -%>
+=======
+#
+# LDAP Defaults
+#
+
+# See ldap.conf(5) for details
+# This file should be world readable but not world writable.
+
+BASE	dc=centos7,dc=prod,dc=localdomain
+#URI	ldap://ldap.centos7.prod.localdomain ldap://ldap-master.centos7.prod.localdomain:666
+
+SIZELIMIT	12
+TIMELIMIT	15
+DEREF		never
+
+TLS_CACERTDIR	/etc/openldap/certs
+
+# Turning this off breaks GSSAPI used with krb5 when rdns = false
+SASL_NOCANON	on
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8

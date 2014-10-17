@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 global
 	nbproc   <%= @global_nbproc %>
 	maxconn  <%= @global_maxconn %>
@@ -21,3 +22,10 @@ global
 	# For more information, see ciphers(1SSL).
 	ssl-default-bind-ciphers kEECDH+aRSA+AES:kRSA+AES:+AES256:RC4-SHA:!kEDH:!LOW:!EXP:!MD5:!aNULL:!eNULL
 
+=======
+daemon
+log 127.0.0.1  /var/log  local2 info
+log 127.0.0.1  /var/log  local2 notice
+maxconn 40000
+ulimit -n 81000
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8

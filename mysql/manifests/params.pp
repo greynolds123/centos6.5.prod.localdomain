@@ -27,7 +27,11 @@ class mysql::params {
     'RedHat': {
       case $::operatingsystem {
         'Fedora': {
+<<<<<<< HEAD
           if is_integer($::operatingsystemrelease) and $::operatingsystemrelease >= 19 or $::operatingsystemrelease == "Rawhide" {
+=======
+          if is_integer($::operatingsystemrelease) and $::operatingsystemrelease >= 19 or $::operatingsystemrelease == 'Rawhide' {
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
             $provider = 'mariadb'
           } else {
             $provider = 'mysql'

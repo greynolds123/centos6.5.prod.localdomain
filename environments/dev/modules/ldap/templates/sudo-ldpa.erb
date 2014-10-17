@@ -1,0 +1,37 @@
+##
+## URI ldap[s]://[hostname[:port]] ...
+##  Specifies a whitespace-delimited list of one or more
+##  URIs describing the LDAP server(s) to connect to. 
+##
+uri ldap://centos7.prod.localdomain:389
+
+##
+## SUDOERS_BASE base
+##  The base DN to use when performing sudo LDAP queries.
+##  Multiple SUDOERS_BASE lines may be specified, in which
+##  case they are queried in the order specified.
+##
+sudoers_base ou=SUDOers,dc=Managed,dc=local
+
+##
+## BIND_TIMELIMIT seconds
+##  The BIND_TIMELIMIT parameter specifies the amount of
+##  time to wait while trying to connect to an LDAP server.
+##
+bind_timelimit 30
+
+##
+## TIMELIMIT seconds
+##  The TIMELIMIT parameter specifies the amount of time
+##  to wait for a response to an LDAP query.
+##
+timelimit 30
+
+##
+## SUDOERS_DEBUG debug_level
+##  This sets the debug level for sudo LDAP queries. Debugging
+##  information is printed to the standard error. A value of 1
+##  results in a moderate amount of debugging information.
+##  A value of 2 shows the results of the matches themselves.
+##
+#sudoers_debug 1

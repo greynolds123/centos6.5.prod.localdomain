@@ -143,6 +143,7 @@ apache::vhost { 'fifteenth.example.com':
 
 # Vhost to redirect non-ssl to ssl
 apache::vhost { 'sixteenth.example.com non-ssl':
+<<<<<<< HEAD
   servername   => 'sixteenth.example.com',
   port         => '80',
   docroot      => '/var/www/sixteenth',
@@ -151,6 +152,16 @@ apache::vhost { 'sixteenth.example.com non-ssl':
       comment       => 'redirect non-SSL traffic to SSL site',
       rewrite_cond  => ['%{HTTPS} off'],
       rewrite_rule  => ['(.*) https://%{HTTPS_HOST}%{REQUEST_URI}'],
+=======
+  servername => 'sixteenth.example.com',
+  port       => '80',
+  docroot    => '/var/www/sixteenth',
+  rewrites   => [
+    {
+      comment      => 'redirect non-SSL traffic to SSL site',
+      rewrite_cond => ['%{HTTPS} off'],
+      rewrite_rule => ['(.*) https://%{HTTPS_HOST}%{REQUEST_URI}'],
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
     }
   ]
 }
@@ -215,6 +226,7 @@ apache::vhost { 'subdomain.loc':
 
 # Vhost with SSLProtocol,SSLCipherSuite, SSLHonorCipherOrder
 apache::vhost { 'securedomain.com':
+<<<<<<< HEAD
         priority              => '10',
         vhost_name            => 'www.securedomain.com',
         port                  => '443',
@@ -227,6 +239,20 @@ apache::vhost { 'securedomain.com':
         ssl_cipher            => 'ALL:!aNULL:!ADH:!eNULL:!LOW:!EXP:RC4+RSA:+HIGH:+MEDIUM',
         ssl_honorcipherorder  => 'On',
         add_listen            => false,
+=======
+        priority             => '10',
+        vhost_name           => 'www.securedomain.com',
+        port                 => '443',
+        docroot              => '/var/www/secure',
+        ssl                  => true,
+        ssl_cert             => '/etc/ssl/securedomain.cert',
+        ssl_key              => '/etc/ssl/securedomain.key',
+        ssl_chain            => '/etc/ssl/securedomain.crt',
+        ssl_protocol         => '-ALL +SSLv3 +TLSv1',
+        ssl_cipher           => 'ALL:!aNULL:!ADH:!eNULL:!LOW:!EXP:RC4+RSA:+HIGH:+MEDIUM',
+        ssl_honorcipherorder => 'On',
+        add_listen           => false,
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
 }
 
 # Vhost with access log environment variables writing control

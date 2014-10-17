@@ -46,6 +46,7 @@ define apt::ppa(
         $proxy_env = []
     }
     exec { "add-apt-repository-${name}":
+<<<<<<< HEAD
         environment  => $proxy_env,
         command      => "/usr/bin/add-apt-repository ${options} ${name}",
         unless       => "/usr/bin/test -s ${sources_list_d}/${sources_list_d_filename}",
@@ -53,6 +54,15 @@ define apt::ppa(
         logoutput    => 'on_failure',
         notify       => Exec['apt_update'],
         require      => [
+=======
+        environment => $proxy_env,
+        command     => "/usr/bin/add-apt-repository ${options} ${name}",
+        unless      => "/usr/bin/test -s ${sources_list_d}/${sources_list_d_filename}",
+        user        => 'root',
+        logoutput   => 'on_failure',
+        notify      => Exec['apt_update'],
+        require     => [
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
         File['sources.list.d'],
         Package[$package],
         ],

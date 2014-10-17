@@ -182,7 +182,11 @@ class haproxy (
   $stats_url            = $::haproxy::params::stats_url,
 ) inherits haproxy::params {
   class { 'haproxy::install': } ->
+<<<<<<< HEAD
   class { 'haproxy::config': } ~>
+=======
+  class { 'haproxy::config': } ->
+>>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
   class { 'haproxy::service': } ->
   Class['haproxy']
 }
