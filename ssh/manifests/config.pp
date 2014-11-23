@@ -55,7 +55,7 @@ class ssh::config {
    notify  => Class['ssh::service'],
     }
   }  
-  
+ 
    elsif $operatingsystems == '/[Ubuntu|Debian]/' {
    file { '/etc/ssh/sshd_config':
    ensure  => present,
