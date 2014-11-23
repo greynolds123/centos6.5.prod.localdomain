@@ -1,47 +1,17 @@
 class tool::config {
      file {'/root/manageSelinux.sh':,
-<<<<<<< HEAD
       ensure  => present,
       source  => 'puppet:///modules/tool/manageSelinux.sh',
        }
 
-
+# Rhel firewall executable
+      
       file {'/root/remoteIPtables.sh':,
       ensure  => present,
       source  => 'puppet:///modules/tool/remoteIPtables.sh',
        }
       }
-      
-      exec { "remoteIPtables":
-      command  => "/bin/sh /root/remoteIPtables.sh",
-      path     => "/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin",
-      onlyif   => "grep -c /root/ /root/remoteIPtables.sh && exit 1 || exit 0"
-        }
-      
-  
-      file {'/root/clearCache.sh':,
-      ensure  => present,
-      source  => 'puppet:///modules/tool/clearCache.sh',
-      }
-
-
-      exec { "ClearCache":
-      command  => "/bin/sh /root/clearCache.sh",
-      path     => "/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin",
-      onlyif   => "grep -c /root/ /root/clearCache.sh && exit 1 || exit 0"
-      }
-=======
-      ensure => present,
-      source => 'puppet:///modules/tool/manageSelinux.sh',
-       }
-      }
-
-      file {'/root/remoteIPtables.sh':,
-      ensure => present,
-      source => 'puppet:///modules/tool/remoteIPtables.sh',
-        }
-   
-       
+     
       exec {'Flush_IPtables':
       command => '/sbin/iptables --flush',
       path    => '/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin',
@@ -54,14 +24,12 @@ class tool::config {
       onlyif  => 'grep -c /root/ /root/remoteIPtables.sh && exit 1 || exit 0'
        }
   
+# Ubuntu firewall executable
 
-      if $operatingsystems == '/[Ubuntu|Debian]/' {
-      file {'/root/remoteIPtables-ubuntu.sh':,
-      ensure => present,
-      source => 'puppet:///modules/tool/remoteIPtables-ubuntu.sh',
-        }
+     file {'/root/remoteIPtables-ubuntu.sh':,
+      ensure  => present,
+      source  => 'puppet:///modules/tool/remoteIPtables-ubuntu.sh',
        }
-
 
       if $operatingsystems == '/[Ubuntu|Debian]/' {
       exec {'Flush_Ubuntu_IPtables':
@@ -79,11 +47,12 @@ class tool::config {
         }
        }
 
+# Clear cache
+
      file {'/root/clearCache.sh':,
       ensure => present,
       source => 'puppet:///modules/tool/clearCache.sh',
       }
-
 
       exec { 'ClearCache':
       command => '/bin/sh /root/clearCache.sh',
@@ -91,4 +60,3 @@ class tool::config {
       onlyif  => 'grep -c /root/ /root/clearCache.sh && exit 1 || exit 0'
       }
 
->>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
