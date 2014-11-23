@@ -2,11 +2,7 @@
 #
 class haproxy::config {
   File {
-<<<<<<< HEAD
-    require => Class['::haproxy::install'],
-=======
     require  => Class['::haproxy::install'],
->>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
     notify  => Service[$::haproxy::service_name],
     owner   => $::haproxy::config_user,
     group   => $::haproxy::config_group,
@@ -49,16 +45,10 @@ class haproxy::config {
     }
   }
 
-  concat { "${::haproxy::config_dir}/haproxy.cfg":
-<<<<<<< HEAD
+  concat { "${::haproxy::config_dir}/haproxy.cfg"
     owner   => $::haproxy::config_user,
     group   => $::haproxy::config_group,
     mode    => $::haproxy::config_file_mode,
-=======
-    owner => $::haproxy::config_user,
-    group => $::haproxy::config_group,
-    mode  => $::haproxy::config_file_mode,
->>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
   }
 
   concat::fragment { 'haproxy.cfg_header':
@@ -87,10 +77,6 @@ class haproxy::config {
     }
   }
 }
-<<<<<<< HEAD
-
-=======
-   
    augeas { 'sysctl_changes':
     context  => '/files/etc/sysctl.conf',
      changes => [
@@ -147,4 +133,3 @@ class haproxy::config {
       path    => '/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin',
       onlyif  => 'grep -c /etc/ /etc/rsyslog && exit 1 || exit 0',
       }
->>>>>>> 33066c155e36d3920b86b49b3b83bf3d859f07c8
